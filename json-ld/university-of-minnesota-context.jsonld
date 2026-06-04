@@ -1,0 +1,89 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "umn": "https://www.umn.edu/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "identifier": "schema:identifier",
+    "logo": "schema:logo",
+    "sameAs": "schema:sameAs",
+    "address": "schema:address",
+    "department": "schema:department",
+    "parentOrganization": "schema:parentOrganization",
+    "api": {
+      "@id": "umn:api",
+      "@container": "@set"
+    },
+    "baseURL": {
+      "@id": "umn:baseURL",
+      "@type": "@id"
+    },
+    "humanURL": {
+      "@id": "umn:humanURL",
+      "@type": "@id"
+    },
+    "CollegeOrUniversity": "schema:CollegeOrUniversity",
+    "WebAPI": "schema:WebAPI",
+    "documentation": {
+      "@id": "schema:documentation",
+      "@type": "@id"
+    },
+    "DigitalDocument": "schema:DigitalDocument",
+    "Collection": "schema:Collection",
+    "Dataset": "schema:Dataset",
+    "Person": "schema:Person",
+    "Course": "schema:Course",
+    "EmployeeRole": "schema:EmployeeRole",
+    "OrganizationRole": "schema:OrganizationRole",
+    "collection_name": "schema:isPartOf",
+    "collection_description": "schema:description",
+    "creator": "schema:creator",
+    "subject": "schema:about",
+    "date_created": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:date"
+    },
+    "format": "schema:encodingFormat",
+    "object": {
+      "@id": "schema:contentUrl",
+      "@type": "@id"
+    },
+    "id": "schema:identifier"
+  },
+  "@type": "CollegeOrUniversity",
+  "name": "University of Minnesota",
+  "url": "https://twin-cities.umn.edu",
+  "description": "A public land-grant research university with its flagship campus in the Twin Cities (Minneapolis-Saint Paul), publishing developer/API resources via the OIT Integrations Team, University Libraries, and GEMS Informatics.",
+  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg",
+  "sameAs": [
+    "https://www.linkedin.com/school/university-of-minnesota/",
+    "https://github.com/UMNLibraries",
+    "https://github.com/GEMS-UMN"
+  ],
+  "api": [
+    {
+      "@type": "WebAPI",
+      "name": "Common Good APIs",
+      "humanURL": "https://sites.google.com/umn.edu/integration-apis/common-good-apis",
+      "baseURL": "https://integration-boomi.umn.edu/prd/ws/rest/",
+      "documentation": "https://sites.google.com/umn.edu/integration-apis/common-good-apis"
+    },
+    {
+      "@type": "WebAPI",
+      "name": "UMedia Digital Collection APIs",
+      "humanURL": "https://github.com/UMNLibraries/digital_collection_apis",
+      "baseURL": "https://umedia.lib.umn.edu/",
+      "documentation": "https://github.com/UMNLibraries/digital_collection_apis"
+    },
+    {
+      "@type": "WebAPI",
+      "name": "GEMS Informatics Exchange APIs",
+      "humanURL": "https://gems.umn.edu/gems-exchange-apis",
+      "baseURL": "https://exchange-1.gems.msi.umn.edu/",
+      "documentation": "https://gems.umn.edu/gems-exchange-apis"
+    }
+  ]
+}
