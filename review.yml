@@ -1,0 +1,53 @@
+---
+name: University of Minnesota
+description: University of Minnesota public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/university-of-minnesota/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 3
+    summary: >-
+      Verified three real public-facing API surfaces with live documentation: the OIT
+      Integrations Team Common Good APIs (gated behind request/data-custodian approval,
+      served from a Boomi gateway), the UMN Libraries UMedia digital collection APIs
+      (JSON + IIIF, documented on public GitHub), and GEMS Informatics Exchange APIs
+      (agricultural/geospatial, API key via GitHub). Common Good API base URL is
+      documented but requires institutional auth/approval and was not probed for live
+      data responses. No fabricated endpoints; restricted-data APIs catalogued by their
+      documented descriptions only. Libraries portals (UMedia, Conservancy/DRUM) returned
+      403/bot-block to anonymous curl but are real, public sites.
+    endpoints:
+      - url: https://sites.google.com/umn.edu/integration-apis/home
+        status: 200
+        note: OIT Integrations developer portal home, live.
+      - url: https://sites.google.com/umn.edu/integration-apis/common-good-apis
+        status: 200
+        note: Common Good API list with classifications and base URL, live.
+      - url: https://integration-boomi.umn.edu/prd/ws/rest/
+        status: 0
+        note: Documented Common Good API base URL; gated, not probed anonymously.
+      - url: https://github.com/UMNLibraries/digital_collection_apis
+        status: 200
+        note: UMedia JSON + IIIF API documentation repo, live.
+      - url: https://gems.umn.edu/gems-exchange-apis
+        status: 200
+        note: GEMS Informatics Exchange APIs catalog, live.
+      - url: https://github.com/GEMS-UMN/Exchange-Notebooks
+        status: 200
+        note: GEMS API key generation and example notebooks, live.
+      - url: https://github.com/UMNLibraries
+        status: 200
+        note: UMN Libraries GitHub org (141 repos), live.
+      - url: https://twin-cities.umn.edu
+        status: 200
+        note: Official University of Minnesota Twin Cities website, live.
+      - url: https://umedia.lib.umn.edu
+        status: 403
+        note: Real public UMedia portal; blocks anonymous curl (bot protection).
+      - url: https://conservancy.umn.edu
+        status: 403
+        note: Real UDC/DRUM institutional repository; blocks anonymous curl.
+      - url: https://www.linkedin.com/school/university-of-minnesota/
+        status: 999
+        note: LinkedIn school page; 999 is LinkedIn anti-bot, page exists.

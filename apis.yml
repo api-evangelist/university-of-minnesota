@@ -1,0 +1,102 @@
+---
+aid: university-of-minnesota
+name: University of Minnesota
+description: >-
+  The University of Minnesota is a public land-grant research university with its
+  flagship campus in the Twin Cities (Minneapolis-Saint Paul), ranked #203 in the
+  QS World University Rankings 2025. Its developer/API footprint is led by the OIT
+  Integrations Team, which publishes a suite of "Common Good APIs" sourced from the
+  University's Common Data Layer (CDL) covering person, HR, student, class, and
+  organization data; access requires request and data-custodian approval. Additional
+  public-facing APIs include the University Libraries digital collection APIs (UMedia
+  JSON and IIIF) and GEMS Informatics agricultural/geospatial data APIs. Most data
+  APIs are gated behind access requests and institutional authentication.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/university-of-minnesota/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Open Data
+  - Geospatial
+  - United States
+  - Minnesota
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: university-of-minnesota:common-good-apis
+    name: Common Good APIs
+    description: >-
+      A suite of APIs published by the OIT Integrations Team providing access to
+      frequently used and requested University data sourced from the Common Data
+      Layer (CDL). Includes Person Basic Information, Class Information, Employee
+      Information, Student Academic, Organization Information, HR Information, Term
+      Information, and more. Public-classified APIs require minimal approval;
+      private/restricted/highly-restricted APIs require data-custodian approval.
+      Endpoints are served from a Boomi integration gateway.
+    humanURL: https://sites.google.com/umn.edu/integration-apis/common-good-apis
+    baseURL: https://integration-boomi.umn.edu/prd/ws/rest/
+    tags: [ Integration, Student, HR, Employee, Identity, Education ]
+    properties:
+      - type: Documentation
+        url: https://sites.google.com/umn.edu/integration-apis/common-good-apis
+      - type: SignUp
+        url: https://sites.google.com/umn.edu/integration-apis/home
+  - aid: university-of-minnesota:umedia-digital-collections
+    name: UMedia Digital Collection APIs
+    description: >-
+      University of Minnesota Libraries APIs for programmatically downloading items,
+      text, and metadata from the UMedia digital collections. Includes a JSON API for
+      metadata/text and an IIIF API for still images and other digital objects.
+      Documentation is published in a public GitHub repository.
+    humanURL: https://github.com/UMNLibraries/digital_collection_apis
+    tags: [ Library, Digital Collections, IIIF, Metadata, Open Data ]
+    properties:
+      - type: Documentation
+        url: https://github.com/UMNLibraries/digital_collection_apis
+      - type: GitHub
+        url: https://github.com/UMNLibraries/digital_collection_apis
+  - aid: university-of-minnesota:gems-exchange-apis
+    name: GEMS Informatics Exchange APIs
+    description: >-
+      A collection of agricultural and geospatial data APIs from GEMS Informatics at
+      the University of Minnesota, including Climate, Weather, Soils, Hydro, Elevation,
+      Land Cover, Crop Calendar, Market accessibility, and Biotic Risk Geography. API
+      keys are generated via the GEMS GitHub Exchange Notebooks repository; free-trial
+      usage is limited to personal research.
+    humanURL: https://gems.umn.edu/gems-exchange-apis
+    tags: [ Geospatial, Agriculture, Climate, Weather, Research, Open Data ]
+    properties:
+      - type: Documentation
+        url: https://gems.umn.edu/gems-exchange-apis
+      - type: SignUp
+        url: https://github.com/GEMS-UMN/Exchange-Notebooks
+      - type: GitHub
+        url: https://github.com/GEMS-UMN
+common:
+  - type: Website
+    url: https://twin-cities.umn.edu
+  - type: GitHub
+    url: https://github.com/UMNLibraries
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/university-of-minnesota/
+  - type: DeveloperPortal
+    url: https://sites.google.com/umn.edu/integration-apis/home
+  - type: SourceCode
+    url: https://github.com/GEMS-UMN
+  - type: Plans
+    url: plans/university-of-minnesota-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/university-of-minnesota-rate-limits.yml
+  - type: FinOps
+    url: finops/university-of-minnesota-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
