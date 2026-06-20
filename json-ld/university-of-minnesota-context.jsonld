@@ -57,7 +57,7 @@
   "name": "University of Minnesota",
   "url": "https://twin-cities.umn.edu",
   "description": "A public land-grant research university with its flagship campus in the Twin Cities (Minneapolis-Saint Paul), publishing developer/API resources via the OIT Integrations Team, University Libraries, and GEMS Informatics.",
-  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg",
+  "logo": "https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg",
   "sameAs": [
     "https://www.linkedin.com/school/university-of-minnesota/",
     "https://github.com/UMNLibraries",
