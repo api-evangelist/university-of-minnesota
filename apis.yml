@@ -45,7 +45,7 @@ apis:
     properties:
       - type: Documentation
         url: https://sites.google.com/umn.edu/integration-apis/common-good-apis
-      - type: SignUp
+      - type: Signup
         url: https://sites.google.com/umn.edu/integration-apis/home
   - aid: university-of-minnesota:umedia-digital-collections
     name: UMedia Digital Collection APIs
@@ -74,7 +74,7 @@ apis:
     properties:
       - type: Documentation
         url: https://gems.umn.edu/gems-exchange-apis
-      - type: SignUp
+      - type: Signup
         url: https://github.com/GEMS-UMN/Exchange-Notebooks
       - type: GitHub
         url: https://github.com/GEMS-UMN
