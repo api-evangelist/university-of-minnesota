@@ -79,6 +79,8 @@ apis:
       - type: GitHub
         url: https://github.com/GEMS-UMN
 common:
+  - type: DomainSecurity
+    url: security/university-of-minnesota-domain-security.yml
   - type: Website
     url: https://twin-cities.umn.edu
   - type: GitHub
