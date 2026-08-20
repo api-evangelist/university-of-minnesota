@@ -53,7 +53,20 @@ apis:
       Endpoints are served from a Boomi integration gateway.
     humanURL: https://sites.google.com/umn.edu/integration-apis/common-good-apis
     baseURL: https://integration-boomi.umn.edu/prd/ws/rest/
-    tags: [ Integration, Student, HR, Employee, Identity, Education ]
+    tags:
+    - Integration
+    - Students
+    - HR
+    - Employee
+    - Identity
+    - Education
+    tags_raw:
+    - Integration
+    - Student
+    - HR
+    - Employee
+    - Identity
+    - Education
     properties:
       - type: Documentation
         url: https://sites.google.com/umn.edu/integration-apis/common-good-apis
