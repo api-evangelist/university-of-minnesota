@@ -66,7 +66,7 @@ apis:
     baseURL: https://integration-boomi.umn.edu/prd/ws/rest/
     tags:
     - Integration
-    - Students
+    - Student
     - HR
     - Employee
     - Identity
