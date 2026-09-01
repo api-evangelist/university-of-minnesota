@@ -1,138 +1,414 @@
 ---
 aid: university-of-minnesota
 name: University of Minnesota
+x-type: university
+x-category: Public Research University
 description: >-
-  The University of Minnesota is a public land-grant research university with its
-  flagship campus in the Twin Cities (Minneapolis-Saint Paul), ranked #203 in the
-  QS World University Rankings 2025. Its developer/API footprint is led by the OIT
-  Integrations Team, which publishes a suite of "Common Good APIs" sourced from the
-  University's Common Data Layer (CDL) covering person, HR, student, class, and
-  organization data; access requires request and data-custodian approval. Additional
-  public-facing APIs include the University Libraries digital collection APIs (UMedia
-  JSON and IIIF) and GEMS Informatics agricultural/geospatial data APIs. Most data
-  APIs are gated behind access requests and institutional authentication.
+  The University of Minnesota is a public land-grant research university whose flagship campus is
+  in the Twin Cities. Its programmable footprint is small, real, and unevenly distributed: the one
+  place it publishes machine-readable contracts of its own is GEMS Informatics, whose Exchange
+  APIs serve agricultural, climate and geospatial data from exchange-1.gems.msi.umn.edu behind an
+  api key and ship nine live OpenAPI 3.1 documents. Everything else is either gated, undocumented
+  in machine terms, or somebody else's contract running under the University's name. The OIT
+  Integrations Team's Common Good APIs are institution-operated at integration-boomi.umn.edu but
+  are approved per data custodian and their Swagger lives inside a tenant Boomi developer portal
+  that answers no anonymous request. UMN Libraries operates a genuine JSON API over the UMedia
+  digital collections and an OAI-PMH 2.0 endpoint for the Digital Conservancy, but publishes no
+  contract for either, and UMedia's image delivery runs on the Libraries' OCLC CONTENTdm tenancy
+  rather than on University infrastructure. The strongest institution-operated machine-readable
+  surface the University has is not an API at all: it is the Shibboleth identity provider it
+  publishes through InCommon as urn:mace:incommon:umn.edu. There is no central developer portal,
+  no institution-wide API catalog, and no public API programme.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
   commercial: true
-  callable_host: false
+  callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: medium
+  confidence: high
   source:
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - openapi
+  - probed
+  generated: '2026-09-01'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
-  trial: false
+  onboarding: request
+  trial: true
   try_now: false
   public: false
-  label: Free
+  label: Free, request-gated
   confidence: medium
   source:
   - plans
-  generated: '2026-07-22'
-  method: derived
-position: Consumer
+  - probed
+  generated: '2026-09-01'
+  method: probed
+position: Provider
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-minnesota.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-minnesota/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
+  - Higher Education
+  - Education
   - Research
-  - Open Data
-  - Geospatial
   - United States
   - Minnesota
+  - Big Ten
+  - Land Grant
+  - Public Research University
+  - Research Data
+  - Research Repository
+  - Open Data
+  - Geospatial
+  - Agriculture
+  - Climate
+  - Digital Collections
+  - Identity Federation
+  - Research Computing
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Re-profiled on 2026-09-01 under the university pipeline with the operator axis settled before
+    anything was saved. Ten programmable surfaces were resolved: four institution-operated, two
+    tenant, three registry memberships and one identity federation. Nine first-party OpenAPI 3.1
+    documents were found live at exchange-1.gems.msi.umn.edu and saved with pristine copies under
+    openapi/_original/; a tenth GEMS API (weather) is real but gates its own openapi.json behind
+    the api key. One derived contract was written for the UMedia JSON API, which UMN Libraries
+    documents in prose but does not publish machine-readably, and it is marked derived. Two
+    surfaces were NOT saved as contracts on purpose: the Common Good API Swagger, which exists only
+    inside the University's tenant Boomi developer portal and answered no anonymous path, and the
+    Digital Conservancy REST API, whose contract is DSpace's product contract rather than the
+    University's. The UMedia IIIF image API was split out from the metadata API and re-labelled
+    tenant, because it is served by the Libraries' OCLC CONTENTdm instance at
+    cdm16022.contentdm.oclc.org and is OCLC's engineering, not the University's. A DNS pass was
+    run over every institution host: umedia.lib.umn.edu and conservancy.umn.edu both CNAME to a
+    University-owned Azure Front Door endpoint, which is CDN infrastructure rather than a vendor
+    platform tenancy, so their operator stays institution; exchange-1.gems.msi.umn.edu resolves
+    into the University's own 128.101.0.0/16 address space; and umn-prod-apigw.boomi.cloud
+    resolves to an AWS load balancer named umnprodgw, confirming the Boomi portal as a dedicated
+    UMN tenancy rather than a shared vendor host. Two institution hosts return 403 from an Azure
+    Front Door WAF to a non-browser client while their machine-readable paths answer 200; both are
+    recorded as live and bot-blocked, not as dead.
+  generated: '2026-09-01'
+  method: probed
+  evidence:
+    - url: https://exchange-1.gems.msi.umn.edu/soil/v2/openapi.json
+      status: 200
+    - url: https://exchange-1.gems.msi.umn.edu/hydro/v2/openapi.json
+      status: 200
+    - url: https://exchange-1.gems.msi.umn.edu/weather/v2/openapi.json
+      status: 401
+    - url: https://exchange-1.gems.msi.umn.edu/soil/v2/datasets
+      status: 401
+    - url: https://exchange-1.gems.msi.umn.edu/portal/home
+      status: 200
+    - url: https://umedia.lib.umn.edu/search.json?q=test
+      status: 200
+    - url: https://umedia.lib.umn.edu/item/p16022coll251:3420.json
+      status: 200
+    - url: https://umedia.lib.umn.edu/
+      status: 403
+    - url: https://conservancy.umn.edu/server/oai/request?verb=Identify
+      status: 200
+    - url: https://conservancy.umn.edu/server/api
+      status: 200
+    - url: https://conservancy.umn.edu/server/api/core/items?size=1
+      status: 401
+    - url: https://sites.google.com/umn.edu/integration-apis/common-good-apis
+      status: 200
+    - url: https://umn-prod-apigw.boomi.cloud:18077/#catalog
+      status: 200
+    - url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+      status: 200
+    - url: https://api.datacite.org/providers/umn
+      status: 200
+    - url: https://api.crossref.org/members/10551
+      status: 200
+    - url: https://ror.org/017zqws13
+      status: 200
+    - url: https://data.umn.edu/api/3/action/package_list
+      status: 404
+    - url: https://twin-cities.umn.edu/llms.txt
+      status: 404
+    - url: https://integration-boomi.umn.edu/prd/ws/rest/
+      status: 0
+      note: >-
+        Does not resolve on public DNS (NXDOMAIN at 8.8.8.8). The Common Good APIs are real and
+        institution-operated, but the gateway is reachable only from inside the University network.
+    - url: https://conservancy.umn.edu
+      status: 403
+      note: >-
+        Azure Front Door WAF challenge on the HTML UI. Bot-blocked, not dead — the OAI-PMH and
+        DSpace REST paths on the same host answer 200.
 apis:
+  - aid: university-of-minnesota:gems-exchange-apis
+    name: GEMS Informatics Exchange APIs
+    x-operator: institution
+    description: >-
+      Ten agricultural, climate and geospatial data APIs operated by GEMS Informatics at the
+      University of Minnesota — biotic risk, climate, crop calendar, elevation, hydrology, land
+      cover, market accessibility, pedigree tools, soils and weather. Each is a separately
+      versioned FastAPI deployment behind one gateway, and nine of the ten publish a live OpenAPI
+      3.1 document anonymously. Data paths require an `apikey` header obtained from the GEMS
+      portal; the contracts do not declare that requirement. This is the only surface where the
+      University publishes machine-readable contracts of its own.
+    humanURL: https://gems.umn.edu/gems-exchange-apis
+    baseURL: https://exchange-1.gems.msi.umn.edu
+    tags: [ Geospatial, Agriculture, Climate, Weather, Soils, Research Data, Open Data ]
+    properties:
+      - type: Documentation
+        url: https://gems.umn.edu/gems-exchange-apis
+      - type: APIReference
+        url: https://exchange-1.gems.msi.umn.edu/soil/v2/docs
+      - type: Signup
+        url: https://exchange-1.gems.msi.umn.edu/portal/home
+      - type: GitHub
+        url: https://github.com/GEMS-UMN/Exchange-Notebooks
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-gems-exchange-soil-openapi.yml
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-gems-exchange-climate-openapi.yml
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-gems-exchange-hydro-openapi.yml
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-gems-exchange-elevation-openapi.yml
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-gems-exchange-landcover-openapi.yml
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-gems-exchange-crop-openapi.yml
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-gems-exchange-market-openapi.yml
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-gems-exchange-biotic-risk-openapi.yml
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-gems-exchange-pedtools-openapi.yml
+      - type: JSONSchema
+        url: json-schema/university-of-minnesota-gems-exchange-schemas.json
   - aid: university-of-minnesota:common-good-apis
     name: Common Good APIs
+    x-operator: institution
     description: >-
-      A suite of APIs published by the OIT Integrations Team providing access to
-      frequently used and requested University data sourced from the Common Data
-      Layer (CDL). Includes Person Basic Information, Class Information, Employee
-      Information, Student Academic, Organization Information, HR Information, Term
-      Information, and more. Public-classified APIs require minimal approval;
-      private/restricted/highly-restricted APIs require data-custodian approval.
-      Endpoints are served from a Boomi integration gateway.
+      A suite of APIs published by the OIT Integrations Team over the University's Common Data
+      Layer — person, class, employee, student academic, organization, HR and term information.
+      Served from a University-hosted Boomi integration gateway at integration-boomi.umn.edu, so
+      the runtime is the institution's. Access is graded by the University's own data
+      classification (public, private, restricted, highly restricted) and granted per data
+      custodian. Per-API Swagger exists only inside the University's tenant Boomi developer
+      portal; no anonymous path to it was reachable, so no contract for these APIs is held here.
+      The documented base host does not resolve on public DNS (NXDOMAIN at 8.8.8.8), so the
+      surface is institution-operated but reachable only from inside the University network.
     humanURL: https://sites.google.com/umn.edu/integration-apis/common-good-apis
     baseURL: https://integration-boomi.umn.edu/prd/ws/rest/
-    tags:
-    - Integration
-    - Students
-    - HR
-    - Employee
-    - Identity
-    - Education
-    tags_raw:
-    - Integration
-    - Student
-    - HR
-    - Employee
-    - Identity
-    - Education
+    tags: [ Integration, Students, HR, Employee, Identity, Education ]
+    tags_raw: [ Integration, Student, HR, Employee, Identity, Education ]
     properties:
       - type: Documentation
         url: https://sites.google.com/umn.edu/integration-apis/common-good-apis
       - type: Signup
         url: https://sites.google.com/umn.edu/integration-apis/home
   - aid: university-of-minnesota:umedia-digital-collections
-    name: UMedia Digital Collection APIs
+    name: UMedia Digital Collections JSON API
+    x-operator: institution
     description: >-
-      University of Minnesota Libraries APIs for programmatically downloading items,
-      text, and metadata from the UMedia digital collections. Includes a JSON API for
-      metadata/text and an IIIF API for still images and other digital objects.
-      Documentation is published in a public GitHub repository.
+      A read-only JSON API over UMedia, the University of Minnesota Libraries digital collections
+      platform. Any search or item URL returns JSON when ".json" is appended, with Blacklight
+      bracket facet syntax for filtering and a `rows` parameter that is how bulk metadata export
+      is performed. UMN Libraries documents it in a public repository but publishes no contract;
+      the OpenAPI in this repository is derived by API Evangelist from live responses and is
+      marked as such. Image delivery is NOT part of this surface — see the CONTENTdm IIIF entry.
     humanURL: https://github.com/UMNLibraries/digital_collection_apis
-    tags: [ Library, Digital Collections, IIIF, Metadata, Open Data ]
+    baseURL: https://umedia.lib.umn.edu
+    tags: [ Library, Digital Collections, Metadata, Open Data, Research Data ]
     properties:
       - type: Documentation
         url: https://github.com/UMNLibraries/digital_collection_apis
       - type: GitHub
         url: https://github.com/UMNLibraries/digital_collection_apis
-  - aid: university-of-minnesota:gems-exchange-apis
-    name: GEMS Informatics Exchange APIs
+      - type: OpenAPI
+        url: openapi/university-of-minnesota-umedia-openapi.yml
+      - type: JSONSchema
+        url: json-schema/university-of-minnesota-umedia-item.json
+  - aid: university-of-minnesota:digital-conservancy-oai-pmh
+    name: UMN Digital Conservancy — OAI-PMH and DSpace REST
+    x-operator: institution
     description: >-
-      A collection of agricultural and geospatial data APIs from GEMS Informatics at
-      the University of Minnesota, including Climate, Weather, Soils, Hydro, Elevation,
-      Land Cover, Crop Calendar, Market accessibility, and Biotic Risk Geography. API
-      keys are generated via the GEMS GitHub Exchange Notebooks repository; free-trial
-      usage is limited to personal research.
-    humanURL: https://gems.umn.edu/gems-exchange-apis
-    tags: [ Geospatial, Agriculture, Climate, Weather, Research, Open Data ]
+      The University of Minnesota Digital Conservancy, which also holds DRUM (Data Repository for
+      the University of Minnesota), runs DSpace 10.0 on University infrastructure. Its OAI-PMH 2.0
+      endpoint answers anonymously under the University's own repositoryIdentifier
+      (conservancy.umn.edu) with a umn.edu admin contact, and its DSpace REST root is publicly
+      readable for communities and collections while item endpoints require authentication. The
+      deployment is the institution's; the REST contract is DSpace's product contract, so none is
+      saved here.
+    humanURL: https://conservancy.umn.edu
+    baseURL: https://conservancy.umn.edu/server/oai/request
+    tags: [ Research Repository, OAI-PMH, DSpace, Open Access, Research Data ]
+    properties:
+      - type: APIReference
+        url: https://conservancy.umn.edu/server/oai/request?verb=Identify
+      - type: Documentation
+        url: https://conservancy.umn.edu/server/api
+      - type: Conformance
+        url: conformance/university-of-minnesota-conformance.yml
+  - aid: university-of-minnesota:incommon-identity-federation
+    name: InCommon Identity Federation — University of Minnesota Shibboleth IdP
+    x-operator: federation
+    description: >-
+      The University operates its own Shibboleth identity provider and publishes it through the
+      InCommon federation as entityID urn:mace:incommon:umn.edu, with shibmd:Scope umn.edu and
+      SAML 2.0 single sign-on endpoints at login.umn.edu. The metadata host is shared because a
+      federation is shared by definition; the identity provider behind it is entirely the
+      institution's, and it is the machine-readable surface the largest number of University
+      systems actually depend on.
+    humanURL: https://incommon.org
+    baseURL: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+    tags: [ Identity Federation, Shibboleth, SAML, InCommon, Single Sign-On ]
+    properties:
+      - type: APIReference
+        url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+      - type: Example
+        url: examples/incommon-umn-idp-metadata.xml
+  - aid: university-of-minnesota:datacite-membership
+    name: DataCite membership — University of Minnesota
+    x-operator: registry
+    description: >-
+      The University of Minnesota is a DataCite direct member, symbol UMN, registered since
+      2018-12-19 and linked to ROR 017zqws13. It operates the repository client UMN.DRUM (Data
+      Repository for the University of Minnesota) against DOI prefix 10.13020. This is a fact
+      about the institution retrieved from a registry it is registered in; DataCite's own API
+      contract is DataCite's and is not saved here.
+    humanURL: https://api.datacite.org/providers/umn
+    baseURL: https://api.datacite.org/providers/umn
+    tags: [ DOI, DataCite, Persistent Identifiers, Research Data ]
+    properties:
+      - type: APIReference
+        url: https://api.datacite.org/providers/umn
+      - type: Registry
+        url: https://api.datacite.org/clients/umn.drum
+      - type: Example
+        url: examples/datacite-provider-umn.json
+  - aid: university-of-minnesota:crossref-membership
+    name: Crossref membership — University of Minnesota
+    x-operator: registry
+    description: >-
+      The University of Minnesota is Crossref member 10551, registering DOIs under prefixes
+      10.24926 and 10.64517. University of Minnesota Press (member 3779, prefix 10.5749) and
+      University of Minnesota Morris (member 13440, prefix 10.61366) are separately registered
+      members of the same institution. Recorded as a membership; Crossref's contract is Crossref's.
+    humanURL: https://www.crossref.org
+    baseURL: https://api.crossref.org/members/10551
+    tags: [ DOI, Crossref, Persistent Identifiers, Scholarly Publishing ]
+    properties:
+      - type: APIReference
+        url: https://api.crossref.org/members/10551
+  - aid: university-of-minnesota:ror-registration
+    name: ROR registration — University of Minnesota
+    x-operator: registry
+    description: >-
+      The University of Minnesota's Research Organization Registry identifier is
+      https://ror.org/017zqws13. It is the identifier DataCite links the University's membership
+      to, and the one that makes cross-registry attribution for this institution resolvable.
+    humanURL: https://ror.org/017zqws13
+    baseURL: https://api.ror.org/organizations/017zqws13
+    tags: [ ROR, Persistent Identifiers, Organization Identity ]
+    properties:
+      - type: APIReference
+        url: https://api.ror.org/organizations/017zqws13
+  - aid: university-of-minnesota:boomi-api-developer-portal
+    name: Boomi API Developer Portal (UMN tenant)
+    x-operator: tenant
+    description: >-
+      The University's developer portal for the Common Good APIs runs as a UMN-specific tenant on
+      Boomi's cloud at umn-prod-apigw.boomi.cloud, where it catalogues twenty-four APIs and holds
+      their Swagger documentation. The catalogue and its contents are the University's; the portal
+      software, its hosting and its contract are Boomi's. Recorded as a tenancy so the
+      relationship is legible without crediting the University for Boomi's engineering — and
+      without crediting Boomi with the University's data APIs, which run on umn.edu.
+    humanURL: https://umn-prod-apigw.boomi.cloud:18077/#catalog
+    baseURL: https://umn-prod-apigw.boomi.cloud:18077
+    tags: [ Developer Portal, API Gateway, Integration, Tenant ]
+    properties:
+      - type: DeveloperPortal
+        url: https://umn-prod-apigw.boomi.cloud:18077/#catalog
+  - aid: university-of-minnesota:contentdm-iiif
+    name: UMedia IIIF image delivery (OCLC CONTENTdm tenant)
+    x-operator: tenant
+    description: >-
+      UMedia's digital objects are delivered over the IIIF Image API 2.1 from the Libraries' OCLC
+      CONTENTdm instance at cdm16022.contentdm.oclc.org, which every UMedia record points to in
+      its `object` and `thumb_cdn_url` fields. The collections and the tenancy are the
+      University's; the IIIF implementation and its conformance are OCLC's. Previously catalogued
+      as part of a single University-operated "UMedia JSON and IIIF" surface, which credited the
+      University with a vendor's implementation.
+    humanURL: https://github.com/UMNLibraries/digital_collection_apis
+    baseURL: https://cdm16022.contentdm.oclc.org/digital/iiif/
+    tags: [ IIIF, Digital Collections, Images, CONTENTdm, Tenant ]
     properties:
       - type: Documentation
-        url: https://gems.umn.edu/gems-exchange-apis
-      - type: Signup
-        url: https://github.com/GEMS-UMN/Exchange-Notebooks
-      - type: GitHub
-        url: https://github.com/GEMS-UMN
+        url: https://github.com/UMNLibraries/digital_collection_apis
 common:
-  - type: DomainSecurity
-    url: security/university-of-minnesota-domain-security.yml
   - type: Website
     url: https://twin-cities.umn.edu
-  - type: GitHub
-    url: https://github.com/UMNLibraries
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/university-of-minnesota/
   - type: DeveloperPortal
     url: https://sites.google.com/umn.edu/integration-apis/home
+  - type: Documentation
+    url: https://gems.umn.edu/gems-exchange-apis
+  - type: APIReference
+    url: https://exchange-1.gems.msi.umn.edu/soil/v2/docs
+  - type: GitHubOrganization
+    url: https://github.com/UMNLibraries
   - type: SourceCode
     url: https://github.com/GEMS-UMN
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/university-of-minnesota/
+  - type: TermsOfService
+    url: https://policy.umn.edu
+  - type: PrivacyPolicy
+    url: https://privacy.umn.edu
+  - type: Support
+    url: https://it.umn.edu
+  - type: ResearchRepository
+    url: https://conservancy.umn.edu/server/oai/request?verb=Identify
+  - type: LibraryCatalog
+    url: https://www.lib.umn.edu
+  - type: IdentityFederation
+    url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+  - type: ResearchComputing
+    url: https://rc.umn.edu
+  - type: AIPolicy
+    url: https://it.umn.edu/navigating-ai-umn
+  - type: DomainSecurity
+    url: security/university-of-minnesota-domain-security.yml
   - type: Plans
     url: plans/university-of-minnesota-plans-pricing.yml
   - type: RateLimits
     url: rate-limits/university-of-minnesota-rate-limits.yml
   - type: FinOps
     url: finops/university-of-minnesota-finops.yml
+  - type: JSONLD
+    url: json-ld/university-of-minnesota-context.jsonld
+  - type: Authentication
+    url: authentication/university-of-minnesota-authentication.yml
+  - type: Scopes
+    url: scopes/university-of-minnesota-scopes.yml
+  - type: Errors
+    url: errors/university-of-minnesota-errors.yml
+  - type: Rules
+    url: rules/university-of-minnesota-rules.yml
+  - type: Vocabulary
+    url: vocabulary/university-of-minnesota-vocabulary.yml
+  - type: Conformance
+    url: conformance/university-of-minnesota-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/university-of-minnesota-lifecycle.yml
+  - type: Examples
+    url: examples/university-of-minnesota-examples.yml
   - type: Review
     url: review.yml
 maintainers:
