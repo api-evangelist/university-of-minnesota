@@ -165,7 +165,7 @@ apis:
   tags:
   - Integration
   - Students
-  - HR
+  - Human Resources
   - Employee
   - Identity
   - Education
@@ -218,6 +218,12 @@ apis:
   humanURL: https://incommon.org
   baseURL: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
   tags:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - InCommon
+  - SSO
+  tags_raw:
   - Identity Federation
   - Shibboleth
   - SAML
@@ -300,6 +306,11 @@ apis:
   - Developer Portal
   - API Gateway
   - Integration
+  - Tenants
+  tags_raw:
+  - Developer Portal
+  - API Gateway
+  - Integration
   - Tenant
   properties:
   - type: DeveloperPortal
@@ -316,6 +327,12 @@ apis:
   humanURL: https://github.com/UMNLibraries/digital_collection_apis
   baseURL: https://cdm16022.contentdm.oclc.org/digital/iiif/
   tags:
+  - IIIF
+  - Digital Collections
+  - Image
+  - CONTENTdm
+  - Tenants
+  tags_raw:
   - IIIF
   - Digital Collections
   - Images
@@ -356,6 +373,8 @@ apis:
   humanURL: https://gems.umn.edu/gems-exchange-apis
   baseURL: https://exchange-1.gems.msi.umn.edu
   tags:
+  - Datasets
+  tags_raw:
   - dataset
   properties:
   - type: OpenAPI
