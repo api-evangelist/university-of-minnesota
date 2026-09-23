@@ -1,0 +1,104 @@
+---
+name: University of Minnesota — contract governance findings
+description: >-
+  A lint of the ten machine-readable contracts this repository holds for the University of
+  Minnesota, computed against the ten documents themselves rather than against a claim. Nine are
+  first-party GEMS Informatics OpenAPI 3.1 documents fetched live; the tenth is our derived UMedia
+  contract, held to the same rules and failing some of them for the same reason.
+generated: '2026-09-01'
+method: derived
+source: >-
+  Computed on 2026-09-01 over openapi/_original/university-of-minnesota-gems-exchange-*.json
+  (fetched live, HTTP 200) and openapi/university-of-minnesota-umedia-openapi.yml.
+scope:
+  contracts_linted: 10
+  operations_linted: 181
+findings:
+  - id: security-scheme-undeclared
+    severity: error
+    affects: all nine GEMS Exchange contracts
+    finding: >-
+      Not one contract declares components.securitySchemes or a top-level security[], yet every
+      data path returns 401 {"message":"Missing API key in request"} without an `apikey` header.
+      The single most consequential fact about calling these APIs is absent from their contracts.
+    evidence:
+      - url: https://exchange-1.gems.msi.umn.edu/soil/v2/datasets
+        status: 401
+    remedy: >-
+      Declare an apiKey securityScheme in header named `apikey` and reference it from security[].
+      FastAPI expresses this with an APIKeyHeader dependency.
+  - id: error-responses-undeclared
+    severity: error
+    affects: all nine GEMS Exchange contracts
+    finding: >-
+      422 is the only 4xx declared on any operation. The 401 that every unauthenticated call
+      actually returns, and the gateway's 404 {"error_msg":"404 Route Not Found"}, appear in no
+      contract.
+    remedy: Declare 401 and 404 responses; see errors/university-of-minnesota-errors.yml.
+  - id: error-envelope-inconsistent
+    severity: warn
+    affects: GEMS Exchange gateway vs application
+    finding: >-
+      The gateway serialises errors as {"error_msg": "..."} while the application serialises them
+      as {"message": "..."} and FastAPI validation errors as {"detail": [...]}. Three envelopes on
+      one host, none of them RFC 9457 problem+json.
+  - id: servers-relative
+    severity: warn
+    affects: all nine GEMS Exchange contracts
+    finding: >-
+      servers[] carries a path-only url ("/soil/v2"). A document downloaded from the portal is
+      therefore not callable without knowing the host out of band — and it is precisely this
+      pattern that makes host-based ownership attribution blind, which is the failure mode this
+      pipeline exists to catch.
+    remedy: >-
+      Publish the absolute production URL. Our refined copies under openapi/ do this and record
+      the change in x-artifact.source.
+  - id: no-examples
+    severity: warn
+    affects: all ten contracts
+    finding: >-
+      Zero response examples across 181 operations. For a geospatial analysis API whose responses
+      are rasters, statistics and quantiles, this is the difference between a readable contract
+      and a guess.
+  - id: no-license-or-terms
+    severity: warn
+    affects: all nine GEMS Exchange contracts
+    finding: >-
+      No info.license and no info.termsOfService, although the GEMS site states that free-trial
+      usage is limited to personal research — a real term that the contract does not carry.
+    evidence:
+      - url: https://gems.umn.edu/gems-exchange-apis
+        status: 200
+  - id: pedtools-metadata-thin
+    severity: warn
+    affects: pedtools v1
+    finding: >-
+      Alone among the ten, pedtools declares no info.description and no info.contact, and both of
+      its operations are untagged. It also sits at v1 and version 0.1.0 while its nine siblings are
+      at v2 / 2.0.
+  - id: weather-openapi-gated
+    severity: info
+    affects: weather v2
+    finding: >-
+      https://exchange-1.gems.msi.umn.edu/weather/v2/openapi.json returns 401 while the other nine
+      openapi.json documents are public. The tenth Exchange API is real, and its contract is the
+      only one this repository could not save.
+  - id: umedia-contract-is-ours-not-theirs
+    severity: info
+    affects: openapi/university-of-minnesota-umedia-openapi.yml
+    finding: >-
+      UMN Libraries documents the UMedia API in prose and notebooks but publishes no
+      machine-readable contract. The OpenAPI in this repository is DERIVED by API Evangelist from
+      live responses and must not be read as a University publication. Its field list is whatever
+      the Solr index returned on 2026-09-01.
+  - id: common-good-swagger-not-retrievable
+    severity: info
+    affects: Common Good APIs
+    finding: >-
+      The University states that per-API Swagger documentation exists in the Boomi API Developer
+      Portal. The portal answers 200 and lists 24 APIs, but it is a GWT single-page application
+      and fourteen candidate anonymous REST/Swagger paths all returned 404. No Common Good contract
+      is held in this repository, and none should be invented.
+    evidence:
+      - url: https://umn-prod-apigw.boomi.cloud:18077/#catalog
+        status: 200

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" ID="_b4a20664-a2e0-41ad-b225-5e2f4b8a8f6a" entityID="urn:mace:incommon:umn.edu" validUntil="2026-09-15T19:37:27.125Z"><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#_b4a20664-a2e0-41ad-b225-5e2f4b8a8f6a"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>b+RWuqgwCLSZl/oiAGKSQrA4kHzPPMYTA49baAwxTgA=</DigestValue></Reference></SignedInfo><SignatureValue>MViQcR7q1gEVdYAuCxVDwgTdBevMpyEKyAFHe4CMobSXceu6SyZVQiZH1Tc+JOO1/qT0PVtTPL4T
+FTaSiuVxi8xuFcOlsyY6v1HqCxe9Qxwh9EMWKAnybKymrO673pZFb5EHI9De6JpoP+U3h7jbz07s
+5UY9OuxpUCXC9buCZvO8QmA7CsAKAs6VYjix3ATZZqsHvlRUtgp0RNrF8iOghfEU8QQ9Q68wI1pU
+DJghcZtrLDH3Krnt9PHMAjTFKQ7VbS/IdClnljh7qr4ErXTVoFkq/HxiNHAORlTW5jNyGWPZp8DD
+3xRNduGw9lQRweJWvncB01zLY8x1EzwBd3lm9gBvVLWiXNCn6m4iHTiuax2i3DcqXuFqfJ9nJF2t
+NqbOsIViqx/Bh0AEqvELYkjnHDw0TxV8qMsQAJ20C1WJoODBZmMaBrvw5IqpXUGNIgTe8BcktDYK
+dvguwzZB292tkucuWHbty5svrkGhXJLKblMfkOgazE3xGh2UvzO35kls</SignatureValue></Signature>
+  <Extensions>
+    <mdrpi:RegistrationInfo xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" registrationAuthority="https://incommon.org"/>
+    <mdattr:EntityAttributes xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+      <saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="http://macedir.org/entity-category-support" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+        <saml:AttributeValue>http://id.incommon.org/category/research-and-scholarship</saml:AttributeValue>
+        <saml:AttributeValue>http://refeds.org/category/research-and-scholarship</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="urn:oasis:names:tc:SAML:attribute:assurance-certification" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+        <saml:AttributeValue>https://refeds.org/sirtfi</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+        <saml:AttributeValue>http://id.incommon.org/category/registered-by-incommon</saml:AttributeValue>
+      </saml:Attribute>
+    </mdattr:EntityAttributes>
+  </Extensions>
+  <IDPSSODescriptor errorURL="https://it.umn.edu/services-technologies/resources/resource-not-set-yet" protocolSupportEnumeration="urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+    <Extensions>
+      <shibmd:Scope xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" regexp="false">umn.edu</shibmd:Scope>
+      <mdui:UIInfo xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+        <mdui:DisplayName xml:lang="en">University of Minnesota</mdui:DisplayName>
+        <mdui:Description xml:lang="en">University of Minnesota, All Campuses</mdui:Description>
+        <mdui:InformationURL xml:lang="en">http://it.umn.edu/about-university-identity-provider</mdui:InformationURL>
+        <mdui:PrivacyStatementURL xml:lang="en">http://privacy.umn.edu</mdui:PrivacyStatementURL>
+        <mdui:Logo height="60" width="80" xml:lang="en">https://login.umn.edu/m-logo-maroon.png</mdui:Logo>
+      </mdui:UIInfo>
+    </Extensions>
+    <KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <!-- Serial No. 605812394376457361562807806118958924797242532412, expires on Sun Jun 29 17:48:14 2036 GMT -->
+          <ds:X509Certificate>
+MIIDHzCCAgegAwIBAgIUah2ROh5+3z9VKbgAKYi4SezMYjwwDQYJKoZIhvcNAQEL
+BQAwGDEWMBQGA1UEAwwNbG9naW4udW1uLmVkdTAeFw0xNjA2MjkxNzQ4MTRaFw0z
+NjA2MjkxNzQ4MTRaMBgxFjAUBgNVBAMMDWxvZ2luLnVtbi5lZHUwggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQClv5lE5Zxd/r1Yq3/72oszyYiLtZO+dD2y
+n8pyOJPndzewSMWtbvO0UWQssYMx6jZ/MsPbySgnuP/FZCUyISs6oSVzPkSLwulv
+SbbG5+VPouoxR1u2+POWw6KXQ5Yy/ZMIj9w6XF0PWiQx+NCZwV39r+oNgi9SY3zl
+sa00bLfp1+gqho2rzA/jkud2ZCzK58Cerit4CBSma1atSYGLoFIWpG9bk3TFFZXs
+gAiP7hzmzgtt1fD9560psgviUR1iydV+xcVzAz/MVzTyKWdi0Z4lyOocUfkZKh33
+vQYzqq4J0wxjaICdJAzciM+CsOU/HN1hyEqDn8jwgAeWwFckbXFdAgMBAAGjYTBf
+MB0GA1UdDgQWBBTsPJYGoIIIMAoU9dcM4Yjw4RO06TA+BgNVHREENzA1gg1sb2dp
+bi51bW4uZWR1hiRodHRwczovL2xvZ2luLnVtbi5lZHUvaWRwL3NoaWJib2xldGgw
+DQYJKoZIhvcNAQELBQADggEBAFSp+18J5bVS+NDfJzwRYizcchBYSLFdLBwXXYM3
+vxe5JLB2eKOkaxMLmxWYuAvLTXS2tuCmjHsEknl9L8o6ETbYi4yIeXRysmCpANiU
+6T5e0Btwf9CIA35BefOr4MRcnoiRdA0w0NVvjzK/6cVJyyiYp3Ywpp5zmqCHnV5A
+1o5YTNP2ewuMoDdbjdEo+eZFaga12owt642uiLh5TjdRZ3H70HtuXNlDcE7JLOt6
+6aEJfHfnJV15VwUrztmn9cBF9Bx0ognJkZmQUpqvF5jSYPmPaSakENimUHLbqKg6
+pJMA7hVJR3RTayarc64cm7vRNPn2FC6WBd39++5+wF2Yhoc=
+          </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://login.umn.edu/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+    <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://login.umn.edu/idp/profile/Shibboleth/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://login.umn.edu/idp/profile/SAML2/POST/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.umn.edu/idp/profile/SAML2/Redirect/SSO"/>
+  </IDPSSODescriptor>
+  <Organization>
+    <OrganizationName xml:lang="en">University of Minnesota</OrganizationName>
+    <OrganizationDisplayName xml:lang="en">University of Minnesota</OrganizationDisplayName>
+    <OrganizationURL xml:lang="en">http://www1.umn.edu/twincities/</OrganizationURL>
+  </Organization>
+  <ContactPerson contactType="technical">
+    <GivenName>University of Minnesota Identity and Access Management</GivenName>
+    <EmailAddress>mailto:iam@umn.edu</EmailAddress>
+  </ContactPerson>
+  <ContactPerson contactType="administrative">
+    <GivenName>Christopher Bongaarts</GivenName>
+    <EmailAddress>mailto:cab@umn.edu</EmailAddress>
+  </ContactPerson>
+  <ContactPerson xmlns:remd="http://refeds.org/metadata" contactType="other" remd:contactType="http://refeds.org/metadata/contactType/security">
+    <GivenName>University of Minnesota IT Security</GivenName>
+    <EmailAddress>mailto:security@umn.edu</EmailAddress>
+  </ContactPerson>
+  <ContactPerson contactType="support">
+    <GivenName>University of Minnesota IT Service Desk</GivenName>
+    <EmailAddress>mailto:help@umn.edu</EmailAddress>
+  </ContactPerson>
+  <ContactPerson contactType="administrative">
+    <GivenName>Katie Weber</GivenName>
+    <EmailAddress>mailto:kweber@umn.edu</EmailAddress>
+  </ContactPerson>
+</EntityDescriptor>

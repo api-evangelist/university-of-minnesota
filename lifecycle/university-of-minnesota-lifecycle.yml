@@ -1,0 +1,72 @@
+---
+name: University of Minnesota — API lifecycle and versioning
+description: >-
+  How the University's programmable surfaces version and retire. Assembled from what the contracts
+  and live hosts actually say; where a surface publishes no lifecycle policy that is recorded as
+  such rather than filled in.
+generated: '2026-09-01'
+method: derived
+source: >-
+  Derived from the nine OpenAPI documents in openapi/_original/, the GEMS example notebooks at
+  github.com/GEMS-UMN/Exchange-Notebooks, and live probes of exchange-1.gems.msi.umn.edu,
+  umedia.lib.umn.edu and conservancy.umn.edu on 2026-09-01.
+surfaces:
+  - surface: GEMS Informatics Exchange APIs
+    x-operator: institution
+    versioning: uri-path
+    pattern: https://exchange-1.gems.msi.umn.edu/{api}/{version}
+    current:
+      biotic-risk: v2
+      climate: v2
+      crop: v2
+      elevation: v2
+      hydro: v2
+      landcover: v2
+      market: v2
+      pedtools: v1
+      soil: v2
+      weather: v2
+    info_version_declared: '2.0 for the v2 APIs; 0.1.0 for pedtools v1'
+    prior_versions_observed:
+      - host: exchange-0.msi.umn.edu
+        detail: >-
+          An earlier host appears in one published notebook
+          (climate/PRISM-normals_tutorial.ipynb) alongside the current exchange-1 host. No
+          deprecation notice, sunset header or migration guide is published for it.
+        status: not-probed
+    deprecation_policy_published: false
+    sunset_header: false
+    changelog: none found
+  - surface: UMedia Digital Collections JSON API
+    x-operator: institution
+    versioning: none
+    detail: >-
+      The API is a JSON representation of the search UI reached by appending ".json" to a path.
+      There is no version segment, no version header, and no published deprecation policy — the
+      contract is whatever the UI currently returns.
+    stability_risk: >-
+      Field names are Solr/Blacklight index fields (collection_name_s, creator_ss, subject_ss).
+      They can change with a reindex without any versioning signal to consumers.
+  - surface: UMN Digital Conservancy / DRUM
+    x-operator: institution
+    versioning: product
+    detail: >-
+      Versioning follows the DSpace release train; the running version self-reports as DSpace 10.0
+      at /server/api. The legacy /oai/request path now 403s at the WAF while /server/oai/request
+      answers, which is a DSpace 7+ path migration the University has not documented publicly.
+    deprecation_policy_published: false
+  - surface: Common Good APIs
+    x-operator: institution
+    versioning: unknown
+    detail: >-
+      Base URL https://integration-boomi.umn.edu/prd/ws/rest/ carries an environment segment
+      ("prd") but no version segment. Per-API Swagger lives inside the tenant Boomi developer
+      portal and was not anonymously readable, so no version statement could be evidenced.
+    deprecation_policy_published: false
+  - surface: Institutional identity (Shibboleth IdP)
+    x-operator: federation
+    versioning: metadata-validUntil
+    detail: >-
+      InCommon signs and re-publishes the University's entity descriptor with a rolling
+      validUntil; the copy captured on 2026-09-01 was valid until 2026-09-15T19:37:27Z. This is a
+      real, machine-readable freshness contract — and it is the only one the institution has.

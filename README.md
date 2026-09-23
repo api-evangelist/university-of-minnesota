@@ -82,8 +82,12 @@ Education, Higher Education, University, Research, Open Data, Geospatial, United
 ## APIs
 
 - **Common Good APIs** — OIT Integrations Team suite over the Common Data Layer (person, HR, employee, student, class, organization, term data); access by request/approval. Docs: https://sites.google.com/umn.edu/integration-apis/common-good-apis
-- **UMedia Digital Collection APIs** — UMN Libraries JSON + IIIF APIs for digital collection items, text, and metadata. Docs: https://github.com/UMNLibraries/digital_collection_apis
-- **GEMS Informatics Exchange APIs** — Agricultural/geospatial data APIs (Climate, Weather, Soils, Hydro, Elevation, Land Cover, Crop Calendar, Market, Biotic Risk). Docs: https://gems.umn.edu/gems-exchange-apis
+- **UMedia Digital Collections JSON API** — UMN Libraries' own read-only JSON API over digital collection metadata at umedia.lib.umn.edu (institution-operated). Docs: https://github.com/UMNLibraries/digital_collection_apis
+- **UMedia IIIF image delivery** — served from the Libraries' OCLC CONTENTdm instance at cdm16022.contentdm.oclc.org. A UMN tenancy on OCLC's platform, **not** a University-operated API.
+- **GEMS Informatics Exchange APIs** — Agricultural/geospatial data APIs (Climate, Weather, Soils, Hydro, Elevation, Land Cover, Crop Calendar, Market, Biotic Risk, Pedtools) at exchange-1.gems.msi.umn.edu. Nine of the ten publish a live OpenAPI 3.1 document; the contracts are saved under `openapi/`. Docs: https://gems.umn.edu/gems-exchange-apis
+- **UMN Digital Conservancy / DRUM** — OAI-PMH 2.0 at https://conservancy.umn.edu/server/oai/request plus a publicly readable DSpace 10.0 REST root. The deployment is the University's; the REST contract is DSpace's, so none is saved here.
+- **InCommon identity federation** — the University's own Shibboleth IdP, published as `urn:mace:incommon:umn.edu` with SAML 2.0 SSO at login.umn.edu. The strongest institution-operated machine-readable surface UMN has.
+- **Registry memberships** — DataCite direct member `UMN` (client `UMN.DRUM`, prefix 10.13020), Crossref member 10551, ROR `017zqws13`. Facts about the institution, recorded as memberships; the registries' own contracts are not saved here.
 
 ## Plans / Rate Limits / FinOps
 
@@ -107,7 +111,7 @@ Education, Higher Education, University, Research, Open Data, Geospatial, United
 
 ## Notes
 
-All entries reflect publicly documented APIs verified live on 2026-06-03. The Common Good APIs are gated behind a request/approval workflow and institutional authentication; the documented Boomi base URL was not probed anonymously and no endpoints were fabricated. UMedia and the UDC/DRUM repository (Conservancy) are real public sites that return 403 to anonymous curl due to bot protection. The LinkedIn school page returns HTTP 999 (anti-bot) but exists. There is no single unified public API key portal across all UMN units; APIs are owned by distinct teams (OIT Integrations, Libraries, GEMS Informatics).
+Re-profiled 2026-09-01 under the API Evangelist university pipeline, which settles who *operates* each surface before saving any contract. All entries reflect publicly documented APIs verified live on 2026-09-01 (originally profiled 2026-06-03). The documented Common Good API base host, integration-boomi.umn.edu, does not resolve on public DNS and is reachable only from inside the University network. The Common Good APIs are gated behind a request/approval workflow and institutional authentication; the documented Boomi base URL was not probed anonymously and no endpoints were fabricated. UMedia and the UDC/DRUM repository (Conservancy) are real public sites that return 403 to anonymous curl due to bot protection. The LinkedIn school page returns HTTP 999 (anti-bot) but exists. There is no single unified public API key portal across all UMN units; APIs are owned by distinct teams (OIT Integrations, Libraries, GEMS Informatics).
 
 ## Maintainers
 

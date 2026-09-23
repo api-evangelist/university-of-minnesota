@@ -1,0 +1,55 @@
+---
+name: University of Minnesota — error semantics
+description: >-
+  Error shapes observed live on University of Minnesota programmable surfaces. Every entry below
+  was captured from a real request on 2026-09-01; none are inferred from documentation.
+generated: '2026-09-01'
+method: probed
+source: Live probes on 2026-09-01. Captured bodies are stored under examples/.
+problem_details_rfc9457: false
+surfaces:
+  - surface: GEMS Informatics Exchange APIs
+    host: exchange-1.gems.msi.umn.edu
+    errors:
+      - status: 401
+        media_type: application/json
+        shape: '{"message": "<string>"}'
+        example: '{"message":"Missing API key in request"}'
+        trigger: Any data path called without an `apikey` header.
+        artifact: examples/gems-exchange-missing-apikey-401.json
+      - status: 404
+        media_type: application/json
+        shape: '{"error_msg": "<string>"}'
+        example: '{"error_msg":"404 Route Not Found"}'
+        trigger: Unrouted path at the gateway. Note this is a DIFFERENT envelope key from the 401 above — the gateway and the application do not agree on an error shape.
+      - status: 422
+        media_type: application/json
+        shape: 'FastAPI HTTPValidationError; {"detail": [{"loc": [], "msg": "", "type": ""}]}'
+        trigger: Declared on every operation in all nine OpenAPI documents.
+        declared_in_contract: true
+        note: 422 is the only error the contracts declare. 401 and 404 are undeclared.
+  - surface: UMedia Digital Collections JSON API
+    host: umedia.lib.umn.edu
+    errors:
+      - status: 403
+        media_type: text/html
+        shape: Azure WAF challenge page
+        trigger: HTML paths requested without a browser User-Agent. The .json paths are unaffected.
+        note: A finding about the edge, not about the API. The surface grades LIVE.
+      - status: 404
+        media_type: text/html
+        shape: Rails "The page you were looking for doesn't exist (404)" page
+        trigger: Unknown item or path, e.g. /iiif/2/{id}/manifest.json — UMedia does not serve IIIF itself.
+  - surface: UMN Digital Conservancy / DRUM
+    host: conservancy.umn.edu
+    errors:
+      - status: 401
+        media_type: application/json
+        shape: '{"timestamp": "...", "status": 401, "error": "Unauthorized", "message": "...", "path": "..."}'
+        example: '{"status":401,"error":"Unauthorized","message":"Authentication is required","path":"/server/api/core/items"}'
+        trigger: Item-level DSpace REST endpoints without authentication.
+        note: Spring Boot default error envelope; DSpace's, not the University's.
+      - status: 403
+        media_type: text/html
+        shape: Azure WAF challenge page
+        trigger: The legacy /oai/request path and the HTML UI without a browser User-Agent. The live OAI-PMH base is /server/oai/request.

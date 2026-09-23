@@ -1,0 +1,57 @@
+---
+name: University of Minnesota — authorization scopes
+description: >-
+  What authorization granularity the University's programmable surfaces actually expose. Recorded
+  including its absence: no University of Minnesota surface publishes an OAuth scope vocabulary,
+  and pretending otherwise would credit the institution for a model it has not published.
+generated: '2026-09-01'
+method: probed
+source: >-
+  Read from the nine live GEMS Exchange OpenAPI 3.1 documents in openapi/_original/ (none declare
+  components.securitySchemes or security[]), from the DSpace 10.0 HAL root at
+  conservancy.umn.edu/server/api, and from the Common Good API classification table published at
+  sites.google.com/umn.edu/integration-apis/common-good-apis.
+oauth_scopes_published: false
+scopes: []
+authorization_model:
+  - surface: GEMS Informatics Exchange APIs
+    model: opaque-api-key
+    granularity: per-key, per-API
+    detail: >-
+      Each of the ten Exchange APIs is a separate deployment behind the same gateway and the key
+      is presented as an `apikey` header. No scope, role or claim vocabulary is published; the
+      contracts declare no security scheme at all.
+  - surface: Common Good APIs
+    model: data-classification-tiers
+    granularity: per-API, per-data-custodian
+    detail: >-
+      The University does not sell scopes here — it grades APIs by institutional data
+      classification and approves access per requester. The four published tiers are the closest
+      thing to a scope vocabulary the institution operates.
+    tiers:
+      - public
+      - private
+      - restricted
+      - highly restricted
+    evidence:
+      - url: https://sites.google.com/umn.edu/integration-apis/common-good-apis
+        status: 200
+  - surface: UMedia Digital Collections JSON API
+    model: anonymous-read
+    granularity: none
+    detail: Fully open read; there is nothing to scope.
+  - surface: UMN Digital Conservancy / DRUM
+    model: dspace-groups
+    granularity: collection and item level, via DSpace's own authorization model
+    detail: >-
+      Discovery is anonymous, item-level reads require authentication, and the group model is
+      DSpace's, not a University-authored one.
+  - surface: Institutional identity (Shibboleth IdP)
+    model: saml-attribute-release
+    granularity: per-service-provider attribute release, eduPerson attributes scoped to umn.edu
+    detail: >-
+      For the great majority of University systems this — not an OAuth scope — is the real
+      authorization surface, and it is the one the institution genuinely operates.
+    evidence:
+      - url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+        status: 200

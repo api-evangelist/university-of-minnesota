@@ -1,0 +1,67 @@
+{
+  "provider": "university-of-minnesota",
+  "sources": [
+    "_original/university-of-minnesota-gems-exchange-hydro-openapi.json",
+    "_original/university-of-minnesota-gems-exchange-pedtools-openapi.json",
+    "_original/university-of-minnesota-umedia-openapi.yml"
+  ],
+  "outputs": [
+    "university-of-minnesota-catchment-api-openapi.yml",
+    "university-of-minnesota-dataset-api-openapi.yml",
+    "university-of-minnesota-lake-api-openapi.yml",
+    "university-of-minnesota-cop-api-openapi.yml",
+    "university-of-minnesota-pedtools-api-openapi.yml",
+    "university-of-minnesota-item-api-openapi.yml",
+    "university-of-minnesota-search-json-api-openapi.yml"
+  ],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "16 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "university-of-minnesota-gems-exchange-hydro-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "university-of-minnesota-gems-exchange-hydro-openapi.json: declared missing tag: catchment",
+    "university-of-minnesota-gems-exchange-hydro-openapi.json: declared missing tag: dataset",
+    "university-of-minnesota-gems-exchange-hydro-openapi.json: declared missing tag: lake",
+    "university-of-minnesota-gems-exchange-pedtools-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "university-of-minnesota-gems-exchange-pedtools-openapi.json: tagged paths GET /{variety} -> Pedtools",
+    "university-of-minnesota-gems-exchange-pedtools-openapi.json: tagged paths POST /cop/matrix -> Cop",
+    "university-of-minnesota-gems-exchange-pedtools-openapi.json: declared missing tag: Cop",
+    "university-of-minnesota-gems-exchange-pedtools-openapi.json: declared missing tag: Pedtools",
+    "university-of-minnesota-umedia-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "university-of-minnesota-umedia-openapi.yml: tagged paths GET /search.json -> Search.json",
+    "university-of-minnesota-umedia-openapi.yml: tagged paths GET /item/{id}.json -> Item",
+    "university-of-minnesota-umedia-openapi.yml: declared missing tag: Item",
+    "university-of-minnesota-umedia-openapi.yml: declared missing tag: Search.json",
+    "superseded outputs removed: university-of-minnesota-co-p-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 15 total)"
+  ],
+  "skipped": [
+    "_original/university-of-minnesota-gems-exchange-soil-openapi.yml: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-soil-openapi.json: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-pedtools-openapi.yml: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-market-openapi.yml: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-market-openapi.json: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-landcover-openapi.yml: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-landcover-openapi.json: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-hydro-openapi.yml: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-elevation-openapi.yml: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-elevation-openapi.json: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-crop-openapi.yml: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-crop-openapi.json: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-climate-openapi.yml: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-climate-openapi.json: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-biotic-risk-openapi.yml: archived document superseded by a larger archived document",
+    "_original/university-of-minnesota-gems-exchange-biotic-risk-openapi.json: archived document superseded by a larger archived document",
+    "university-of-minnesota-catchment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-minnesota-co-p-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-minnesota-dataset-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-minnesota-item-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-minnesota-lake-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-minnesota-pedtools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-minnesota-search-json-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

@@ -1,0 +1,67 @@
+---
+name: University of Minnesota — captured examples
+description: >-
+  Manifest for the payloads in this directory. Every file was captured from a live request on
+  2026-09-01; none were written by hand, and none are synthetic.
+generated: '2026-09-01'
+method: probed
+source: Live HTTP requests, 2026-09-01, browser User-Agent where the edge required one.
+examples:
+  - file: umedia-search-response.json
+    request: GET https://umedia.lib.umn.edu/search.json?q=minneapolis&rows=2
+    status: 200
+    surface: UMedia Digital Collections JSON API
+    x-operator: institution
+    note: >-
+      A bare JSON array — the search endpoint returns no envelope, no total, no paging metadata.
+      Consumers page by re-requesting with a larger `rows`.
+  - file: umedia-item-response.json
+    request: GET https://umedia.lib.umn.edu/item/p16022coll251:3420.json
+    status: 200
+    surface: UMedia Digital Collections JSON API
+    x-operator: institution
+    note: >-
+      A single item record. Carries fields that search results omit, which is why the derived
+      schema in json-schema/ unions both captures.
+  - file: conservancy-oai-identify.xml
+    request: GET https://conservancy.umn.edu/server/oai/request?verb=Identify
+    status: 200
+    surface: UMN Digital Conservancy
+    x-operator: institution
+    note: >-
+      The evidence behind the oai-pmh conformance claim. Note the base is /server/oai/request; the
+      legacy /oai/request path 403s at the WAF.
+  - file: conservancy-dspace-rest-root.json
+    request: GET https://conservancy.umn.edu/server/api
+    status: 200
+    surface: UMN Digital Conservancy
+    x-operator: institution
+    note: >-
+      DSpace 10.0 HAL root, self-identifying as "The University of Minnesota Digital Conservancy".
+      The deployment is the University's; the contract is DSpace's, which is why no OpenAPI for it
+      is saved in this repository.
+  - file: gems-exchange-missing-apikey-401.json
+    request: GET https://exchange-1.gems.msi.umn.edu/soil/v2/datasets
+    status: 401
+    surface: GEMS Informatics Exchange APIs
+    x-operator: institution
+    note: >-
+      The undeclared auth requirement, captured. Kept deliberately: it is the evidence for the
+      security-scheme-undeclared finding in rules/.
+  - file: incommon-umn-idp-metadata.xml
+    request: GET https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+    status: 200
+    surface: Institutional identity federation
+    x-operator: federation
+    note: >-
+      InCommon-signed SAML 2.0 entity descriptor for the University's own Shibboleth IdP. Shared
+      host by design — a federation is shared by definition — and the IdP behind it is the
+      institution's.
+  - file: datacite-provider-umn.json
+    request: GET https://api.datacite.org/providers/umn
+    status: 200
+    surface: DataCite membership
+    x-operator: registry
+    note: >-
+      Direct member UMN, linked to ROR 017zqws13. A fact about the institution, retrieved from a
+      registry it is registered in — not a contract of theirs.

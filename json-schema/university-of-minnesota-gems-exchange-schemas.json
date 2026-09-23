@@ -1,0 +1,1333 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-minnesota/main/json-schema/university-of-minnesota-gems-exchange-schemas.json",
+  "title": "GEMS Informatics Exchange API schemas (University of Minnesota)",
+  "description": "Union of the component schemas declared by the nine live GEMS Exchange OpenAPI 3.1 documents published at exchange-1.gems.msi.umn.edu. Extracted verbatim; nothing added.",
+  "x-artifact": {
+    "generated": "2026-09-01",
+    "method": "derived",
+    "source": "extracted verbatim from components.schemas of openapi/_original/university-of-minnesota-gems-exchange-biotic-risk-openapi.json, openapi/_original/university-of-minnesota-gems-exchange-climate-openapi.json, openapi/_original/university-of-minnesota-gems-exchange-crop-openapi.json, openapi/_original/university-of-minnesota-gems-exchange-elevation-openapi.json, openapi/_original/university-of-minnesota-gems-exchange-hydro-openapi.json, openapi/_original/university-of-minnesota-gems-exchange-landcover-openapi.json, openapi/_original/university-of-minnesota-gems-exchange-market-openapi.json, openapi/_original/university-of-minnesota-gems-exchange-pedtools-openapi.json, openapi/_original/university-of-minnesota-gems-exchange-soil-openapi.json"
+  },
+  "$defs": {
+    "Body_get_search_object__keyname__object_search_get": {
+      "properties": {
+        "begin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Begin"
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "End"
+        }
+      },
+      "type": "object",
+      "title": "Body_get_search_object__keyname__object_search_get"
+    },
+    "CompressEnum": {
+      "type": "string",
+      "enum": [
+        "DEFLATE9",
+        "LZW",
+        "NONE"
+      ],
+      "title": "CompressEnum"
+    },
+    "DatasetOut": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Description"
+        },
+        "id": {
+          "type": "integer",
+          "title": "Id"
+        },
+        "keyname": {
+          "type": "string",
+          "title": "Keyname"
+        },
+        "app_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "App Name"
+        }
+      },
+      "type": "object",
+      "required": [
+        "name",
+        "description",
+        "id",
+        "keyname",
+        "app_name"
+      ],
+      "title": "DatasetOut"
+    },
+    "GridDetails": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "Id"
+        },
+        "width": {
+          "type": "integer",
+          "title": "Width"
+        },
+        "height": {
+          "type": "integer",
+          "title": "Height"
+        },
+        "ul_x": {
+          "type": "number",
+          "title": "Ul X"
+        },
+        "ul_y": {
+          "type": "number",
+          "title": "Ul Y"
+        },
+        "scale": {
+          "type": "number",
+          "title": "Scale"
+        },
+        "srid": {
+          "type": "integer",
+          "title": "Srid"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "width",
+        "height",
+        "ul_x",
+        "ul_y",
+        "scale",
+        "srid"
+      ],
+      "title": "GridDetails"
+    },
+    "HTTPValidationError": {
+      "properties": {
+        "detail": {
+          "items": {
+            "$ref": "#/components/schemas/ValidationError"
+          },
+          "type": "array",
+          "title": "Detail"
+        }
+      },
+      "type": "object",
+      "title": "HTTPValidationError"
+    },
+    "Histogram": {
+      "properties": {
+        "min": {
+          "type": "number",
+          "title": "Min"
+        },
+        "max": {
+          "type": "number",
+          "title": "Max"
+        },
+        "count": {
+          "type": "integer",
+          "title": "Count"
+        },
+        "percent": {
+          "type": "number",
+          "title": "Percent"
+        }
+      },
+      "type": "object",
+      "required": [
+        "min",
+        "max",
+        "count",
+        "percent"
+      ],
+      "title": "Histogram"
+    },
+    "LayerOut": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Name",
+          "example": "FooLayer"
+        },
+        "units": {
+          "type": "string",
+          "maxLength": 63,
+          "title": "Units",
+          "example": "meters"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "example": "Bar Description"
+        },
+        "discrete": {
+          "type": "boolean",
+          "title": "Discrete",
+          "description": "Does this data layer have discrete or continuous values. Land cover classification data are an example of discrete data."
+        },
+        "id": {
+          "type": "integer",
+          "title": "Id"
+        }
+      },
+      "type": "object",
+      "required": [
+        "name",
+        "units",
+        "description",
+        "discrete",
+        "id"
+      ],
+      "title": "LayerOut"
+    },
+    "ObjectOut": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "Id"
+        },
+        "grid_id": {
+          "type": "integer",
+          "maximum": 6.0,
+          "minimum": 0.0,
+          "title": "Grid Id"
+        },
+        "t_ranges": {
+          "items": {
+            "$ref": "#/components/schemas/TimeRangeOut"
+          },
+          "type": "array",
+          "title": "T Ranges"
+        },
+        "t_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "T Key"
+        },
+        "t_description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "T Description"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "units": {
+          "type": "string",
+          "title": "Units"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "layer_id": {
+          "type": "integer",
+          "title": "Layer Id"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "grid_id",
+        "t_ranges",
+        "t_key",
+        "t_description",
+        "name",
+        "units",
+        "description",
+        "layer_id"
+      ],
+      "title": "ObjectOut"
+    },
+    "Quantile": {
+      "properties": {
+        "quantile": {
+          "type": "number",
+          "title": "Quantile"
+        },
+        "value": {
+          "type": "number",
+          "title": "Value"
+        }
+      },
+      "type": "object",
+      "required": [
+        "quantile",
+        "value"
+      ],
+      "title": "Quantile"
+    },
+    "StatsOut": {
+      "properties": {
+        "count": {
+          "type": "integer",
+          "title": "Count"
+        },
+        "sum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sum"
+        },
+        "mean": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mean"
+        },
+        "stddev": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Stddev"
+        },
+        "min": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Min"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Max"
+        }
+      },
+      "type": "object",
+      "required": [
+        "count",
+        "sum",
+        "mean",
+        "stddev",
+        "min",
+        "max"
+      ],
+      "title": "StatsOut"
+    },
+    "TimeRangeOut": {
+      "properties": {
+        "begin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Begin"
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "End"
+        }
+      },
+      "type": "object",
+      "required": [
+        "begin",
+        "end"
+      ],
+      "title": "TimeRangeOut"
+    },
+    "ValidationError": {
+      "properties": {
+        "loc": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "type": "array",
+          "title": "Location"
+        },
+        "msg": {
+          "type": "string",
+          "title": "Message"
+        },
+        "type": {
+          "type": "string",
+          "title": "Error Type"
+        }
+      },
+      "type": "object",
+      "required": [
+        "loc",
+        "msg",
+        "type"
+      ],
+      "title": "ValidationError"
+    },
+    "ValueCount": {
+      "properties": {
+        "value": {
+          "type": "number",
+          "title": "Value"
+        },
+        "count": {
+          "type": "integer",
+          "title": "Count"
+        }
+      },
+      "type": "object",
+      "required": [
+        "value",
+        "count"
+      ],
+      "title": "ValueCount"
+    },
+    "ValueOut": {
+      "properties": {
+        "value": {
+          "type": "number",
+          "title": "Value"
+        }
+      },
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "title": "ValueOut"
+    },
+    "CatchmentOut01": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Id"
+        },
+        "huc2_name": {
+          "type": "string",
+          "title": "Huc2 Name"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "huc2_name"
+      ],
+      "title": "CatchmentOut01"
+    },
+    "CatchmentOut02": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Id"
+        },
+        "huc_2": {
+          "type": "string",
+          "title": "Huc 2"
+        },
+        "huc2_name": {
+          "type": "string",
+          "title": "Huc2 Name"
+        },
+        "huc_4": {
+          "type": "string",
+          "title": "Huc 4"
+        },
+        "huc4_name": {
+          "type": "string",
+          "title": "Huc4 Name"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "huc_2",
+        "huc2_name",
+        "huc_4",
+        "huc4_name"
+      ],
+      "title": "CatchmentOut02"
+    },
+    "CatchmentOut04": {
+      "properties": {
+        "id": {
+          "type": "number",
+          "title": "Id"
+        },
+        "major_name": {
+          "type": "string",
+          "title": "Major Name"
+        },
+        "sq_miles": {
+          "type": "number",
+          "title": "Sq Miles"
+        },
+        "prod_year": {
+          "type": "number",
+          "title": "Prod Year"
+        },
+        "source": {
+          "type": "string",
+          "title": "Source"
+        },
+        "huc_8": {
+          "type": "string",
+          "title": "Huc 8"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "major_name",
+        "sq_miles",
+        "prod_year",
+        "source",
+        "huc_8"
+      ],
+      "title": "CatchmentOut04"
+    },
+    "CatchmentOut07": {
+      "properties": {
+        "id": {
+          "type": "number",
+          "title": "Id"
+        },
+        "minor_name": {
+          "type": "string",
+          "title": "Minor Name"
+        },
+        "major": {
+          "type": "number",
+          "title": "Major"
+        },
+        "major_name": {
+          "type": "string",
+          "title": "Major Name"
+        },
+        "sq_miles": {
+          "type": "number",
+          "title": "Sq Miles"
+        },
+        "prod_year": {
+          "type": "number",
+          "title": "Prod Year"
+        },
+        "source": {
+          "type": "string",
+          "title": "Source"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "minor_name",
+        "major",
+        "major_name",
+        "sq_miles",
+        "prod_year",
+        "source"
+      ],
+      "title": "CatchmentOut07"
+    },
+    "CatchmentOut08": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Id"
+        },
+        "hpoi_class": {
+          "type": "number",
+          "title": "Hpoi Class"
+        },
+        "dowgageid": {
+          "type": "number",
+          "title": "Dowgageid"
+        },
+        "nid_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Nid Id"
+        },
+        "major": {
+          "type": "integer",
+          "title": "Major"
+        },
+        "minor5": {
+          "type": "number",
+          "title": "Minor5"
+        },
+        "hpoi_id": {
+          "type": "number",
+          "title": "Hpoi Id"
+        },
+        "hydroid": {
+          "type": "number",
+          "title": "Hydroid"
+        },
+        "dowlknum": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Dowlknum"
+        },
+        "lake_ac": {
+          "type": "number",
+          "title": "Lake Ac"
+        },
+        "down_cat": {
+          "type": "string",
+          "title": "Down Cat"
+        },
+        "nextdownid": {
+          "type": "number",
+          "title": "Nextdownid"
+        },
+        "up_count": {
+          "type": "number",
+          "title": "Up Count"
+        },
+        "upadj_cat": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Upadj Cat"
+        },
+        "catch_ac": {
+          "type": "number",
+          "title": "Catch Ac"
+        },
+        "tot_shed_a": {
+          "type": "number",
+          "title": "Tot Shed A"
+        },
+        "ncontrb_a": {
+          "type": "number",
+          "title": "Ncontrb A"
+        },
+        "contrib_a": {
+          "type": "number",
+          "title": "Contrib A"
+        },
+        "pw_ac": {
+          "type": "number",
+          "title": "Pw Ac"
+        },
+        "nwi_ac": {
+          "type": "number",
+          "title": "Nwi Ac"
+        },
+        "dca_rat": {
+          "type": "integer",
+          "title": "Dca Rat"
+        },
+        "tot_ratio": {
+          "type": "integer",
+          "title": "Tot Ratio"
+        },
+        "lk_ratio": {
+          "type": "integer",
+          "title": "Lk Ratio"
+        },
+        "sto_ratio": {
+          "type": "integer",
+          "title": "Sto Ratio"
+        },
+        "contb_rat": {
+          "type": "integer",
+          "title": "Contb Rat"
+        },
+        "huc_2": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Huc 2"
+        },
+        "huc_4": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Huc 4"
+        },
+        "huc_6": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Huc 6"
+        },
+        "huc_8": {
+          "type": "string",
+          "title": "Huc 8"
+        },
+        "huc_10": {
+          "type": "string",
+          "title": "Huc 10"
+        },
+        "huc_12": {
+          "type": "string",
+          "title": "Huc 12"
+        },
+        "states": {
+          "type": "string",
+          "title": "States"
+        },
+        "hu_10_ds": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hu 10 Ds"
+        },
+        "hu_10_name": {
+          "type": "string",
+          "title": "Hu 10 Name"
+        },
+        "hu_10_mod": {
+          "type": "string",
+          "title": "Hu 10 Mod"
+        },
+        "hu_10_type": {
+          "type": "string",
+          "title": "Hu 10 Type"
+        },
+        "hu_12_ds": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hu 12 Ds"
+        },
+        "hu_12_name": {
+          "type": "string",
+          "title": "Hu 12 Name"
+        },
+        "hu_12_mod": {
+          "type": "string",
+          "title": "Hu 12 Mod"
+        },
+        "hu_12_type": {
+          "type": "string",
+          "title": "Hu 12 Type"
+        },
+        "hu_10_gnis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hu 10 Gnis"
+        },
+        "hu_12_gnis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hu 12 Gnis"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "hpoi_class",
+        "dowgageid",
+        "nid_id",
+        "major",
+        "minor5",
+        "hpoi_id",
+        "hydroid",
+        "dowlknum",
+        "lake_ac",
+        "down_cat",
+        "nextdownid",
+        "up_count",
+        "upadj_cat",
+        "catch_ac",
+        "tot_shed_a",
+        "ncontrb_a",
+        "contrib_a",
+        "pw_ac",
+        "nwi_ac",
+        "dca_rat",
+        "tot_ratio",
+        "lk_ratio",
+        "sto_ratio",
+        "contb_rat",
+        "huc_2",
+        "huc_4",
+        "huc_6",
+        "huc_8",
+        "huc_10",
+        "huc_12",
+        "states",
+        "hu_10_ds",
+        "hu_10_name",
+        "hu_10_mod",
+        "hu_10_type",
+        "hu_12_ds",
+        "hu_12_name",
+        "hu_12_mod",
+        "hu_12_type",
+        "hu_10_gnis",
+        "hu_12_gnis"
+      ],
+      "title": "CatchmentOut08"
+    },
+    "CatchmentOut09": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Id"
+        },
+        "lake_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Lake Id"
+        },
+        "catch_type": {
+          "type": "string",
+          "title": "Catch Type"
+        },
+        "catch_pos": {
+          "type": "string",
+          "title": "Catch Pos"
+        },
+        "down_cat": {
+          "type": "string",
+          "title": "Down Cat"
+        },
+        "upadj_cat": {
+          "type": "string",
+          "title": "Upadj Cat"
+        },
+        "huc12_id": {
+          "type": "string",
+          "title": "Huc12 Id"
+        },
+        "acres": {
+          "type": "number",
+          "title": "Acres"
+        },
+        "perim_ft": {
+          "type": "number",
+          "title": "Perim Ft"
+        },
+        "upsum_ac": {
+          "type": "number",
+          "title": "Upsum Ac"
+        },
+        "upsum_sqmi": {
+          "type": "number",
+          "title": "Upsum Sqmi"
+        },
+        "depth": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Depth"
+        },
+        "maj": {
+          "type": "integer",
+          "title": "Maj"
+        },
+        "l_pw_ratio": {
+          "type": "number",
+          "title": "L Pw Ratio"
+        },
+        "pw_ac": {
+          "type": "number",
+          "title": "Pw Ac"
+        },
+        "nwi_ac": {
+          "type": "number",
+          "title": "Nwi Ac"
+        },
+        "dca_ratio": {
+          "type": "integer",
+          "title": "Dca Ratio"
+        },
+        "total_rati": {
+          "type": "integer",
+          "title": "Total Rati"
+        },
+        "lk_ratio": {
+          "type": "integer",
+          "title": "Lk Ratio"
+        },
+        "sto_ratio": {
+          "type": "integer",
+          "title": "Sto Ratio"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "lake_id",
+        "catch_type",
+        "catch_pos",
+        "down_cat",
+        "upadj_cat",
+        "huc12_id",
+        "acres",
+        "perim_ft",
+        "upsum_ac",
+        "upsum_sqmi",
+        "depth",
+        "maj",
+        "l_pw_ratio",
+        "pw_ac",
+        "nwi_ac",
+        "dca_ratio",
+        "total_rati",
+        "lk_ratio",
+        "sto_ratio"
+      ],
+      "title": "CatchmentOut09"
+    },
+    "LakeOut": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Id"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "acres": {
+          "type": "number",
+          "title": "Acres"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "acres"
+      ],
+      "title": "LakeOut"
+    },
+    "MNDNRLevel": {
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        4,
+        7,
+        8,
+        9
+      ],
+      "title": "MNDNRLevel"
+    },
+    "AliasBaseModel": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Type"
+        }
+      },
+      "type": "object",
+      "required": [
+        "name",
+        "type"
+      ],
+      "title": "AliasBaseModel"
+    },
+    "COPResponse": {
+      "properties": {
+        "reverse_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "title": "Reverse Mapping"
+        },
+        "forward_mapping": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "object",
+          "title": "Forward Mapping"
+        },
+        "cop": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object"
+          },
+          "type": "object",
+          "title": "Cop"
+        }
+      },
+      "type": "object",
+      "required": [
+        "reverse_mapping",
+        "forward_mapping",
+        "cop"
+      ],
+      "title": "COPResponse"
+    },
+    "VarietyBaseModel": {
+      "properties": {
+        "preferred_name": {
+          "type": "string",
+          "title": "Preferred Name"
+        },
+        "crop_name": {
+          "type": "string",
+          "title": "Crop Name"
+        },
+        "backcross_str": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Backcross Str"
+        },
+        "selfing_count": {
+          "type": "integer",
+          "title": "Selfing Count"
+        },
+        "market_class": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Market Class"
+        },
+        "release_date": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Release Date"
+        },
+        "developer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Developer"
+        },
+        "parentage": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Parentage"
+        },
+        "aliases": {
+          "items": {
+            "$ref": "#/components/schemas/AliasBaseModel"
+          },
+          "type": "array",
+          "title": "Aliases"
+        }
+      },
+      "type": "object",
+      "required": [
+        "preferred_name",
+        "crop_name",
+        "backcross_str",
+        "selfing_count",
+        "market_class",
+        "release_date",
+        "developer",
+        "parentage",
+        "aliases"
+      ],
+      "title": "VarietyBaseModel"
+    },
+    "VarietyModel": {
+      "properties": {
+        "preferred_name": {
+          "type": "string",
+          "title": "Preferred Name"
+        },
+        "crop_name": {
+          "type": "string",
+          "title": "Crop Name"
+        },
+        "backcross_str": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Backcross Str"
+        },
+        "selfing_count": {
+          "type": "integer",
+          "title": "Selfing Count"
+        },
+        "market_class": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Market Class"
+        },
+        "release_date": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Release Date"
+        },
+        "developer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Developer"
+        },
+        "parentage": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Parentage"
+        },
+        "aliases": {
+          "items": {
+            "$ref": "#/components/schemas/AliasBaseModel"
+          },
+          "type": "array",
+          "title": "Aliases"
+        },
+        "mother": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/VarietyBaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "father": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/VarietyBaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pedigree": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pedigree"
+        }
+      },
+      "type": "object",
+      "required": [
+        "preferred_name",
+        "crop_name",
+        "backcross_str",
+        "selfing_count",
+        "market_class",
+        "release_date",
+        "developer",
+        "parentage",
+        "aliases",
+        "pedigree"
+      ],
+      "title": "VarietyModel"
+    }
+  }
+}

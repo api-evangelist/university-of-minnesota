@@ -1,0 +1,106 @@
+---
+name: University of Minnesota — authentication across programmable surfaces
+description: >-
+  How each University of Minnesota surface authenticates. Recorded per surface because the
+  institution operates several unrelated surfaces with unrelated auth models, and two of them are
+  run on vendor platforms under a UMN tenancy rather than by the University itself.
+generated: '2026-09-01'
+method: probed
+source: >-
+  Live probes on 2026-09-01 of exchange-1.gems.msi.umn.edu, umedia.lib.umn.edu,
+  conservancy.umn.edu, integration-boomi.umn.edu and umn-prod-apigw.boomi.cloud, plus the
+  University's own documentation on sites.google.com/umn.edu/integration-apis and the
+  GEMS-UMN/Exchange-Notebooks repository.
+surfaces:
+  - surface: GEMS Informatics Exchange APIs
+    x-operator: institution
+    host: exchange-1.gems.msi.umn.edu
+    scheme: api-key
+    location: header
+    parameter: apikey
+    declared_in_contract: false
+    evidence:
+      - url: https://exchange-1.gems.msi.umn.edu/soil/v2/datasets
+        status: 401
+        body: '{"message":"Missing API key in request"}'
+        note: >-
+          Every data path returns 401 without a key. The OpenAPI documents themselves declare NO
+          components.securitySchemes and NO top-level security[], so the requirement is real but
+          undeclared in the contract — a gap worth reporting back to GEMS.
+      - url: https://github.com/GEMS-UMN/Exchange-Notebooks
+        status: 200
+        note: >-
+          The University's own example notebooks set the credential with
+          `s.headers.update({'apikey': key})`, which is where the header name is evidenced.
+    key_issuance: https://exchange-1.gems.msi.umn.edu/portal/home
+    key_issuance_status: 200
+    openapi_public_without_key: true
+    exception:
+      path: /weather/v2/openapi.json
+      status: 401
+      note: The weather API requires a key even to read its OpenAPI document; the other nine do not.
+  - surface: UMedia Digital Collections JSON API
+    x-operator: institution
+    host: umedia.lib.umn.edu
+    scheme: none
+    declared_in_contract: false
+    evidence:
+      - url: https://umedia.lib.umn.edu/search.json?q=test
+        status: 200
+        note: Anonymous read succeeds. No key, no token, no session.
+      - url: https://umedia.lib.umn.edu/
+        status: 403
+        note: >-
+          The HTML site sits behind an Azure WAF that 403s a default curl User-Agent while the
+          .json paths answer. This is a bot challenge, not a dead host — the surface grades LIVE.
+  - surface: UMN Digital Conservancy / DRUM (DSpace 10.0 REST + OAI-PMH)
+    x-operator: institution
+    host: conservancy.umn.edu
+    scheme: mixed
+    detail: >-
+      Discovery endpoints are anonymous; item-level endpoints require authentication. The REST
+      contract is DSpace's generic product contract, not a University-authored one.
+    evidence:
+      - url: https://conservancy.umn.edu/server/api
+        status: 200
+        note: DSpace 10.0 HAL root, anonymous.
+      - url: https://conservancy.umn.edu/server/api/core/communities?size=2
+        status: 200
+        note: Community listing, anonymous.
+      - url: https://conservancy.umn.edu/server/api/core/items?size=1
+        status: 401
+        body: '{"status":401,"error":"Unauthorized","message":"Authentication is required"}'
+      - url: https://conservancy.umn.edu/server/oai/request?verb=Identify
+        status: 200
+        note: OAI-PMH 2.0, anonymous, no credential of any kind.
+  - surface: Common Good APIs (OIT Integrations)
+    x-operator: institution
+    host: integration-boomi.umn.edu
+    scheme: gated
+    detail: >-
+      Access is granted by request and data-custodian approval, scaled to the University's data
+      classification tiers (public / private / restricted / highly restricted). No anonymous
+      credential path exists and the Swagger documents live only inside the tenant developer
+      portal, behind its sign-in.
+    evidence:
+      - url: https://sites.google.com/umn.edu/integration-apis/common-good-apis
+        status: 200
+      - url: https://umn-prod-apigw.boomi.cloud:18077/#catalog
+        status: 200
+        note: >-
+          The catalog UI answers, but it is a GWT single-page app; no anonymous REST or Swagger
+          path was reachable. /api/{id}/swagger, /api/{id}/openapi, /rest/apis and eleven other
+          candidate paths all returned 404.
+  - surface: Institutional identity (Shibboleth IdP)
+    x-operator: federation
+    host: login.umn.edu
+    scheme: saml2
+    detail: >-
+      The University operates its own Shibboleth IdP and publishes it through InCommon. This is
+      the auth surface behind almost every gated University application.
+    evidence:
+      - url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+        status: 200
+        note: >-
+          entityID urn:mace:incommon:umn.edu, shibmd:Scope umn.edu, SingleSignOnService at
+          https://login.umn.edu/idp/profile/SAML2/Redirect/SSO.

@@ -1,0 +1,192 @@
+[
+    {
+        "id": "p16022coll245:978",
+        "object": "https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/p16022coll245/id/978",
+        "set_spec": "p16022coll245",
+        "collection_name": "Minneapolis and St. Paul Maps and Atlases",
+        "collection_name_s": "Minneapolis and St. Paul Maps and Atlases",
+        "collection_description": "Twin Cities maps and atlases held by the University of Minnesota's Borchert Map Library.",
+        "title": "Minneapolis.",
+        "title_s": "Minneapolis.",
+        "title_t": "Minneapolis.",
+        "title_search": "Minneapolis.",
+        "title_sort": "minneapolis",
+        "date_created": [
+            "1906"
+        ],
+        "date_created_ss": [
+            "1906"
+        ],
+        "date_created_sort": "1906",
+        "creator": [
+            "Cram, George Franklin,1841-1928."
+        ],
+        "creator_ss": [
+            "Cram, George Franklin,1841-1928."
+        ],
+        "creator_sort": "cramgeorgefranklin18411928",
+        "publisher": [
+            "Geo. F. Cram, (Chicago), 1906"
+        ],
+        "publisher_s": "Geo. F. Cram, (Chicago), 1906",
+        "publisher_t": "Geo. F. Cram, (Chicago), 1906",
+        "types": [
+            "Cartographic"
+        ],
+        "format": [
+            "Maps | http://vocab.getty.edu/aat/300028094"
+        ],
+        "format_name": [
+            "Maps"
+        ],
+        "dimensions": "35 x 48 centimeters",
+        "subject": [
+            "Street Railroads Minnesota Minneapolis Maps",
+            "Railroads Minnesota Minneapolis Maps",
+            "Rain and Rainfall United States Maps"
+        ],
+        "subject_ss": [
+            "Street Railroads Minnesota Minneapolis Maps",
+            "Railroads Minnesota Minneapolis Maps",
+            "Rain and Rainfall United States Maps"
+        ],
+        "language": [
+            "English"
+        ],
+        "city": [
+            "Minneapolis",
+            "Sioux City"
+        ],
+        "state": [
+            "Minnesota",
+            "Iowa"
+        ],
+        "country": [
+            "United States"
+        ],
+        "continent": [
+            "North America"
+        ],
+        "contributing_organization": "University of Minnesota Libraries, John R. Borchert Map Library.",
+        "contributing_organization_name": "University of Minnesota Libraries, John R. Borchert Map Library.",
+        "contributing_organization_name_s": "University of Minnesota Libraries, John R. Borchert Map Library.",
+        "contact_information": "University of Minnesota Libraries, John R. Borchert Map Library. S-76 Wilson Library, 309 19th Ave S, Minneapolis, MN 55455; https://www.lib.umn.edu/borchert",
+        "local_identifier": [
+            "G4144.M5 1906 .C7"
+        ],
+        "barcode": "UMN_BARCODE:B4037914",
+        "system_identifier": "UMN_ALMA:9965645720001700",
+        "dls_identifier": [
+            "map07979"
+        ],
+        "local_rights": "Use of this item may be governed by US and international copyright laws. You may be able to use this item, but copyright and other considerations may apply. For possible additional information or guidance on your use, please contact the contributing organization.",
+        "page_count": 0,
+        "record_type": "primary",
+        "first_viewer_type": "image",
+        "viewer_type": "image",
+        "attachment": "931.jp2",
+        "document_type": "item",
+        "featured_collection_order": 999,
+        "date_added": "2018-02-26T00:00:00Z",
+        "date_added_sort": "2018-02-26T00:00:00Z",
+        "date_modified": "2021-03-24T00:00:00Z",
+        "_version_": 1858312551362723841,
+        "type": "Cartographic",
+        "collection": "p16022coll245",
+        "is_compound": false,
+        "parent_id": "978",
+        "thumb_url": "https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/p16022coll245/id/978",
+        "thumb_cdn_url": "https://dkp5i0hinw9br.cloudfront.net/a2f1a4b6cdab844dfda63af5951d6190c355323f.png"
+    },
+    {
+        "id": "p16022coll88:463",
+        "object": "https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/p16022coll88/id/463",
+        "set_spec": "p16022coll88",
+        "collection_name": "Sharron and Oren Steinfeldt Collection",
+        "collection_name_s": "Sharron and Oren Steinfeldt Collection",
+        "collection_description": "This collection is comprised entirely of photographs dating between 1860 and 2010 and oral history interviews. The photographs are in black-and-white and color, of varying dimensions. The oral histories originate from several projects undertaken by the Upper Midwest Jewish Archives through the years. [Finding Aid available at: http://archives.lib.umn.edu/repositories/15/resources/492]",
+        "title": "Minneapolis Funtennial at the Minneapolis Armory, Minneapolis, Minnesota",
+        "title_s": "Minneapolis Funtennial at the Minneapolis Armory, Minneapolis, Minnesota",
+        "title_t": "Minneapolis Funtennial at the Minneapolis Armory, Minneapolis, Minnesota",
+        "title_search": "Minneapolis Funtennial at the Minneapolis Armory, Minneapolis, Minnesota",
+        "title_sort": "minneapolisfuntennialattheminneapolisarmoryminneapolisminnesota",
+        "description": "A bird's eye view of people attending the Funtennial which was Hadassah's largest fundraising event. Essentially, Funtennial was a large-scale community carnival, with arcade-type games, a queen contest, door prizes, dancing and booths with food and crafts. Hundreds volunteered for the event, and for a decade between 1949 and 1959, thousands attended. Significant funds were raised, all of which went to Israel projects",
+        "date_created": [
+            "1954"
+        ],
+        "date_created_ss": [
+            "1954"
+        ],
+        "date_created_sort": "1954",
+        "types": [
+            "Still Image"
+        ],
+        "format": [
+            "Black-and-white photographs | http://vocab.getty.edu/aat/300128347"
+        ],
+        "format_name": [
+            "Black-and-white photographs"
+        ],
+        "dimensions": "8 x 10 centimeters",
+        "subject": [
+            "Social Issues",
+            "Women Societies and Clubs",
+            "Jewish Women",
+            "Fund Raising",
+            "Women's Organizations",
+            "Hadassah"
+        ],
+        "subject_ss": [
+            "Social Issues",
+            "Women Societies and Clubs",
+            "Jewish Women",
+            "Fund Raising",
+            "Women's Organizations",
+            "Hadassah"
+        ],
+        "city": [
+            "Minneapolis"
+        ],
+        "state": [
+            "Minnesota"
+        ],
+        "country": [
+            "United States"
+        ],
+        "continent": [
+            "North America"
+        ],
+        "parent_collection": "Sharron and Oren Steinfeldt Photography collection (umja0017); http://archives.lib.umn.edu/repositories/15/resources/492",
+        "parent_collection_name": "Sharron and Oren Steinfeldt Photography collection (umja0017)",
+        "contributing_organization": "University of Minnesota Libraries, Nathan and Theresa Berman Upper Midwest Jewish Archives.",
+        "contributing_organization_name": "University of Minnesota Libraries, Nathan and Theresa Berman Upper Midwest Jewish Archives.",
+        "contributing_organization_name_s": "University of Minnesota Libraries, Nathan and Theresa Berman Upper Midwest Jewish Archives.",
+        "contact_information": "University of Minnesota Libraries, Nathan and Theresa Berman Upper Midwest Jewish Archives. 320 Elmer L. Andersen Library, 222 - 21st Avenue South, Minneapolis, MN 55455;  https://www.lib.umn.edu/umja",
+        "fiscal_sponsor": "Grant provided to the Minnesota Digital Library Coalition through the Library Services and Technology Act (LSTA) and the State Library Services and School Technology unit of the Minnesota Department of Education",
+        "local_identifier": [
+            "MHS542"
+        ],
+        "dls_identifier": [
+            "mhs09225"
+        ],
+        "persistent_url": "http://purl.umn.edu/168249",
+        "local_rights": "Use of this item may be governed by US and international copyright laws. You may be able to use this item, but copyright and other considerations may apply. For possible additional information or guidance on your use, please contact the contributing organization.",
+        "page_count": 0,
+        "record_type": "primary",
+        "first_viewer_type": "image",
+        "viewer_type": "image",
+        "attachment": "464.jp2",
+        "document_type": "item",
+        "featured_collection_order": 999,
+        "date_added": "2017-11-17T00:00:00Z",
+        "date_added_sort": "2017-11-17T00:00:00Z",
+        "date_modified": "2018-09-20T00:00:00Z",
+        "_version_": 1858365428797014016,
+        "type": "Still Image",
+        "collection": "p16022coll88",
+        "is_compound": false,
+        "parent_id": "463",
+        "thumb_url": "https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/p16022coll88/id/463",
+        "thumb_cdn_url": "https://dkp5i0hinw9br.cloudfront.net/444d7d7e9de4ff41eb61e9e1ab86fd347384fe0e.png"
+    }
+]

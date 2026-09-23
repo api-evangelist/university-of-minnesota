@@ -1,0 +1,613 @@
+openapi: 3.2.0
+info:
+  title: hydro Lake API
+  description: Hydrological Datasets
+  contact:
+    name: GEMS
+    url: https://gems.umn.edu/exchange
+    email: gemssupport@umn.edu
+  version: '2.0'
+servers:
+- url: /hydro/v2
+tags:
+- name: lake
+paths:
+  /lake-mn/search:
+    get:
+      tags:
+      - lake
+      summary: Get Search Lake
+      description: Find metadata for lakes that intersect search geometry.
+      operationId: get_search_lake_lake_mn_search_get
+      parameters:
+      - name: bbox
+        in: query
+        required: true
+        schema:
+          anyOf:
+          - type: string
+            pattern: ^-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?$
+          - type: 'null'
+          description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+          title: Bbox
+        description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+        example: -97.2,43.4,-89.4,49.3
+      - name: lake_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Search string for name of target lake.
+          title: Lake Name
+        description: Search string for name of target lake.
+        example: Mille Lacs
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Result number offset. Use with 'limit' parameter to obtain all results.
+          default: 0
+          title: Offset
+        description: Result number offset. Use with 'limit' parameter to obtain all results.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 300
+          - type: 'null'
+          description: 'Pagination: maximum number of returned objects.'
+          default: 100
+          title: Limit
+        description: 'Pagination: maximum number of returned objects.'
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LakeOut'
+                title: Response Get Search Lake Lake Mn Search Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - lake
+      summary: Post Search Lake
+      description: Find metadata for lakes that intersect search geometry.
+      operationId: post_search_lake_lake_mn_search_post
+      parameters:
+      - name: lake_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Search string for name of target lake.
+          title: Lake Name
+        description: Search string for name of target lake.
+        example: Mille Lacs
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Result number offset. Use with 'limit' parameter to obtain all results.
+          default: 0
+          title: Offset
+        description: Result number offset. Use with 'limit' parameter to obtain all results.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 300
+          - type: 'null'
+          description: 'Pagination: maximum number of returned objects.'
+          default: 100
+          title: Limit
+        description: 'Pagination: maximum number of returned objects.'
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                additionalProperties: true
+                example:
+                  type: MultiPolygon
+                  coordinates:
+                  - - - - -93.56866141384278
+                        - 48.27239561689682
+                      - - -93.74651022075412
+                        - 47.95575515478085
+                      - - -93.26113118522528
+                        - 47.49466006006172
+                      - - -91.31961504310993
+                        - 47.46961968985513
+                      - - -90.98985371362852
+                        - 47.756863557224186
+                      - - -91.54933641870373
+                        - 48.14894016189724
+                      - - -93.56866141384278
+                        - 48.27239561689682
+              - type: object
+                additionalProperties: true
+                example:
+                  type: Polygon
+                  coordinates:
+                  - - - -93.56866141384278
+                      - 48.27239561689682
+                    - - -93.74651022075412
+                      - 47.95575515478085
+                    - - -93.26113118522528
+                      - 47.49466006006172
+                    - - -91.31961504310993
+                      - 47.46961968985513
+                    - - -90.98985371362852
+                      - 47.756863557224186
+                    - - -91.54933641870373
+                      - 48.14894016189724
+                    - - -93.56866141384278
+                      - 48.27239561689682
+              - type: object
+                additionalProperties: true
+                example:
+                  type: Point
+                  coordinates:
+                  - 0
+                  - 0
+              title: Geojson
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LakeOut'
+                title: Response Post Search Lake Lake Mn Search Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /lake-mn/{lake_id}/object/{lake_quality_object_id}/stats:
+    get:
+      tags:
+      - lake
+      summary: Get Lake Stats
+      description: Get object stats for lake and object of interest.
+      operationId: get_lake_stats_lake_mn__lake_id__object__lake_quality_object_id__stats_get
+      parameters:
+      - name: lake_id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Lake ID. Can be obtained from lake search endpoints.
+          title: Lake Id
+        description: Lake ID. Can be obtained from lake search endpoints.
+        example: '48000200'
+      - name: lake_quality_object_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID from lake-quality dataset. Can be obtained from lake-quality search endpoints.
+          title: Lake Quality Object Id
+        description: Object ID from lake-quality dataset. Can be obtained from lake-quality search endpoints.
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/StatsOut'
+                - type: 'null'
+                title: Response Get Lake Stats Lake Mn  Lake Id  Object  Lake Quality Object Id  Stats Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /lake-mn/{lake_id}/object/{lake_quality_object_id}/raster:
+    get:
+      tags:
+      - lake
+      summary: Get Lake Data
+      description: Get object raster for lake and object of interest.
+      operationId: get_lake_data_lake_mn__lake_id__object__lake_quality_object_id__raster_get
+      parameters:
+      - name: lake_id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Lake ID. Can be obtained from lake search endpoints.
+          title: Lake Id
+        description: Lake ID. Can be obtained from lake search endpoints.
+        example: '48000200'
+      - name: lake_quality_object_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Lake Quality Object Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: compress
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/CompressEnum'
+          - type: 'null'
+          default: LZW
+          title: Compress
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /lake-mn/{id}/catchment:
+    get:
+      tags:
+      - lake
+      summary: Get Catchment
+      description: Get catchment metadata for the catchment containing the lake of interest.
+      operationId: get_catchment_lake_mn__id__catchment_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Lake ID. Can be obtained from lake search endpoints.
+          title: Id
+        description: Lake ID. Can be obtained from lake search endpoints.
+        example: '48000200'
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/CatchmentOut09'
+                - type: 'null'
+                title: Response Get Catchment Lake Mn  Id  Catchment Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /lake-mn/{id}/geometry:
+    get:
+      tags:
+      - lake
+      summary: Get Lake Geometry
+      description: Get geometry for lake of interest.
+      operationId: get_lake_geometry_lake_mn__id__geometry_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Lake ID. Can be obtained from lake search endpoints.
+          title: Id
+        description: Lake ID. Can be obtained from lake search endpoints.
+        example: '48000200'
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /lake-mn/{id}:
+    get:
+      tags:
+      - lake
+      summary: Get Lake
+      description: Get lake metadata for lake of interest.
+      operationId: get_lake_lake_mn__id__get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Lake ID. Can be obtained from lake search endpoints.
+          title: Id
+        description: Lake ID. Can be obtained from lake search endpoints.
+        example: '48000200'
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LakeOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CompressEnum:
+      type: string
+      enum:
+      - DEFLATE9
+      - LZW
+      - NONE
+      title: CompressEnum
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    LakeOut:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        acres:
+          type: number
+          title: Acres
+      type: object
+      required:
+      - id
+      - name
+      - acres
+      title: LakeOut
+    StatsOut:
+      properties:
+        count:
+          type: integer
+          title: Count
+        sum:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sum
+        mean:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mean
+        stddev:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Stddev
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
+      type: object
+      required:
+      - count
+      - sum
+      - mean
+      - stddev
+      - min
+      - max
+      title: StatsOut
+    CatchmentOut09:
+      properties:
+        id:
+          type: string
+          title: Id
+        lake_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lake Id
+        catch_type:
+          type: string
+          title: Catch Type
+        catch_pos:
+          type: string
+          title: Catch Pos
+        down_cat:
+          type: string
+          title: Down Cat
+        upadj_cat:
+          type: string
+          title: Upadj Cat
+        huc12_id:
+          type: string
+          title: Huc12 Id
+        acres:
+          type: number
+          title: Acres
+        perim_ft:
+          type: number
+          title: Perim Ft
+        upsum_ac:
+          type: number
+          title: Upsum Ac
+        upsum_sqmi:
+          type: number
+          title: Upsum Sqmi
+        depth:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Depth
+        maj:
+          type: integer
+          title: Maj
+        l_pw_ratio:
+          type: number
+          title: L Pw Ratio
+        pw_ac:
+          type: number
+          title: Pw Ac
+        nwi_ac:
+          type: number
+          title: Nwi Ac
+        dca_ratio:
+          type: integer
+          title: Dca Ratio
+        total_rati:
+          type: integer
+          title: Total Rati
+        lk_ratio:
+          type: integer
+          title: Lk Ratio
+        sto_ratio:
+          type: integer
+          title: Sto Ratio
+      type: object
+      required:
+      - id
+      - lake_id
+      - catch_type
+      - catch_pos
+      - down_cat
+      - upadj_cat
+      - huc12_id
+      - acres
+      - perim_ft
+      - upsum_ac
+      - upsum_sqmi
+      - depth
+      - maj
+      - l_pw_ratio
+      - pw_ac
+      - nwi_ac
+      - dca_ratio
+      - total_rati
+      - lk_ratio
+      - sto_ratio
+      title: CatchmentOut09

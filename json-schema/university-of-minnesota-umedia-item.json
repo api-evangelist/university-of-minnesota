@@ -1,0 +1,288 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-minnesota/main/json-schema/university-of-minnesota-umedia-item.json",
+  "title": "UMedia digital object metadata record",
+  "description": "A UMedia digital object metadata record. Field set observed live on 2026-09-01; UMedia does not publish a schema document.",
+  "x-artifact": {
+    "generated": "2026-09-01",
+    "method": "derived",
+    "source": "derived from live responses captured in examples/umedia-item-response.json and examples/umedia-search-response.json (HTTP 200, 2026-09-01). UMN Libraries publishes no schema document for UMedia."
+  },
+  "type": "object",
+  "properties": {
+    "_version_": {
+      "type": "integer"
+    },
+    "attachment": {
+      "type": "string"
+    },
+    "barcode": {
+      "type": "string"
+    },
+    "children": {
+      "type": "array",
+      "items": {}
+    },
+    "city": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "collection": {
+      "type": "string"
+    },
+    "collection_description": {
+      "type": "string"
+    },
+    "collection_name": {
+      "type": "string"
+    },
+    "collection_name_s": {
+      "type": "string"
+    },
+    "contact_information": {
+      "type": "string"
+    },
+    "continent": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contributing_organization": {
+      "type": "string"
+    },
+    "contributing_organization_name": {
+      "type": "string"
+    },
+    "contributing_organization_name_s": {
+      "type": "string"
+    },
+    "country": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "creator": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "creator_sort": {
+      "type": "string"
+    },
+    "creator_ss": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "date_added": {
+      "type": "string"
+    },
+    "date_added_sort": {
+      "type": "string"
+    },
+    "date_created": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "date_created_sort": {
+      "type": "string"
+    },
+    "date_created_ss": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "date_modified": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "dimensions": {
+      "type": "string"
+    },
+    "dls_identifier": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "document_type": {
+      "type": "string"
+    },
+    "featured_collection_order": {
+      "type": "integer"
+    },
+    "first_viewer_type": {
+      "type": "string"
+    },
+    "fiscal_sponsor": {
+      "type": "string"
+    },
+    "format": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "format_name": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "is_compound": {
+      "type": "boolean"
+    },
+    "language": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "local_identifier": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "local_rights": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "object": {
+      "type": "string"
+    },
+    "page_count": {
+      "type": "integer"
+    },
+    "parent_collection": {
+      "type": "string"
+    },
+    "parent_collection_name": {
+      "type": "string"
+    },
+    "parent_id": {
+      "type": "string"
+    },
+    "persistent_url": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "publisher_s": {
+      "type": "string"
+    },
+    "publisher_t": {
+      "type": "string"
+    },
+    "record_type": {
+      "type": "string"
+    },
+    "region": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "set_spec": {
+      "type": "string"
+    },
+    "state": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subject": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subject_ss": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "super_collection_descriptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "super_collection_name_ss": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "super_collection_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "super_collection_set_specs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "system_identifier": {
+      "type": "string"
+    },
+    "thumb_cdn_url": {
+      "type": "string"
+    },
+    "thumb_url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "title_s": {
+      "type": "string"
+    },
+    "title_search": {
+      "type": "string"
+    },
+    "title_sort": {
+      "type": "string"
+    },
+    "title_t": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "viewer_type": {
+      "type": "string"
+    }
+  }
+}

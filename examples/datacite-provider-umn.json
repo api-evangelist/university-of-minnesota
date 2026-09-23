@@ -1,0 +1,63 @@
+{
+    "data": {
+        "id": "umn",
+        "type": "providers",
+        "attributes": {
+            "name": "University of Minnesota",
+            "displayName": "University of Minnesota",
+            "symbol": "UMN",
+            "website": "https://www.lib.umn.edu/",
+            "description": "The university's mission, carried out on multiple campuses and throughout the state, is threefold: 1) Research and Discovery, 2) Teaching and Learning, and 3) Outreach and Public Service.",
+            "region": "AMER",
+            "country": "US",
+            "logoUrl": null,
+            "memberType": "direct_member",
+            "organizationType": "academicInstitution",
+            "focusArea": "general",
+            "nonProfitStatus": "non-profit",
+            "isActive": true,
+            "joined": null,
+            "rorId": "https://ror.org/017zqws13",
+            "created": "2018-12-19T17:57:59.000Z",
+            "updated": "2026-07-14T21:20:41.000Z",
+            "doiEstimate": 0
+        },
+        "relationships": {
+            "clients": {
+                "data": [
+                    {
+                        "id": "umn.ipums",
+                        "type": "clients"
+                    },
+                    {
+                        "id": "umn.drum",
+                        "type": "clients"
+                    },
+                    {
+                        "id": "umn.gems",
+                        "type": "clients"
+                    }
+                ]
+            },
+            "prefixes": {
+                "data": [
+                    {
+                        "id": "10.13020",
+                        "type": "prefixes"
+                    },
+                    {
+                        "id": "10.13017",
+                        "type": "prefixes"
+                    },
+                    {
+                        "id": "10.18128",
+                        "type": "prefixes"
+                    }
+                ]
+            }
+        }
+    },
+    "meta": {
+        "repositoryCount": 3
+    }
+}

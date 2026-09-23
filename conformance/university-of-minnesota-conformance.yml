@@ -1,0 +1,122 @@
+---
+name: University of Minnesota — domain standard conformance
+description: >-
+  Conformance evidence against the standards named in the Kin Score `education` regulatory regime.
+  Reward-only: a standard appears here only when a live probe or a signed metadata document
+  demonstrates it. Standards the University does not demonstrably implement on a public surface
+  are listed under `not_evidenced` rather than omitted, so the absence is legible.
+generated: '2026-09-01'
+method: probed
+source: Live probes on 2026-09-01; captured evidence stored under examples/.
+regime: education
+conformant:
+  - standard: oai-pmh
+    version: '2.0'
+    x-operator: institution
+    endpoint: https://conservancy.umn.edu/server/oai/request
+    evidence:
+      - url: https://conservancy.umn.edu/server/oai/request?verb=Identify
+        status: 200
+        location: OAI-PMH/Identify
+        detail: >-
+          repositoryName "The University of Minnesota Digital Conservancy", protocolVersion 2.0,
+          repositoryIdentifier conservancy.umn.edu, adminEmail tantz001@umn.edu, earliestDatestamp
+          2007-02-19T20:04:59Z, granularity YYYY-MM-DDThh:mm:ssZ.
+        artifact: examples/conservancy-oai-identify.xml
+    note: >-
+      The repository software is DSpace 10.0, but the OAI-PMH endpoint runs on the University's own
+      host under the University's own repositoryIdentifier and is administered from a umn.edu
+      address. The harvesting surface is the institution's.
+  - standard: shibboleth
+    x-operator: federation
+    entity_id: urn:mace:incommon:umn.edu
+    evidence:
+      - url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+        status: 200
+        location: EntityDescriptor/IDPSSODescriptor/@protocolSupportEnumeration
+        detail: >-
+          Declares urn:mace:shibboleth:1.0, and shibmd:Scope regexp="false" umn.edu. SSO endpoints
+          under https://login.umn.edu/idp/. Signed InCommon metadata.
+        artifact: examples/incommon-umn-idp-metadata.xml
+  - standard: saml
+    version: '2.0'
+    x-operator: federation
+    entity_id: urn:mace:incommon:umn.edu
+    evidence:
+      - url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+        status: 200
+        location: EntityDescriptor/IDPSSODescriptor/SingleSignOnService
+        detail: >-
+          urn:oasis:names:tc:SAML:2.0:protocol supported; HTTP-POST, HTTP-Redirect and
+          POST-SimpleSign bindings published at https://login.umn.edu/idp/profile/SAML2/*.
+          OrganizationName "University of Minnesota".
+        artifact: examples/incommon-umn-idp-metadata.xml
+  - standard: datacite
+    x-operator: registry
+    member_id: UMN
+    evidence:
+      - url: https://api.datacite.org/providers/umn
+        status: 200
+        location: data.attributes
+        detail: >-
+          name "University of Minnesota", symbol UMN, memberType direct_member, country US,
+          rorId https://ror.org/017zqws13, member since 2018-12-19.
+        artifact: examples/datacite-provider-umn.json
+      - url: https://api.datacite.org/clients/umn.drum
+        status: 200
+        detail: >-
+          Repository client UMN.DRUM, "Data Repository for the University of Minnesota",
+          clientType repository.
+      - url: https://api.datacite.org/prefixes/10.13020
+        status: 200
+        detail: DOI prefix 10.13020 assigned to provider umn, client umn.drum.
+  - standard: crossref
+    x-operator: registry
+    member_id: '10551'
+    evidence:
+      - url: https://api.crossref.org/members?query=minnesota
+        status: 200
+        location: message.items[]
+        detail: >-
+          Member 10551 "University of Minnesota", prefixes 10.24926 and 10.64517. Related but
+          separately registered members exist for University of Minnesota Press (3779, prefix
+          10.5749) and University of Minnesota Morris (13440, prefix 10.61366).
+not_evidenced:
+  - standard: scim
+    detail: No SCIM endpoint is publicly documented or discoverable.
+  - standard: lti
+    detail: >-
+      The University runs Canvas (Instructure), which is LTI-certified, but the certification is
+      Instructure's and no University-operated LTI surface was found. Crediting it here would be
+      exactly the vendor misattribution this pipeline exists to prevent.
+  - standard: oneroster
+    detail: Not found on any public University surface.
+  - standard: ed-fi
+    detail: Not found; Ed-Fi is a K-12 standard and is not expected here.
+  - standard: caliper
+    detail: Not found on any public University surface.
+  - standard: qti
+    detail: Not found on any public University surface.
+  - standard: orcid
+    detail: >-
+      ORCID integration is very likely present in the University's research information systems,
+      but no public, machine-readable evidence of an institutional ORCID membership or an
+      ORCID-enabled University endpoint was retrievable. Left unevidenced rather than assumed.
+other_standards_observed:
+  - standard: openapi
+    version: 3.1.0
+    detail: >-
+      Nine live OpenAPI 3.1 documents published by GEMS Informatics at
+      exchange-1.gems.msi.umn.edu, saved under openapi/_original/.
+  - standard: iiif
+    version: Image API 2.1
+    x-operator: tenant
+    detail: >-
+      UMedia image delivery is IIIF, but it is served from the Libraries' OCLC CONTENTdm instance
+      at cdm16022.contentdm.oclc.org — OCLC's conformance running under a UMN tenancy, not the
+      University's own.
+  - standard: dspace-rest
+    version: DSpace 10.0
+    detail: >-
+      conservancy.umn.edu/server/api is a DSpace 10.0 HAL API. The deployment is the
+      University's; the contract is DSpace's, so no OpenAPI is saved for it here.

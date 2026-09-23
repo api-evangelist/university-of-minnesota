@@ -1,0 +1,265 @@
+{
+    "dspaceUI": "https://conservancy.umn.edu",
+    "dspaceName": "The University of Minnesota Digital Conservancy",
+    "dspaceServer": "https://conservancy.umn.edu/server",
+    "dspaceVersion": "DSpace 10.0",
+    "type": "root",
+    "uniqueType": "root.root",
+    "_links": {
+        "actuator": {
+            "href": "https://conservancy.umn.edu/server/actuator"
+        },
+        "auditevents": {
+            "href": "https://conservancy.umn.edu/server/api/system/auditevents"
+        },
+        "authn": {
+            "href": "https://conservancy.umn.edu/server/api/authn"
+        },
+        "authorizations": {
+            "href": "https://conservancy.umn.edu/server/api/authz/authorizations"
+        },
+        "bitstreamformats": {
+            "href": "https://conservancy.umn.edu/server/api/core/bitstreamformats"
+        },
+        "bitstreams": {
+            "href": "https://conservancy.umn.edu/server/api/core/bitstreams"
+        },
+        "browses": {
+            "href": "https://conservancy.umn.edu/server/api/discover/browses"
+        },
+        "bulkaccessconditionoptions": {
+            "href": "https://conservancy.umn.edu/server/api/config/bulkaccessconditionoptions"
+        },
+        "bundles": {
+            "href": "https://conservancy.umn.edu/server/api/core/bundles"
+        },
+        "captcha": {
+            "href": "https://conservancy.umn.edu/server/api/captcha"
+        },
+        "claimedtasks": {
+            "href": "https://conservancy.umn.edu/server/api/workflow/claimedtasks"
+        },
+        "claimedtasks-search": {
+            "href": "https://conservancy.umn.edu/server/api/workflow/claimedtasks/search"
+        },
+        "collections": {
+            "href": "https://conservancy.umn.edu/server/api/core/collections"
+        },
+        "communities": {
+            "href": "https://conservancy.umn.edu/server/api/core/communities"
+        },
+        "contentreport": {
+            "href": "https://conservancy.umn.edu/server/api/contentreport"
+        },
+        "correctiontypes": {
+            "href": "https://conservancy.umn.edu/server/api/config/correctiontypes"
+        },
+        "discover": {
+            "href": "https://conservancy.umn.edu/server/api/discover"
+        },
+        "dso": {
+            "href": "https://conservancy.umn.edu/server/api/dso/find{?uuid}",
+            "templated": true
+        },
+        "edititemmodes": {
+            "href": "https://conservancy.umn.edu/server/api/core/edititemmodes"
+        },
+        "edititems": {
+            "href": "https://conservancy.umn.edu/server/api/core/edititems"
+        },
+        "enqueueretry": {
+            "href": "https://conservancy.umn.edu/server/api/ldn/messages/{id}/enqueueretry",
+            "templated": true
+        },
+        "entitytypes": {
+            "href": "https://conservancy.umn.edu/server/api/core/entitytypes"
+        },
+        "eperson-registration": {
+            "href": "https://conservancy.umn.edu/server/api/eperson/registrations"
+        },
+        "epersons": {
+            "href": "https://conservancy.umn.edu/server/api/eperson/epersons"
+        },
+        "externalsources": {
+            "href": "https://conservancy.umn.edu/server/api/integration/externalsources"
+        },
+        "features": {
+            "href": "https://conservancy.umn.edu/server/api/authz/features"
+        },
+        "feedbacks": {
+            "href": "https://conservancy.umn.edu/server/api/tools/feedbacks"
+        },
+        "groups": {
+            "href": "https://conservancy.umn.edu/server/api/eperson/groups"
+        },
+        "identifiers": {
+            "href": "https://conservancy.umn.edu/server/api/pid/identifiers"
+        },
+        "itemfilters": {
+            "href": "https://conservancy.umn.edu/server/api/config/itemfilters"
+        },
+        "itemrequests": {
+            "href": "https://conservancy.umn.edu/server/api/tools/itemrequests"
+        },
+        "items": {
+            "href": "https://conservancy.umn.edu/server/api/core/items"
+        },
+        "itemtemplates": {
+            "href": "https://conservancy.umn.edu/server/api/core/itemtemplates"
+        },
+        "ldnservices": {
+            "href": "https://conservancy.umn.edu/server/api/ldn/ldnservices"
+        },
+        "messages": {
+            "href": "https://conservancy.umn.edu/server/api/ldn/messages"
+        },
+        "metadatafields": {
+            "href": "https://conservancy.umn.edu/server/api/core/metadatafields"
+        },
+        "metadataschemas": {
+            "href": "https://conservancy.umn.edu/server/api/core/metadataschemas"
+        },
+        "notifyrequests": {
+            "href": "https://conservancy.umn.edu/server/api/ldn/notifyrequests"
+        },
+        "oidc": {
+            "href": "https://conservancy.umn.edu/server/api/authn"
+        },
+        "pid": {
+            "href": "https://conservancy.umn.edu/server/api/pid/find{?id}",
+            "templated": true
+        },
+        "pooltasks": {
+            "href": "https://conservancy.umn.edu/server/api/workflow/pooltasks"
+        },
+        "pooltasks-search": {
+            "href": "https://conservancy.umn.edu/server/api/workflow/pooltasks/search"
+        },
+        "processes": {
+            "href": "https://conservancy.umn.edu/server/api/system/processes"
+        },
+        "properties": {
+            "href": "https://conservancy.umn.edu/server/api/config/properties"
+        },
+        "qualityassuranceevents": {
+            "href": "https://conservancy.umn.edu/server/api/integration/qualityassuranceevents"
+        },
+        "qualityassurancesources": {
+            "href": "https://conservancy.umn.edu/server/api/integration/qualityassurancesources"
+        },
+        "qualityassurancetopics": {
+            "href": "https://conservancy.umn.edu/server/api/integration/qualityassurancetopics"
+        },
+        "registrations": {
+            "href": "https://conservancy.umn.edu/server/api/eperson/registrations"
+        },
+        "relationships": {
+            "href": "https://conservancy.umn.edu/server/api/core/relationships"
+        },
+        "relationshiptypes": {
+            "href": "https://conservancy.umn.edu/server/api/core/relationshiptypes"
+        },
+        "resourcepolicies": {
+            "href": "https://conservancy.umn.edu/server/api/authz/resourcepolicies"
+        },
+        "resourcepolicies-search": {
+            "href": "https://conservancy.umn.edu/server/api/authz/resourcepolicies/search"
+        },
+        "scripts": {
+            "href": "https://conservancy.umn.edu/server/api/system/scripts"
+        },
+        "securitysettings": {
+            "href": "https://conservancy.umn.edu/server/api/core/securitysettings"
+        },
+        "self": {
+            "href": "https://conservancy.umn.edu/server/api"
+        },
+        "sites": {
+            "href": "https://conservancy.umn.edu/server/api/core/sites"
+        },
+        "statistics": {
+            "href": "https://conservancy.umn.edu/server/api/statistics"
+        },
+        "submissionaccessoptions": {
+            "href": "https://conservancy.umn.edu/server/api/config/submissionaccessoptions"
+        },
+        "submissioncclicenseUrls": {
+            "href": "https://conservancy.umn.edu/server/api/config/submissioncclicenseUrls"
+        },
+        "submissioncclicenseUrls-search": {
+            "href": "https://conservancy.umn.edu/server/api/config/submissioncclicenseUrls/search"
+        },
+        "submissioncclicenses": {
+            "href": "https://conservancy.umn.edu/server/api/config/submissioncclicenses"
+        },
+        "submissioncoarnotifyconfigs": {
+            "href": "https://conservancy.umn.edu/server/api/config/submissioncoarnotifyconfigs"
+        },
+        "submissiondefinitions": {
+            "href": "https://conservancy.umn.edu/server/api/config/submissiondefinitions"
+        },
+        "submissionforms": {
+            "href": "https://conservancy.umn.edu/server/api/config/submissionforms"
+        },
+        "submissionsections": {
+            "href": "https://conservancy.umn.edu/server/api/config/submissionsections"
+        },
+        "submissionuploads": {
+            "href": "https://conservancy.umn.edu/server/api/config/submissionuploads"
+        },
+        "subscriptions": {
+            "href": "https://conservancy.umn.edu/server/api/core/subscriptions"
+        },
+        "subscriptions-search": {
+            "href": "https://conservancy.umn.edu/server/api/core/subscriptions/search"
+        },
+        "suggestions": {
+            "href": "https://conservancy.umn.edu/server/api/integration/suggestions"
+        },
+        "suggestionsources": {
+            "href": "https://conservancy.umn.edu/server/api/integration/suggestionsources"
+        },
+        "suggestiontargets": {
+            "href": "https://conservancy.umn.edu/server/api/integration/suggestiontargets"
+        },
+        "supervisionorders": {
+            "href": "https://conservancy.umn.edu/server/api/core/supervisionorders"
+        },
+        "systemwidealerts": {
+            "href": "https://conservancy.umn.edu/server/api/system/systemwidealerts"
+        },
+        "usagereports": {
+            "href": "https://conservancy.umn.edu/server/api/statistics/usagereports"
+        },
+        "versionhistories": {
+            "href": "https://conservancy.umn.edu/server/api/versioning/versionhistories"
+        },
+        "versions": {
+            "href": "https://conservancy.umn.edu/server/api/versioning/versions"
+        },
+        "vocabularies": {
+            "href": "https://conservancy.umn.edu/server/api/submission/vocabularies"
+        },
+        "vocabularyEntryDetails": {
+            "href": "https://conservancy.umn.edu/server/api/submission/vocabularyEntryDetails"
+        },
+        "vocabularyEntryDetails-search": {
+            "href": "https://conservancy.umn.edu/server/api/submission/vocabularyEntryDetails/search"
+        },
+        "workflowactions": {
+            "href": "https://conservancy.umn.edu/server/api/config/workflowactions"
+        },
+        "workflowdefinitions": {
+            "href": "https://conservancy.umn.edu/server/api/config/workflowdefinitions"
+        },
+        "workflowitems": {
+            "href": "https://conservancy.umn.edu/server/api/workflow/workflowitems"
+        },
+        "workflowsteps": {
+            "href": "https://conservancy.umn.edu/server/api/config/workflowsteps"
+        },
+        "workspaceitems": {
+            "href": "https://conservancy.umn.edu/server/api/submission/workspaceitems"
+        }
+    }
+}

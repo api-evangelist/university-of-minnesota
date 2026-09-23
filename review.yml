@@ -3,8 +3,104 @@ name: University of Minnesota
 description: University of Minnesota public developer/API footprint review for APIs.json cataloging.
 url: https://raw.githubusercontent.com/api-evangelist/university-of-minnesota/refs/heads/main/review.yml
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 reviews:
+  - date: '2026-09-01'
+    rating: 4
+    summary: >-
+      Re-profiled under the university pipeline with the operator axis settled before anything was
+      saved. The June 2026 profile had three surfaces and no contracts; this pass resolved ten
+      surfaces and found the University's one genuine first-party API programme. GEMS Informatics
+      publishes nine live OpenAPI 3.1 documents at exchange-1.gems.msi.umn.edu (soil, climate,
+      hydro, elevation, landcover, crop, market, biotic-risk, pedtools), all with UMN contacts, on
+      an IP inside the University's own 128.101.0.0/16 space; a tenth API, weather, gates its own
+      openapi.json behind the api key and could not be saved. Two corrections to the June profile:
+      the "UMedia JSON and IIIF" surface was split, because IIIF image delivery is served by the
+      Libraries' OCLC CONTENTdm instance and is a tenant surface, not the University's; and the
+      Common Good API base host was found not to resolve on public DNS at all. Three registry
+      memberships (DataCite direct member UMN, Crossref member 10551, ROR 017zqws13) and one
+      identity federation (InCommon urn:mace:incommon:umn.edu, Shibboleth IdP at login.umn.edu)
+      were recorded — the federation entry is the strongest institution-operated machine-readable
+      surface the University has and was entirely absent from the June profile. No vendor contract
+      was saved: the DSpace REST API is DSpace's product contract and the Common Good Swagger
+      lives only inside the University's tenant Boomi portal, which answered no anonymous path.
+    endpoints:
+      - url: https://exchange-1.gems.msi.umn.edu/soil/v2/openapi.json
+        status: 200
+        note: Live first-party OpenAPI 3.1, info.contact GEMS / gemssupport@umn.edu. Eight siblings identical in shape.
+      - url: https://exchange-1.gems.msi.umn.edu/hydro/v2/openapi.json
+        status: 200
+        note: Largest of the nine at 29 paths.
+      - url: https://exchange-1.gems.msi.umn.edu/weather/v2/openapi.json
+        status: 401
+        note: The tenth Exchange API gates its own contract behind the api key.
+      - url: https://exchange-1.gems.msi.umn.edu/soil/v2/datasets
+        status: 401
+        note: '{"message":"Missing API key in request"} — an auth requirement the contracts do not declare.'
+      - url: https://exchange-1.gems.msi.umn.edu/portal/home
+        status: 200
+        note: API key issuance portal, live.
+      - url: https://umedia.lib.umn.edu/search.json?q=test
+        status: 200
+        note: UMN Libraries' own JSON API, anonymous read. Documented in prose only; no contract published.
+      - url: https://umedia.lib.umn.edu/item/p16022coll251:3420.json
+        status: 200
+        note: Item record; every record points image delivery at cdm16022.contentdm.oclc.org.
+      - url: https://umedia.lib.umn.edu/
+        status: 403
+        note: Azure Front Door WAF challenge on the HTML UI. Bot-blocked, not dead.
+      - url: https://conservancy.umn.edu/server/oai/request?verb=Identify
+        status: 200
+        note: OAI-PMH 2.0, repositoryName "The University of Minnesota Digital Conservancy", repositoryIdentifier conservancy.umn.edu.
+      - url: https://conservancy.umn.edu/server/api
+        status: 200
+        note: DSpace 10.0 HAL root. Institution deployment, DSpace contract — no OpenAPI saved.
+      - url: https://conservancy.umn.edu/server/api/core/items?size=1
+        status: 401
+        note: Item endpoints require authentication; community and collection listings do not.
+      - url: https://conservancy.umn.edu/oai/request?verb=Identify
+        status: 403
+        note: Legacy DSpace 6 OAI path, now behind the WAF. The live base is /server/oai/request.
+      - url: https://mdq.incommon.org/entities/urn%3Amace%3Aincommon%3Aumn.edu
+        status: 200
+        note: InCommon-signed SAML 2.0 metadata for the University's own Shibboleth IdP, scope umn.edu, SSO at login.umn.edu.
+      - url: https://api.datacite.org/providers/umn
+        status: 200
+        note: Direct member UMN since 2018-12-19, rorId https://ror.org/017zqws13.
+      - url: https://api.datacite.org/clients/umn.drum
+        status: 200
+        note: Repository client UMN.DRUM against prefix 10.13020.
+      - url: https://api.crossref.org/members/10551
+        status: 200
+        note: Member "University of Minnesota", prefixes 10.24926 and 10.64517.
+      - url: https://ror.org/017zqws13
+        status: 200
+        note: Research Organization Registry identifier.
+      - url: https://umn-prod-apigw.boomi.cloud:18077/#catalog
+        status: 200
+        note: >-
+          UMN tenant Boomi API Developer Portal listing 24 APIs with Swagger. GWT single-page app;
+          fourteen candidate anonymous REST/Swagger paths all returned 404.
+      - url: https://integration-boomi.umn.edu/prd/ws/rest/
+        status: 0
+        note: Documented Common Good API base. NXDOMAIN on public DNS — reachable only inside the University network.
+      - url: https://sites.google.com/umn.edu/integration-apis/common-good-apis
+        status: 200
+        note: Common Good API list, classifications and base URL, live.
+      - url: https://gems.umn.edu/gems-exchange-apis
+        status: 200
+      - url: https://it.umn.edu/navigating-ai-umn
+        status: 200
+        note: Institutional AI posture page (ai.umn.edu 301s here). Governance document, not an API artifact.
+      - url: https://rc.umn.edu
+        status: 200
+        note: Research computing / Minnesota Supercomputing Institute services, live.
+      - url: https://data.umn.edu/api/3/action/package_list
+        status: 404
+        note: data.umn.edu is the LodeStar Data Hub, a Drupal services site. Not a CKAN open data portal; no API.
+      - url: https://twin-cities.umn.edu/llms.txt
+        status: 404
+        note: No agent-facing catalog published.
   - date: '2026-06-03'
     rating: 3
     summary: >-

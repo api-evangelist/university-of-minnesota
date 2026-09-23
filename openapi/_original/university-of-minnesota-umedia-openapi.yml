@@ -1,0 +1,328 @@
+# x-archived-from: university-of-minnesota-umedia-openapi.yml
+# x-archived-on: 2026-09-16
+openapi: 3.1.0
+info:
+  title: UMedia Digital Collections JSON API
+  version: '2026-09-01'
+  description: Read-only JSON API over UMedia, the University of Minnesota Libraries digital collections
+    platform. Any UMedia search or item URL returns JSON when ".json" is appended before the query string;
+    the API is documented by UMN Libraries in the public UMNLibraries/digital_collection_apis repository.
+    Search results are returned as a bare JSON array of item records. Digital objects themselves are NOT
+    served by this API - image delivery runs through the Libraries' OCLC CONTENTdm IIIF instance at cdm16022.contentdm.oclc.org,
+    which is a separate, vendor-operated surface.
+  contact:
+    name: University of Minnesota Libraries
+    url: https://www.lib.umn.edu
+  license:
+    name: Terms of use vary by collection
+    url: https://umedia.lib.umn.edu/
+servers:
+- url: https://umedia.lib.umn.edu
+  description: UMedia production, University of Minnesota Libraries
+x-operator: institution
+x-artifact:
+  generated: '2026-09-01'
+  method: derived
+  source: derived from the UMN Libraries documentation at https://github.com/UMNLibraries/digital_collection_apis/blob/master/JSON/json_umedia.md
+    and from live probes of https://umedia.lib.umn.edu/search.json (HTTP 200) and https://umedia.lib.umn.edu/item/p16022coll251:3420.json
+    (HTTP 200) on 2026-09-01; the provider publishes no machine-readable contract of its own, schema fields
+    are those observed in the captured responses stored under examples/
+paths:
+  /search.json:
+    get:
+      summary: Search UMedia digital collections
+      description: Returns a JSON array of item records matching the keyword query and facet filters.
+        Facets are supplied using Blacklight bracket syntax, e.g. facets[collection_name_s][]=Historical+Maps.
+      operationId: searchUmedia
+      parameters:
+      - name: q
+        in: query
+        required: false
+        description: Keyword query.
+        schema:
+          type: string
+        example: minneapolis
+      - name: rows
+        in: query
+        required: false
+        description: Number of records to return. Large values are accepted and are how bulk metadata
+          export is performed.
+        schema:
+          type: integer
+        example: 20
+      - name: sort
+        in: query
+        required: false
+        description: Sort key.
+        schema:
+          type: string
+      - name: facets[collection_name_s][]
+        in: query
+        required: false
+        description: Filter by collection name.
+        schema:
+          type: string
+        example: Historical Maps
+      - name: facets[types][]
+        in: query
+        required: false
+        description: Filter by object type, e.g. "Still Image".
+        schema:
+          type: string
+      - name: facets[creator_ss][]
+        in: query
+        required: false
+        description: Filter by creator.
+        schema:
+          type: string
+      - name: facets[subject_ss][]
+        in: query
+        required: false
+        description: Filter by subject.
+        schema:
+          type: string
+      - name: facets[date_created_ss][]
+        in: query
+        required: false
+        description: Filter by creation date.
+        schema:
+          type: string
+      - name: facets[format_name][]
+        in: query
+        required: false
+        description: Filter by format.
+        schema:
+          type: string
+      - name: facets[contribution_organization_name_s][]
+        in: query
+        required: false
+        description: Filter by contributing organization.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A JSON array of item records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UmediaItem'
+        '403':
+          description: Blocked by the edge WAF. Observed for requests without a browser User-Agent.
+  /item/{id}.json:
+    get:
+      summary: Get a single UMedia item record
+      description: Returns the full metadata record for one UMedia object. The identifier is the CONTENTdm-style
+        collection:record pair, e.g. p16022coll251:3420. Item records carry fields that search results
+        omit.
+      operationId: getUmediaItem
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Item identifier in collection:record form.
+        schema:
+          type: string
+        example: p16022coll251:3420
+      responses:
+        '200':
+          description: The item record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UmediaItem'
+        '404':
+          description: No such item.
+        '403':
+          description: Blocked by the edge WAF.
+components:
+  schemas:
+    UmediaItem:
+      type: object
+      description: A UMedia digital object metadata record. Field set observed live on 2026-09-01; UMedia
+        does not publish a schema document.
+      properties:
+        _version_:
+          type: integer
+        attachment:
+          type: string
+        barcode:
+          type: string
+        children:
+          type: array
+          items: {}
+        city:
+          type: array
+          items:
+            type: string
+        collection:
+          type: string
+        collection_description:
+          type: string
+        collection_name:
+          type: string
+        collection_name_s:
+          type: string
+        contact_information:
+          type: string
+        continent:
+          type: array
+          items:
+            type: string
+        contributing_organization:
+          type: string
+        contributing_organization_name:
+          type: string
+        contributing_organization_name_s:
+          type: string
+        country:
+          type: array
+          items:
+            type: string
+        creator:
+          type: array
+          items:
+            type: string
+        creator_sort:
+          type: string
+        creator_ss:
+          type: array
+          items:
+            type: string
+        date_added:
+          type: string
+        date_added_sort:
+          type: string
+        date_created:
+          type: array
+          items:
+            type: string
+        date_created_sort:
+          type: string
+        date_created_ss:
+          type: array
+          items:
+            type: string
+        date_modified:
+          type: string
+        description:
+          type: string
+        dimensions:
+          type: string
+        dls_identifier:
+          type: array
+          items:
+            type: string
+        document_type:
+          type: string
+        featured_collection_order:
+          type: integer
+        first_viewer_type:
+          type: string
+        fiscal_sponsor:
+          type: string
+        format:
+          type: array
+          items:
+            type: string
+        format_name:
+          type: array
+          items:
+            type: string
+        id:
+          type: string
+        is_compound:
+          type: boolean
+        language:
+          type: array
+          items:
+            type: string
+        local_identifier:
+          type: array
+          items:
+            type: string
+        local_rights:
+          type: string
+        notes:
+          type: string
+        object:
+          type: string
+        page_count:
+          type: integer
+        parent_collection:
+          type: string
+        parent_collection_name:
+          type: string
+        parent_id:
+          type: string
+        persistent_url:
+          type: string
+        publisher:
+          type: array
+          items:
+            type: string
+        publisher_s:
+          type: string
+        publisher_t:
+          type: string
+        record_type:
+          type: string
+        region:
+          type: array
+          items:
+            type: string
+        set_spec:
+          type: string
+        state:
+          type: array
+          items:
+            type: string
+        subject:
+          type: array
+          items:
+            type: string
+        subject_ss:
+          type: array
+          items:
+            type: string
+        super_collection_descriptions:
+          type: array
+          items:
+            type: string
+        super_collection_name_ss:
+          type: array
+          items:
+            type: string
+        super_collection_names:
+          type: array
+          items:
+            type: string
+        super_collection_set_specs:
+          type: array
+          items:
+            type: string
+        system_identifier:
+          type: string
+        thumb_cdn_url:
+          type: string
+        thumb_url:
+          type: string
+        title:
+          type: string
+        title_s:
+          type: string
+        title_search:
+          type: string
+        title_sort:
+          type: string
+        title_t:
+          type: string
+        type:
+          type: string
+        types:
+          type: array
+          items:
+            type: string
+        viewer_type:
+          type: string

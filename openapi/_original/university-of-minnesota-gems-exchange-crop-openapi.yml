@@ -1,0 +1,1759 @@
+# x-archived-from: university-of-minnesota-gems-exchange-crop-openapi.yml
+# x-archived-on: 2026-09-16
+openapi: 3.1.0
+info:
+  title: crop
+  description: Crop Related Datasets
+  contact:
+    name: GEMS
+    url: https://gems.umn.edu/exchange
+    email: gemssupport@umn.edu
+  version: '2.0'
+servers:
+- url: https://exchange-1.gems.msi.umn.edu/crop/v2
+  description: GEMS Informatics Exchange production gateway, University of Minnesota
+paths:
+  /grid:
+    get:
+      tags:
+      - dataset
+      summary: Get All Grids
+      description: Get grid metadata.
+      operationId: get_all_grids_grid_get
+      parameters:
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GridDetails'
+                title: Response Get All Grids Grid Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /grid/{id}:
+    get:
+      tags:
+      - dataset
+      summary: Get Grid
+      description: Get grid metadata for a target grid resolution (specified by the grid id).
+      operationId: get_grid_grid__id__get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: GEMS Grid resolution ID. To explore ID choices and their resolutions, call the
+            base grid endpoint.
+          title: Id
+        description: GEMS Grid resolution ID. To explore ID choices and their resolutions, call the base
+          grid endpoint.
+        example: 5
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/GridDetails'
+                - type: 'null'
+                title: Response Get Grid Grid  Id  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /datasets:
+    get:
+      tags:
+      - dataset
+      summary: Get Datasets
+      operationId: get_datasets_datasets_get
+      parameters:
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatasetOut'
+                title: Response Get Datasets Datasets Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/object/search:
+    get:
+      tags:
+      - dataset
+      summary: Get Search Object
+      description: Find objects. Bounding box and other filters may be applied.
+      operationId: get_search_object__keyname__object_search_get
+      parameters:
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: layer
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: ID of target layer.
+          title: Layer
+        description: ID of target layer.
+        example: 1
+      - name: grid
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 6
+            minimum: 0
+          - type: 'null'
+          description: GEMS grid resolution ID, see /grid.
+          title: Grid
+        description: GEMS grid resolution ID, see /grid.
+        example: 3
+      - name: bbox
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            pattern: ^-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?$
+          - type: 'null'
+          description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+          title: Bbox
+        description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+        example: -97.2,43.4,-89.4,49.3
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Result number offset. Use with 'limit' parameter to obtain all results.
+          default: 0
+          title: Offset
+        description: Result number offset. Use with 'limit' parameter to obtain all results.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 300
+          - type: 'null'
+          description: 'Pagination: maximum number of returned objects.'
+          default: 100
+          title: Limit
+        description: 'Pagination: maximum number of returned objects.'
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_get_search_object__keyname__object_search_get'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ObjectOut'
+                title: Response Get Search Object  Keyname  Object Search Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - dataset
+      summary: Post Search Object
+      description: Find objects. Bounding box and other filters may be applied.
+      operationId: post_search_object__keyname__object_search_post
+      parameters:
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: layer
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: ID of target layer.
+          title: Layer
+        description: ID of target layer.
+        example: 1
+      - name: grid
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 6
+            minimum: 0
+          - type: 'null'
+          description: GEMS grid resolution ID, see /grid.
+          title: Grid
+        description: GEMS grid resolution ID, see /grid.
+        example: 3
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Result number offset. Use with 'limit' parameter to obtain all results.
+          default: 0
+          title: Offset
+        description: Result number offset. Use with 'limit' parameter to obtain all results.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 300
+          - type: 'null'
+          description: 'Pagination: maximum number of returned objects.'
+          default: 100
+          title: Limit
+        description: 'Pagination: maximum number of returned objects.'
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                additionalProperties: true
+                example:
+                  type: MultiPolygon
+                  coordinates:
+                  - - - - -93.56866141384278
+                        - 48.27239561689682
+                      - - -93.74651022075412
+                        - 47.95575515478085
+                      - - -93.26113118522528
+                        - 47.49466006006172
+                      - - -91.31961504310993
+                        - 47.46961968985513
+                      - - -90.98985371362852
+                        - 47.756863557224186
+                      - - -91.54933641870373
+                        - 48.14894016189724
+                      - - -93.56866141384278
+                        - 48.27239561689682
+              - type: object
+                additionalProperties: true
+                example:
+                  type: Polygon
+                  coordinates:
+                  - - - -93.56866141384278
+                      - 48.27239561689682
+                    - - -93.74651022075412
+                      - 47.95575515478085
+                    - - -93.26113118522528
+                      - 47.49466006006172
+                    - - -91.31961504310993
+                      - 47.46961968985513
+                    - - -90.98985371362852
+                      - 47.756863557224186
+                    - - -91.54933641870373
+                      - 48.14894016189724
+                    - - -93.56866141384278
+                      - 48.27239561689682
+              title: Geojson
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ObjectOut'
+                title: Response Post Search Object  Keyname  Object Search Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/object/{id}:
+    get:
+      tags:
+      - dataset
+      summary: Get Object Metadata
+      description: Get object metadata for object of interest.
+      operationId: get_object_metadata__keyname__object__id__get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/object/{id}/point:
+    get:
+      tags:
+      - dataset
+      summary: Get Object Point
+      description: Get point data for object of interest
+      operationId: get_object_point__keyname__object__id__point_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: lon
+        in: query
+        required: true
+        schema:
+          type: number
+          maximum: 180
+          minimum: -180
+          description: Longitude, in decimal degrees.
+          title: Lon
+        description: Longitude, in decimal degrees.
+      - name: lat
+        in: query
+        required: true
+        schema:
+          type: number
+          maximum: 90
+          minimum: -90
+          description: Latitude, in decimal degrees.
+          title: Lat
+        description: Latitude, in decimal degrees.
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValueOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/object/{id}/envelope:
+    get:
+      tags:
+      - dataset
+      summary: Get Object Envelope
+      operationId: get_object_envelope__keyname__object__id__envelope_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                example:
+                  type: Polygon
+                  coordinates:
+                  - - - -93.56866141384278
+                      - 48.27239561689682
+                    - - -93.74651022075412
+                      - 47.95575515478085
+                    - - -93.26113118522528
+                      - 47.49466006006172
+                    - - -91.31961504310993
+                      - 47.46961968985513
+                    - - -90.98985371362852
+                      - 47.756863557224186
+                    - - -91.54933641870373
+                      - 48.14894016189724
+                    - - -93.56866141384278
+                      - 48.27239561689682
+                title: Response Get Object Envelope  Keyname  Object  Id  Envelope Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/object/{id}/raster:
+    get:
+      tags:
+      - dataset
+      summary: Get Object Spatial
+      description: Get object raster data for object of interest. Bounding box filter must be applied.
+      operationId: get_object_spatial__keyname__object__id__raster_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: bbox
+        in: query
+        required: true
+        schema:
+          type: string
+          pattern: ^-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?$
+          description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+          title: Bbox
+        description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+        example: -97.2,43.4,-89.4,49.3
+      - name: compress
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/CompressEnum'
+          description: 'Method of Compression. Options: DEFLATE9, LZW, NONE'
+          default: LZW
+        description: 'Method of Compression. Options: DEFLATE9, LZW, NONE'
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - dataset
+      summary: Post Object Spatial
+      description: Get object raster data for object of interest filtered by GeoJSON geometry.
+      operationId: post_object_spatial__keyname__object__id__raster_post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: compress
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/CompressEnum'
+          description: 'Method of Compression. Options: DEFLATE9, LZW, NONE'
+          default: LZW
+        description: 'Method of Compression. Options: DEFLATE9, LZW, NONE'
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                additionalProperties: true
+                example:
+                  type: MultiPolygon
+                  coordinates:
+                  - - - - -93.56866141384278
+                        - 48.27239561689682
+                      - - -93.74651022075412
+                        - 47.95575515478085
+                      - - -93.26113118522528
+                        - 47.49466006006172
+                      - - -91.31961504310993
+                        - 47.46961968985513
+                      - - -90.98985371362852
+                        - 47.756863557224186
+                      - - -91.54933641870373
+                        - 48.14894016189724
+                      - - -93.56866141384278
+                        - 48.27239561689682
+              - type: object
+                additionalProperties: true
+                example:
+                  type: Polygon
+                  coordinates:
+                  - - - -93.56866141384278
+                      - 48.27239561689682
+                    - - -93.74651022075412
+                      - 47.95575515478085
+                    - - -93.26113118522528
+                      - 47.49466006006172
+                    - - -91.31961504310993
+                      - 47.46961968985513
+                    - - -90.98985371362852
+                      - 47.756863557224186
+                    - - -91.54933641870373
+                      - 48.14894016189724
+                    - - -93.56866141384278
+                      - 48.27239561689682
+              title: Geojson
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/object/{id}/stats:
+    get:
+      tags:
+      - dataset
+      summary: Get Object Stats
+      description: Get object raster summary statistics for object of interest. Bounding box filter must
+        be applied.
+      operationId: get_object_stats__keyname__object__id__stats_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: bbox
+        in: query
+        required: true
+        schema:
+          type: string
+          pattern: ^-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?$
+          description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+          title: Bbox
+        description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+        example: -97.2,43.4,-89.4,49.3
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/StatsOut'
+                - type: 'null'
+                title: Response Get Object Stats  Keyname  Object  Id  Stats Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - dataset
+      summary: Post Object Stats
+      description: Get object raster summary statistics for object of interest. Bounding box filter must
+        be applied.
+      operationId: post_object_stats__keyname__object__id__stats_post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                additionalProperties: true
+                example:
+                  type: MultiPolygon
+                  coordinates:
+                  - - - - -93.56866141384278
+                        - 48.27239561689682
+                      - - -93.74651022075412
+                        - 47.95575515478085
+                      - - -93.26113118522528
+                        - 47.49466006006172
+                      - - -91.31961504310993
+                        - 47.46961968985513
+                      - - -90.98985371362852
+                        - 47.756863557224186
+                      - - -91.54933641870373
+                        - 48.14894016189724
+                      - - -93.56866141384278
+                        - 48.27239561689682
+              - type: object
+                additionalProperties: true
+                example:
+                  type: Polygon
+                  coordinates:
+                  - - - -93.56866141384278
+                      - 48.27239561689682
+                    - - -93.74651022075412
+                      - 47.95575515478085
+                    - - -93.26113118522528
+                      - 47.49466006006172
+                    - - -91.31961504310993
+                      - 47.46961968985513
+                    - - -90.98985371362852
+                      - 47.756863557224186
+                    - - -91.54933641870373
+                      - 48.14894016189724
+                    - - -93.56866141384278
+                      - 48.27239561689682
+              title: Geojson
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/StatsOut'
+                - type: 'null'
+                title: Response Post Object Stats  Keyname  Object  Id  Stats Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/object/{id}/histogram:
+    get:
+      tags:
+      - dataset
+      summary: Get Object Hist
+      description: Get object raster histogram for object of interest filtered by GeoJSON geometry.
+      operationId: get_object_hist__keyname__object__id__histogram_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: bbox
+        in: query
+        required: true
+        schema:
+          type: string
+          pattern: ^-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?$
+          description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+          title: Bbox
+        description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+        example: -97.2,43.4,-89.4,49.3
+      - name: nbin
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nbin
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Histogram'
+                title: Response Get Object Hist  Keyname  Object  Id  Histogram Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - dataset
+      summary: Post Object Hist
+      description: Get object raster histogram for object of interest filtered by GeoJSON geometry.
+      operationId: post_object_hist__keyname__object__id__histogram_post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: nbin
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Nbin
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                additionalProperties: true
+                example:
+                  type: MultiPolygon
+                  coordinates:
+                  - - - - -93.56866141384278
+                        - 48.27239561689682
+                      - - -93.74651022075412
+                        - 47.95575515478085
+                      - - -93.26113118522528
+                        - 47.49466006006172
+                      - - -91.31961504310993
+                        - 47.46961968985513
+                      - - -90.98985371362852
+                        - 47.756863557224186
+                      - - -91.54933641870373
+                        - 48.14894016189724
+                      - - -93.56866141384278
+                        - 48.27239561689682
+              - type: object
+                additionalProperties: true
+                example:
+                  type: Polygon
+                  coordinates:
+                  - - - -93.56866141384278
+                      - 48.27239561689682
+                    - - -93.74651022075412
+                      - 47.95575515478085
+                    - - -93.26113118522528
+                      - 47.49466006006172
+                    - - -91.31961504310993
+                      - 47.46961968985513
+                    - - -90.98985371362852
+                      - 47.756863557224186
+                    - - -91.54933641870373
+                      - 48.14894016189724
+                    - - -93.56866141384278
+                      - 48.27239561689682
+              title: Geojson
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Histogram'
+                title: Response Post Object Hist  Keyname  Object  Id  Histogram Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/object/{id}/quantiles:
+    get:
+      tags:
+      - dataset
+      summary: Get Object Quantiles
+      description: Get object raster data quantiles for object of interest filtered by GeoJSON geometry.
+      operationId: get_object_quantiles__keyname__object__id__quantiles_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: bbox
+        in: query
+        required: true
+        schema:
+          type: string
+          pattern: ^-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?$
+          description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+          title: Bbox
+        description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+        example: -97.2,43.4,-89.4,49.3
+      - name: q
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: number
+          - type: 'null'
+          title: Q
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Quantile'
+                title: Response Get Object Quantiles  Keyname  Object  Id  Quantiles Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - dataset
+      summary: Post Object Quantiles
+      description: Get object raster data quantiles for object of interest filtered by GeoJSON geometry.
+      operationId: post_object_quantiles__keyname__object__id__quantiles_post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: q
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: number
+          - type: 'null'
+          title: Q
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                additionalProperties: true
+                example:
+                  type: MultiPolygon
+                  coordinates:
+                  - - - - -93.56866141384278
+                        - 48.27239561689682
+                      - - -93.74651022075412
+                        - 47.95575515478085
+                      - - -93.26113118522528
+                        - 47.49466006006172
+                      - - -91.31961504310993
+                        - 47.46961968985513
+                      - - -90.98985371362852
+                        - 47.756863557224186
+                      - - -91.54933641870373
+                        - 48.14894016189724
+                      - - -93.56866141384278
+                        - 48.27239561689682
+              - type: object
+                additionalProperties: true
+                example:
+                  type: Polygon
+                  coordinates:
+                  - - - -93.56866141384278
+                      - 48.27239561689682
+                    - - -93.74651022075412
+                      - 47.95575515478085
+                    - - -93.26113118522528
+                      - 47.49466006006172
+                    - - -91.31961504310993
+                      - 47.46961968985513
+                    - - -90.98985371362852
+                      - 47.756863557224186
+                    - - -91.54933641870373
+                      - 48.14894016189724
+                    - - -93.56866141384278
+                      - 48.27239561689682
+              title: Geojson
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Quantile'
+                title: Response Post Object Quantiles  Keyname  Object  Id  Quantiles Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/object/{id}/valuecount:
+    get:
+      tags:
+      - dataset
+      summary: Get Object Value Count
+      description: Get unique value counts for object of interest. Bounding box filter must be applied.
+      operationId: get_object_value_count__keyname__object__id__valuecount_get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: bbox
+        in: query
+        required: true
+        schema:
+          type: string
+          pattern: ^-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?$
+          description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+          title: Bbox
+        description: 'Bounding box filter. Format: minx,miny,maxx,maxy'
+        example: -97.2,43.4,-89.4,49.3
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ValueCount'
+                title: Response Get Object Value Count  Keyname  Object  Id  Valuecount Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - dataset
+      summary: Post Object Value Count
+      description: Get unique value counts for object of interest filtered by GeoJSON geometry.
+      operationId: post_object_value_count__keyname__object__id__valuecount_post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Object ID. Can be obtained using object and layer search endpoints.
+          title: Id
+        description: Object ID. Can be obtained using object and layer search endpoints.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: object
+                additionalProperties: true
+                example:
+                  type: MultiPolygon
+                  coordinates:
+                  - - - - -93.56866141384278
+                        - 48.27239561689682
+                      - - -93.74651022075412
+                        - 47.95575515478085
+                      - - -93.26113118522528
+                        - 47.49466006006172
+                      - - -91.31961504310993
+                        - 47.46961968985513
+                      - - -90.98985371362852
+                        - 47.756863557224186
+                      - - -91.54933641870373
+                        - 48.14894016189724
+                      - - -93.56866141384278
+                        - 48.27239561689682
+              - type: object
+                additionalProperties: true
+                example:
+                  type: Polygon
+                  coordinates:
+                  - - - -93.56866141384278
+                      - 48.27239561689682
+                    - - -93.74651022075412
+                      - 47.95575515478085
+                    - - -93.26113118522528
+                      - 47.49466006006172
+                    - - -91.31961504310993
+                      - 47.46961968985513
+                    - - -90.98985371362852
+                      - 47.756863557224186
+                    - - -91.54933641870373
+                      - 48.14894016189724
+                    - - -93.56866141384278
+                      - 48.27239561689682
+              title: Geojson
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ValueCount'
+                title: Response Post Object Value Count  Keyname  Object  Id  Valuecount Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/layer:
+    get:
+      tags:
+      - dataset
+      summary: Get All Layers
+      description: Get metadata for all available layers.
+      operationId: get_all_layers__keyname__layer_get
+      parameters:
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LayerOut'
+                title: Response Get All Layers  Keyname  Layer Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /{keyname}/layer/{id}:
+    get:
+      tags:
+      - dataset
+      summary: Get Layer
+      description: Get metadata for a layer of interest.
+      operationId: get_layer__keyname__layer__id__get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Layer ID. Can be obtained from base layer endpoint.
+          title: Id
+        description: Layer ID. Can be obtained from base layer endpoint.
+        example: 4
+      - name: keyname
+        in: path
+        required: true
+        schema:
+          type: string
+          description: A dataset keyname
+          title: Keyname
+        description: A dataset keyname
+        example: my_dataset
+      - name: apikey
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: apikey
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/LayerOut'
+                - type: 'null'
+                title: Response Get Layer  Keyname  Layer  Id  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Body_get_search_object__keyname__object_search_get:
+      properties:
+        begin:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Begin
+        end:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: End
+      type: object
+      title: Body_get_search_object__keyname__object_search_get
+    CompressEnum:
+      type: string
+      enum:
+      - DEFLATE9
+      - LZW
+      - NONE
+      title: CompressEnum
+    DatasetOut:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        id:
+          type: integer
+          title: Id
+        keyname:
+          type: string
+          title: Keyname
+        app_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: App Name
+      type: object
+      required:
+      - name
+      - description
+      - id
+      - keyname
+      - app_name
+      title: DatasetOut
+    GridDetails:
+      properties:
+        id:
+          type: integer
+          title: Id
+        width:
+          type: integer
+          title: Width
+        height:
+          type: integer
+          title: Height
+        ul_x:
+          type: number
+          title: Ul X
+        ul_y:
+          type: number
+          title: Ul Y
+        scale:
+          type: number
+          title: Scale
+        srid:
+          type: integer
+          title: Srid
+      type: object
+      required:
+      - id
+      - width
+      - height
+      - ul_x
+      - ul_y
+      - scale
+      - srid
+      title: GridDetails
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Histogram:
+      properties:
+        min:
+          type: number
+          title: Min
+        max:
+          type: number
+          title: Max
+        count:
+          type: integer
+          title: Count
+        percent:
+          type: number
+          title: Percent
+      type: object
+      required:
+      - min
+      - max
+      - count
+      - percent
+      title: Histogram
+    LayerOut:
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          title: Name
+          example: FooLayer
+        units:
+          type: string
+          maxLength: 63
+          title: Units
+          example: meters
+        description:
+          type: string
+          title: Description
+          example: Bar Description
+        discrete:
+          type: boolean
+          title: Discrete
+          description: Does this data layer have discrete or continuous values. Land cover classification
+            data are an example of discrete data.
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - name
+      - units
+      - description
+      - discrete
+      - id
+      title: LayerOut
+    ObjectOut:
+      properties:
+        id:
+          type: integer
+          title: Id
+        grid_id:
+          type: integer
+          maximum: 6.0
+          minimum: 0.0
+          title: Grid Id
+        t_ranges:
+          items:
+            $ref: '#/components/schemas/TimeRangeOut'
+          type: array
+          title: T Ranges
+        t_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: T Key
+        t_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: T Description
+        name:
+          type: string
+          title: Name
+        units:
+          type: string
+          title: Units
+        description:
+          type: string
+          title: Description
+        layer_id:
+          type: integer
+          title: Layer Id
+      type: object
+      required:
+      - id
+      - grid_id
+      - t_ranges
+      - t_key
+      - t_description
+      - name
+      - units
+      - description
+      - layer_id
+      title: ObjectOut
+    Quantile:
+      properties:
+        quantile:
+          type: number
+          title: Quantile
+        value:
+          type: number
+          title: Value
+      type: object
+      required:
+      - quantile
+      - value
+      title: Quantile
+    StatsOut:
+      properties:
+        count:
+          type: integer
+          title: Count
+        sum:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sum
+        mean:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mean
+        stddev:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Stddev
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
+      type: object
+      required:
+      - count
+      - sum
+      - mean
+      - stddev
+      - min
+      - max
+      title: StatsOut
+    TimeRangeOut:
+      properties:
+        begin:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Begin
+        end:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: End
+      type: object
+      required:
+      - begin
+      - end
+      title: TimeRangeOut
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ValueCount:
+      properties:
+        value:
+          type: number
+          title: Value
+        count:
+          type: integer
+          title: Count
+      type: object
+      required:
+      - value
+      - count
+      title: ValueCount
+    ValueOut:
+      properties:
+        value:
+          type: number
+          title: Value
+      type: object
+      required:
+      - value
+      title: ValueOut
+x-operator: institution
+x-artifact:
+  generated: '2026-09-01'
+  method: derived
+  source: derived from openapi/_original/university-of-minnesota-gems-exchange-crop-openapi.json (https://exchange-1.gems.msi.umn.edu/crop/v2/openapi.json,
+    fetched 2026-09-01, HTTP 200); the only change is replacing the relative servers[] url "/crop/v2"
+    with the absolute production URL it was served from

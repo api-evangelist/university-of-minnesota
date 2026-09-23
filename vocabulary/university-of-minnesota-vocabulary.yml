@@ -1,0 +1,92 @@
+---
+name: University of Minnesota — surface vocabulary
+description: >-
+  The terms a consumer needs to read the University of Minnesota's programmable surfaces. Split by
+  surface, because the institution's vocabularies come from four unrelated systems and share
+  nothing.
+generated: '2026-09-01'
+method: derived
+source: >-
+  Derived from openapi/_original/university-of-minnesota-gems-exchange-*-openapi.json, from the
+  live UMedia records captured in examples/, from the OAI-PMH Identify response, and from the
+  University's published Common Good API classification table.
+terms:
+  - term: Common Good API
+    surface: Common Good APIs
+    definition: >-
+      The University's name for an API over data drawn from the Common Data Layer and offered to
+      units across the institution, rather than built for one application.
+  - term: Common Data Layer (CDL)
+    surface: Common Good APIs
+    definition: >-
+      The University's integrated data layer behind the Common Good APIs, covering person, HR,
+      student, class and organization data.
+  - term: data custodian
+    surface: Common Good APIs
+    definition: >-
+      The institutional role that must approve access to private, restricted or highly restricted
+      APIs. In practice this, not a self-service key, is the University's onboarding mechanism.
+  - term: data classification
+    surface: Common Good APIs
+    values: [public, private, restricted, highly restricted]
+    definition: The tiering that determines how much approval an API request needs.
+  - term: keyname
+    surface: GEMS Informatics Exchange APIs
+    definition: >-
+      Path parameter identifying a dataset within an Exchange API, e.g. the dataset key inside the
+      climate or landcover API. Appears as /{keyname}/object/... on every data path.
+  - term: object
+    surface: GEMS Informatics Exchange APIs
+    definition: A single spatio-temporal data object within a GEMS dataset; the unit of query.
+  - term: layer
+    surface: GEMS Informatics Exchange APIs
+    definition: A named band or variable within a GEMS object, addressed at /{keyname}/layer/{id}.
+  - term: grid
+    surface: GEMS Informatics Exchange APIs
+    definition: >-
+      The discrete global grid system a dataset is registered to. GEMS publishes its own grid
+      library (EASE-DGGS, GEMS-Grid) as open source alongside the APIs.
+  - term: envelope
+    surface: GEMS Informatics Exchange APIs
+    definition: Bounding-box extraction of a raster object, /{keyname}/object/{id}/envelope.
+  - term: quantiles / histogram / valuecount / stats
+    surface: GEMS Informatics Exchange APIs
+    definition: >-
+      Server-side raster summarisation operations. Their presence is what makes Exchange an
+      analysis API rather than a file download.
+  - term: set_spec
+    surface: UMedia
+    definition: >-
+      The CONTENTdm collection identifier an item belongs to (e.g. p16022coll251); also the OAI
+      set name, and the first half of a UMedia item id.
+  - term: collection_name_s / creator_ss / subject_ss / types / format_name
+    surface: UMedia
+    definition: >-
+      Solr index field names used as facet keys in the bracket query syntax
+      facets[<field>][]=<value>. They are index fields, not a published vocabulary, and can move.
+  - term: persistent_url
+    surface: UMedia
+    definition: The stable citable link for a digitised object.
+  - term: thumb_cdn_url / object
+    surface: UMedia
+    definition: >-
+      Image delivery URLs. Both point at cdm16022.contentdm.oclc.org — the Libraries' OCLC
+      CONTENTdm tenancy — which is why UMedia's image API is a tenant surface and its metadata
+      API is not.
+  - term: repositoryIdentifier
+    surface: UMN Digital Conservancy
+    value: conservancy.umn.edu
+    definition: >-
+      The OAI-PMH namespace identifier for the institution's repository; item identifiers take the
+      form oai:conservancy.umn.edu:11299/{id}, where 11299 is the University's Handle prefix.
+  - term: DRUM
+    surface: UMN Digital Conservancy
+    definition: >-
+      Data Repository for the University of Minnesota — the data collection inside the Digital
+      Conservancy, registered with DataCite as client UMN.DRUM against DOI prefix 10.13020.
+  - term: 'urn:mace:incommon:umn.edu'
+    surface: Institutional identity
+    definition: >-
+      The SAML entityID of the University's Shibboleth identity provider, published through
+      InCommon. Its shibmd:Scope is umn.edu, which is what makes an eduPerson attribute
+      scoped @umn.edu verifiable.
