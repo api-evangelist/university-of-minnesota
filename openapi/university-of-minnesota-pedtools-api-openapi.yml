@@ -56,6 +56,21 @@ paths:
       - Pedtools
 components:
   schemas:
+    AliasBaseModel:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+      type: object
+      required:
+      - name
+      - type
+      title: AliasBaseModel
     VarietyBaseModel:
       properties:
         preferred_name:
@@ -197,21 +212,6 @@ components:
       - aliases
       - pedigree
       title: VarietyModel
-    AliasBaseModel:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
-      type: object
-      required:
-      - name
-      - type
-      title: AliasBaseModel
     HTTPValidationError:
       properties:
         detail:

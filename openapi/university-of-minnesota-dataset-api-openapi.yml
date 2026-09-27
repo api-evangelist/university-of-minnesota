@@ -1439,6 +1439,37 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    LayerOut:
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          title: Name
+          example: FooLayer
+        units:
+          type: string
+          maxLength: 63
+          title: Units
+          example: meters
+        description:
+          type: string
+          title: Description
+          example: Bar Description
+        discrete:
+          type: boolean
+          title: Discrete
+          description: Does this data layer have discrete or continuous values. Land cover classification data are an example of discrete data.
+        id:
+          type: integer
+          title: Id
+      type: object
+      required:
+      - name
+      - units
+      - description
+      - discrete
+      - id
+      title: LayerOut
     TimeRangeOut:
       properties:
         begin:
@@ -1456,56 +1487,82 @@ components:
       - begin
       - end
       title: TimeRangeOut
-    Histogram:
+    GridDetails:
       properties:
-        min:
-          type: number
-          title: Min
-        max:
-          type: number
-          title: Max
-        count:
-          type: integer
-          title: Count
-        percent:
-          type: number
-          title: Percent
-      type: object
-      required:
-      - min
-      - max
-      - count
-      - percent
-      title: Histogram
-    DatasetOut:
-      properties:
-        name:
-          type: string
-          title: Name
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
         id:
           type: integer
           title: Id
-        keyname:
-          type: string
-          title: Keyname
-        app_name:
+        width:
+          type: integer
+          title: Width
+        height:
+          type: integer
+          title: Height
+        ul_x:
+          type: number
+          title: Ul X
+        ul_y:
+          type: number
+          title: Ul Y
+        scale:
+          type: number
+          title: Scale
+        srid:
+          type: integer
+          title: Srid
+      type: object
+      required:
+      - id
+      - width
+      - height
+      - ul_x
+      - ul_y
+      - scale
+      - srid
+      title: GridDetails
+    CompressEnum:
+      type: string
+      enum:
+      - DEFLATE9
+      - LZW
+      - NONE
+      title: CompressEnum
+    ValueCount:
+      properties:
+        value:
+          type: number
+          title: Value
+        count:
+          type: integer
+          title: Count
+      type: object
+      required:
+      - value
+      - count
+      title: ValueCount
+    ValueOut:
+      properties:
+        value:
+          type: number
+          title: Value
+      type: object
+      required:
+      - value
+      title: ValueOut
+    Body_get_search_object__keyname__object_search_get:
+      properties:
+        begin:
           anyOf:
           - type: string
           - type: 'null'
-          title: App Name
+          title: Begin
+        end:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: End
       type: object
-      required:
-      - name
-      - description
-      - id
-      - keyname
-      - app_name
-      title: DatasetOut
+      title: Body_get_search_object__keyname__object_search_get
     ValidationError:
       properties:
         loc:
@@ -1527,76 +1584,27 @@ components:
       - msg
       - type
       title: ValidationError
-    ValueOut:
+    Histogram:
       properties:
-        value:
+        min:
           type: number
-          title: Value
-      type: object
-      required:
-      - value
-      title: ValueOut
-    StatsOut:
-      properties:
+          title: Min
+        max:
+          type: number
+          title: Max
         count:
           type: integer
           title: Count
-        sum:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Sum
-        mean:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Mean
-        stddev:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Stddev
-        min:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Min
-        max:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max
+        percent:
+          type: number
+          title: Percent
       type: object
       required:
-      - count
-      - sum
-      - mean
-      - stddev
       - min
       - max
-      title: StatsOut
-    Quantile:
-      properties:
-        quantile:
-          type: number
-          title: Quantile
-        value:
-          type: number
-          title: Value
-      type: object
-      required:
-      - quantile
-      - value
-      title: Quantile
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - count
+      - percent
+      title: Histogram
     ObjectOut:
       properties:
         id:
@@ -1646,101 +1654,93 @@ components:
       - description
       - layer_id
       title: ObjectOut
-    ValueCount:
+    StatsOut:
       properties:
-        value:
-          type: number
-          title: Value
         count:
           type: integer
           title: Count
+        sum:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sum
+        mean:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mean
+        stddev:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Stddev
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
       type: object
       required:
-      - value
       - count
-      title: ValueCount
-    Body_get_search_object__keyname__object_search_get:
-      properties:
-        begin:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Begin
-        end:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: End
-      type: object
-      title: Body_get_search_object__keyname__object_search_get
-    CompressEnum:
-      type: string
-      enum:
-      - DEFLATE9
-      - LZW
-      - NONE
-      title: CompressEnum
-    LayerOut:
+      - sum
+      - mean
+      - stddev
+      - min
+      - max
+      title: StatsOut
+    DatasetOut:
       properties:
         name:
           type: string
-          maxLength: 255
           title: Name
-          example: FooLayer
-        units:
-          type: string
-          maxLength: 63
-          title: Units
-          example: meters
         description:
-          type: string
+          anyOf:
+          - type: string
+          - type: 'null'
           title: Description
-          example: Bar Description
-        discrete:
-          type: boolean
-          title: Discrete
-          description: Does this data layer have discrete or continuous values. Land cover classification data are an example of discrete data.
         id:
           type: integer
           title: Id
+        keyname:
+          type: string
+          title: Keyname
+        app_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: App Name
       type: object
       required:
       - name
-      - units
       - description
-      - discrete
       - id
-      title: LayerOut
-    GridDetails:
+      - keyname
+      - app_name
+      title: DatasetOut
+    HTTPValidationError:
       properties:
-        id:
-          type: integer
-          title: Id
-        width:
-          type: integer
-          title: Width
-        height:
-          type: integer
-          title: Height
-        ul_x:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Quantile:
+      properties:
+        quantile:
           type: number
-          title: Ul X
-        ul_y:
+          title: Quantile
+        value:
           type: number
-          title: Ul Y
-        scale:
-          type: number
-          title: Scale
-        srid:
-          type: integer
-          title: Srid
+          title: Value
       type: object
       required:
-      - id
-      - width
-      - height
-      - ul_x
-      - ul_y
-      - scale
-      - srid
-      title: GridDetails
+      - quantile
+      - value
+      title: Quantile
