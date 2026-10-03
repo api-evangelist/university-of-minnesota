@@ -1439,6 +1439,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     LayerOut:
       properties:
         name:
@@ -1470,120 +1479,6 @@ components:
       - discrete
       - id
       title: LayerOut
-    TimeRangeOut:
-      properties:
-        begin:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Begin
-        end:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: End
-      type: object
-      required:
-      - begin
-      - end
-      title: TimeRangeOut
-    GridDetails:
-      properties:
-        id:
-          type: integer
-          title: Id
-        width:
-          type: integer
-          title: Width
-        height:
-          type: integer
-          title: Height
-        ul_x:
-          type: number
-          title: Ul X
-        ul_y:
-          type: number
-          title: Ul Y
-        scale:
-          type: number
-          title: Scale
-        srid:
-          type: integer
-          title: Srid
-      type: object
-      required:
-      - id
-      - width
-      - height
-      - ul_x
-      - ul_y
-      - scale
-      - srid
-      title: GridDetails
-    CompressEnum:
-      type: string
-      enum:
-      - DEFLATE9
-      - LZW
-      - NONE
-      title: CompressEnum
-    ValueCount:
-      properties:
-        value:
-          type: number
-          title: Value
-        count:
-          type: integer
-          title: Count
-      type: object
-      required:
-      - value
-      - count
-      title: ValueCount
-    ValueOut:
-      properties:
-        value:
-          type: number
-          title: Value
-      type: object
-      required:
-      - value
-      title: ValueOut
-    Body_get_search_object__keyname__object_search_get:
-      properties:
-        begin:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Begin
-        end:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: End
-      type: object
-      title: Body_get_search_object__keyname__object_search_get
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     Histogram:
       properties:
         min:
@@ -1605,6 +1500,108 @@ components:
       - count
       - percent
       title: Histogram
+    DatasetOut:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        id:
+          type: integer
+          title: Id
+        keyname:
+          type: string
+          title: Keyname
+        app_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: App Name
+      type: object
+      required:
+      - name
+      - description
+      - id
+      - keyname
+      - app_name
+      title: DatasetOut
+    ValueCount:
+      properties:
+        value:
+          type: number
+          title: Value
+        count:
+          type: integer
+          title: Count
+      type: object
+      required:
+      - value
+      - count
+      title: ValueCount
+    TimeRangeOut:
+      properties:
+        begin:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Begin
+        end:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: End
+      type: object
+      required:
+      - begin
+      - end
+      title: TimeRangeOut
+    Quantile:
+      properties:
+        quantile:
+          type: number
+          title: Quantile
+        value:
+          type: number
+          title: Value
+      type: object
+      required:
+      - quantile
+      - value
+      title: Quantile
+    Body_get_search_object__keyname__object_search_get:
+      properties:
+        begin:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Begin
+        end:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: End
+      type: object
+      title: Body_get_search_object__keyname__object_search_get
+    ValueOut:
+      properties:
+        value:
+          type: number
+          title: Value
+      type: object
+      required:
+      - value
+      title: ValueOut
+    CompressEnum:
+      type: string
+      enum:
+      - DEFLATE9
+      - LZW
+      - NONE
+      title: CompressEnum
     ObjectOut:
       properties:
         id:
@@ -1693,54 +1690,57 @@ components:
       - min
       - max
       title: StatsOut
-    DatasetOut:
+    GridDetails:
       properties:
-        name:
-          type: string
-          title: Name
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
         id:
           type: integer
           title: Id
-        keyname:
-          type: string
-          title: Keyname
-        app_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: App Name
+        width:
+          type: integer
+          title: Width
+        height:
+          type: integer
+          title: Height
+        ul_x:
+          type: number
+          title: Ul X
+        ul_y:
+          type: number
+          title: Ul Y
+        scale:
+          type: number
+          title: Scale
+        srid:
+          type: integer
+          title: Srid
       type: object
       required:
-      - name
-      - description
       - id
-      - keyname
-      - app_name
-      title: DatasetOut
-    HTTPValidationError:
+      - width
+      - height
+      - ul_x
+      - ul_y
+      - scale
+      - srid
+      title: GridDetails
+    ValidationError:
       properties:
-        detail:
+        loc:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Quantile:
-      properties:
-        quantile:
-          type: number
-          title: Quantile
-        value:
-          type: number
-          title: Value
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
-      - quantile
-      - value
-      title: Quantile
+      - loc
+      - msg
+      - type
+      title: ValidationError

@@ -661,6 +661,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CatchmentOut02:
       properties:
         id:
@@ -696,6 +705,35 @@ components:
       - 8
       - 9
       title: MNDNRLevel
+    CatchmentOut04:
+      properties:
+        id:
+          type: number
+          title: Id
+        major_name:
+          type: string
+          title: Major Name
+        sq_miles:
+          type: number
+          title: Sq Miles
+        prod_year:
+          type: number
+          title: Prod Year
+        source:
+          type: string
+          title: Source
+        huc_8:
+          type: string
+          title: Huc 8
+      type: object
+      required:
+      - id
+      - major_name
+      - sq_miles
+      - prod_year
+      - source
+      - huc_8
+      title: CatchmentOut04
     CatchmentOut08:
       properties:
         id:
@@ -889,27 +927,39 @@ components:
       - hu_10_gnis
       - hu_12_gnis
       title: CatchmentOut08
-    ValidationError:
+    CatchmentOut07:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        id:
+          type: number
+          title: Id
+        minor_name:
           type: string
-          title: Message
-        type:
+          title: Minor Name
+        major:
+          type: number
+          title: Major
+        major_name:
           type: string
-          title: Error Type
+          title: Major Name
+        sq_miles:
+          type: number
+          title: Sq Miles
+        prod_year:
+          type: number
+          title: Prod Year
+        source:
+          type: string
+          title: Source
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - id
+      - minor_name
+      - major
+      - major_name
+      - sq_miles
+      - prod_year
+      - source
+      title: CatchmentOut07
     CatchmentOut09:
       properties:
         id:
@@ -999,35 +1049,27 @@ components:
       - lk_ratio
       - sto_ratio
       title: CatchmentOut09
-    CatchmentOut04:
+    ValidationError:
       properties:
-        id:
-          type: number
-          title: Id
-        major_name:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Major Name
-        sq_miles:
-          type: number
-          title: Sq Miles
-        prod_year:
-          type: number
-          title: Prod Year
-        source:
+          title: Message
+        type:
           type: string
-          title: Source
-        huc_8:
-          type: string
-          title: Huc 8
+          title: Error Type
       type: object
       required:
-      - id
-      - major_name
-      - sq_miles
-      - prod_year
-      - source
-      - huc_8
-      title: CatchmentOut04
+      - loc
+      - msg
+      - type
+      title: ValidationError
     CatchmentOut01:
       properties:
         id:
@@ -1041,45 +1083,3 @@ components:
       - id
       - huc2_name
       title: CatchmentOut01
-    CatchmentOut07:
-      properties:
-        id:
-          type: number
-          title: Id
-        minor_name:
-          type: string
-          title: Minor Name
-        major:
-          type: number
-          title: Major
-        major_name:
-          type: string
-          title: Major Name
-        sq_miles:
-          type: number
-          title: Sq Miles
-        prod_year:
-          type: number
-          title: Prod Year
-        source:
-          type: string
-          title: Source
-      type: object
-      required:
-      - id
-      - minor_name
-      - major
-      - major_name
-      - sq_miles
-      - prod_year
-      - source
-      title: CatchmentOut07
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError

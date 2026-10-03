@@ -429,6 +429,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CompressEnum:
       type: string
       enum:
@@ -436,27 +445,23 @@ components:
       - LZW
       - NONE
       title: CompressEnum
-    ValidationError:
+    LakeOut:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        id:
           type: string
-          title: Message
-        type:
+          title: Id
+        name:
           type: string
-          title: Error Type
+          title: Name
+        acres:
+          type: number
+          title: Acres
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - id
+      - name
+      - acres
+      title: LakeOut
     CatchmentOut09:
       properties:
         id:
@@ -585,29 +590,24 @@ components:
       - min
       - max
       title: StatsOut
-    HTTPValidationError:
+    ValidationError:
       properties:
-        detail:
+        loc:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    LakeOut:
-      properties:
-        id:
+          title: Location
+        msg:
           type: string
-          title: Id
-        name:
+          title: Message
+        type:
           type: string
-          title: Name
-        acres:
-          type: number
-          title: Acres
+          title: Error Type
       type: object
       required:
-      - id
-      - name
-      - acres
-      title: LakeOut
+      - loc
+      - msg
+      - type
+      title: ValidationError
