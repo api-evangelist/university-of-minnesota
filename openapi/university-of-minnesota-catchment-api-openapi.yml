@@ -661,15 +661,40 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
+    CatchmentOut01:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        id:
+          type: string
+          title: Id
+        huc2_name:
+          type: string
+          title: Huc2 Name
       type: object
-      title: HTTPValidationError
+      required:
+      - id
+      - huc2_name
+      title: CatchmentOut01
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     CatchmentOut02:
       properties:
         id:
@@ -695,16 +720,6 @@ components:
       - huc_4
       - huc4_name
       title: CatchmentOut02
-    MNDNRLevel:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 4
-      - 7
-      - 8
-      - 9
-      title: MNDNRLevel
     CatchmentOut04:
       properties:
         id:
@@ -734,6 +749,15 @@ components:
       - source
       - huc_8
       title: CatchmentOut04
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CatchmentOut08:
       properties:
         id:
@@ -1049,37 +1073,13 @@ components:
       - lk_ratio
       - sto_ratio
       title: CatchmentOut09
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    CatchmentOut01:
-      properties:
-        id:
-          type: string
-          title: Id
-        huc2_name:
-          type: string
-          title: Huc2 Name
-      type: object
-      required:
-      - id
-      - huc2_name
-      title: CatchmentOut01
+    MNDNRLevel:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 4
+      - 7
+      - 8
+      - 9
+      title: MNDNRLevel

@@ -429,6 +429,34 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CompressEnum:
+      type: string
+      enum:
+      - DEFLATE9
+      - LZW
+      - NONE
+      title: CompressEnum
     HTTPValidationError:
       properties:
         detail:
@@ -438,13 +466,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    CompressEnum:
-      type: string
-      enum:
-      - DEFLATE9
-      - LZW
-      - NONE
-      title: CompressEnum
     LakeOut:
       properties:
         id:
@@ -462,6 +483,45 @@ components:
       - name
       - acres
       title: LakeOut
+    StatsOut:
+      properties:
+        count:
+          type: integer
+          title: Count
+        sum:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sum
+        mean:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mean
+        stddev:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Stddev
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
+      type: object
+      required:
+      - count
+      - sum
+      - mean
+      - stddev
+      - min
+      - max
+      title: StatsOut
     CatchmentOut09:
       properties:
         id:
@@ -551,63 +611,3 @@ components:
       - lk_ratio
       - sto_ratio
       title: CatchmentOut09
-    StatsOut:
-      properties:
-        count:
-          type: integer
-          title: Count
-        sum:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Sum
-        mean:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Mean
-        stddev:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Stddev
-        min:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Min
-        max:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max
-      type: object
-      required:
-      - count
-      - sum
-      - mean
-      - stddev
-      - min
-      - max
-      title: StatsOut
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
