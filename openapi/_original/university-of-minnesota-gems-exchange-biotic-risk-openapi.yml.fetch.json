@@ -1,0 +1,12 @@
+{
+ "url": "https://exchange-1.gems.msi.umn.edu/soil/v2/openapi.json",
+ "requested_url": "https://exchange-1.gems.msi.umn.edu/soil/v2/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 36810,
+ "sha256": "c6d8778ca6003977a664ce336c0259674048c0bd1a3b7ae1ae7e5c938b583611",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
