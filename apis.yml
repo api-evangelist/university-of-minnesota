@@ -74,7 +74,7 @@ tags:
   - Identity Federation
   - Research Computing
 created: '2026-06-03'
-modified: '2026-09-01'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 x-coverage:
   state: covered
@@ -531,6 +531,8 @@ apis:
   - type: JSONSchema
     url: json-schema/university-of-minnesota-umedia-item.json
 common:
+  - url: https://twin-cities.umn.edu/rss.xml
+    type: BlogRSS
   - type: Website
     url: https://twin-cities.umn.edu
   - type: DeveloperPortal
