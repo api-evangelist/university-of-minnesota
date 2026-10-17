@@ -1439,23 +1439,37 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TimeRangeOut:
+    LayerOut:
       properties:
-        begin:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Begin
-        end:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: End
+        name:
+          type: string
+          maxLength: 255
+          title: Name
+          example: FooLayer
+        units:
+          type: string
+          maxLength: 63
+          title: Units
+          example: meters
+        description:
+          type: string
+          title: Description
+          example: Bar Description
+        discrete:
+          type: boolean
+          title: Discrete
+          description: Does this data layer have discrete or continuous values. Land cover classification data are an example of discrete data.
+        id:
+          type: integer
+          title: Id
       type: object
       required:
-      - begin
-      - end
-      title: TimeRangeOut
+      - name
+      - units
+      - description
+      - discrete
+      - id
+      title: LayerOut
     ValidationError:
       properties:
         loc:
@@ -1477,35 +1491,6 @@ components:
       - msg
       - type
       title: ValidationError
-    Quantile:
-      properties:
-        quantile:
-          type: number
-          title: Quantile
-        value:
-          type: number
-          title: Value
-      type: object
-      required:
-      - quantile
-      - value
-      title: Quantile
-    CompressEnum:
-      type: string
-      enum:
-      - DEFLATE9
-      - LZW
-      - NONE
-      title: CompressEnum
-    ValueOut:
-      properties:
-        value:
-          type: number
-          title: Value
-      type: object
-      required:
-      - value
-      title: ValueOut
     ObjectOut:
       properties:
         id:
@@ -1555,15 +1540,23 @@ components:
       - description
       - layer_id
       title: ObjectOut
-    HTTPValidationError:
+    TimeRangeOut:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        begin:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Begin
+        end:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: End
       type: object
-      title: HTTPValidationError
+      required:
+      - begin
+      - end
+      title: TimeRangeOut
     GridDetails:
       properties:
         id:
@@ -1671,50 +1664,22 @@ components:
           title: End
       type: object
       title: Body_get_search_object__keyname__object_search_get
-    LayerOut:
+    CompressEnum:
+      type: string
+      enum:
+      - DEFLATE9
+      - LZW
+      - NONE
+      title: CompressEnum
+    HTTPValidationError:
       properties:
-        name:
-          type: string
-          maxLength: 255
-          title: Name
-          example: FooLayer
-        units:
-          type: string
-          maxLength: 63
-          title: Units
-          example: meters
-        description:
-          type: string
-          title: Description
-          example: Bar Description
-        discrete:
-          type: boolean
-          title: Discrete
-          description: Does this data layer have discrete or continuous values. Land cover classification data are an example of discrete data.
-        id:
-          type: integer
-          title: Id
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - name
-      - units
-      - description
-      - discrete
-      - id
-      title: LayerOut
-    ValueCount:
-      properties:
-        value:
-          type: number
-          title: Value
-        count:
-          type: integer
-          title: Count
-      type: object
-      required:
-      - value
-      - count
-      title: ValueCount
+      title: HTTPValidationError
     DatasetOut:
       properties:
         name:
@@ -1744,3 +1709,38 @@ components:
       - keyname
       - app_name
       title: DatasetOut
+    Quantile:
+      properties:
+        quantile:
+          type: number
+          title: Quantile
+        value:
+          type: number
+          title: Value
+      type: object
+      required:
+      - quantile
+      - value
+      title: Quantile
+    ValueCount:
+      properties:
+        value:
+          type: number
+          title: Value
+        count:
+          type: integer
+          title: Count
+      type: object
+      required:
+      - value
+      - count
+      title: ValueCount
+    ValueOut:
+      properties:
+        value:
+          type: number
+          title: Value
+      type: object
+      required:
+      - value
+      title: ValueOut

@@ -56,6 +56,21 @@ paths:
       - Pedtools
 components:
   schemas:
+    AliasBaseModel:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+      type: object
+      required:
+      - name
+      - type
+      title: AliasBaseModel
     ValidationError:
       properties:
         loc:
@@ -77,21 +92,6 @@ components:
       - msg
       - type
       title: ValidationError
-    AliasBaseModel:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
-      type: object
-      required:
-      - name
-      - type
-      title: AliasBaseModel
     HTTPValidationError:
       properties:
         detail:

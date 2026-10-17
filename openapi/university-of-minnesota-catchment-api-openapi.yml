@@ -674,6 +674,128 @@ components:
       - id
       - huc2_name
       title: CatchmentOut01
+    CatchmentOut09:
+      properties:
+        id:
+          type: string
+          title: Id
+        lake_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lake Id
+        catch_type:
+          type: string
+          title: Catch Type
+        catch_pos:
+          type: string
+          title: Catch Pos
+        down_cat:
+          type: string
+          title: Down Cat
+        upadj_cat:
+          type: string
+          title: Upadj Cat
+        huc12_id:
+          type: string
+          title: Huc12 Id
+        acres:
+          type: number
+          title: Acres
+        perim_ft:
+          type: number
+          title: Perim Ft
+        upsum_ac:
+          type: number
+          title: Upsum Ac
+        upsum_sqmi:
+          type: number
+          title: Upsum Sqmi
+        depth:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Depth
+        maj:
+          type: integer
+          title: Maj
+        l_pw_ratio:
+          type: number
+          title: L Pw Ratio
+        pw_ac:
+          type: number
+          title: Pw Ac
+        nwi_ac:
+          type: number
+          title: Nwi Ac
+        dca_ratio:
+          type: integer
+          title: Dca Ratio
+        total_rati:
+          type: integer
+          title: Total Rati
+        lk_ratio:
+          type: integer
+          title: Lk Ratio
+        sto_ratio:
+          type: integer
+          title: Sto Ratio
+      type: object
+      required:
+      - id
+      - lake_id
+      - catch_type
+      - catch_pos
+      - down_cat
+      - upadj_cat
+      - huc12_id
+      - acres
+      - perim_ft
+      - upsum_ac
+      - upsum_sqmi
+      - depth
+      - maj
+      - l_pw_ratio
+      - pw_ac
+      - nwi_ac
+      - dca_ratio
+      - total_rati
+      - lk_ratio
+      - sto_ratio
+      title: CatchmentOut09
+    CatchmentOut07:
+      properties:
+        id:
+          type: number
+          title: Id
+        minor_name:
+          type: string
+          title: Minor Name
+        major:
+          type: number
+          title: Major
+        major_name:
+          type: string
+          title: Major Name
+        sq_miles:
+          type: number
+          title: Sq Miles
+        prod_year:
+          type: number
+          title: Prod Year
+        source:
+          type: string
+          title: Source
+      type: object
+      required:
+      - id
+      - minor_name
+      - major
+      - major_name
+      - sq_miles
+      - prod_year
+      - source
+      title: CatchmentOut07
     ValidationError:
       properties:
         loc:
@@ -695,6 +817,15 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CatchmentOut02:
       properties:
         id:
@@ -749,15 +880,16 @@ components:
       - source
       - huc_8
       title: CatchmentOut04
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+    MNDNRLevel:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 4
+      - 7
+      - 8
+      - 9
+      title: MNDNRLevel
     CatchmentOut08:
       properties:
         id:
@@ -951,135 +1083,3 @@ components:
       - hu_10_gnis
       - hu_12_gnis
       title: CatchmentOut08
-    CatchmentOut07:
-      properties:
-        id:
-          type: number
-          title: Id
-        minor_name:
-          type: string
-          title: Minor Name
-        major:
-          type: number
-          title: Major
-        major_name:
-          type: string
-          title: Major Name
-        sq_miles:
-          type: number
-          title: Sq Miles
-        prod_year:
-          type: number
-          title: Prod Year
-        source:
-          type: string
-          title: Source
-      type: object
-      required:
-      - id
-      - minor_name
-      - major
-      - major_name
-      - sq_miles
-      - prod_year
-      - source
-      title: CatchmentOut07
-    CatchmentOut09:
-      properties:
-        id:
-          type: string
-          title: Id
-        lake_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Lake Id
-        catch_type:
-          type: string
-          title: Catch Type
-        catch_pos:
-          type: string
-          title: Catch Pos
-        down_cat:
-          type: string
-          title: Down Cat
-        upadj_cat:
-          type: string
-          title: Upadj Cat
-        huc12_id:
-          type: string
-          title: Huc12 Id
-        acres:
-          type: number
-          title: Acres
-        perim_ft:
-          type: number
-          title: Perim Ft
-        upsum_ac:
-          type: number
-          title: Upsum Ac
-        upsum_sqmi:
-          type: number
-          title: Upsum Sqmi
-        depth:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Depth
-        maj:
-          type: integer
-          title: Maj
-        l_pw_ratio:
-          type: number
-          title: L Pw Ratio
-        pw_ac:
-          type: number
-          title: Pw Ac
-        nwi_ac:
-          type: number
-          title: Nwi Ac
-        dca_ratio:
-          type: integer
-          title: Dca Ratio
-        total_rati:
-          type: integer
-          title: Total Rati
-        lk_ratio:
-          type: integer
-          title: Lk Ratio
-        sto_ratio:
-          type: integer
-          title: Sto Ratio
-      type: object
-      required:
-      - id
-      - lake_id
-      - catch_type
-      - catch_pos
-      - down_cat
-      - upadj_cat
-      - huc12_id
-      - acres
-      - perim_ft
-      - upsum_ac
-      - upsum_sqmi
-      - depth
-      - maj
-      - l_pw_ratio
-      - pw_ac
-      - nwi_ac
-      - dca_ratio
-      - total_rati
-      - lk_ratio
-      - sto_ratio
-      title: CatchmentOut09
-    MNDNRLevel:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 4
-      - 7
-      - 8
-      - 9
-      title: MNDNRLevel
