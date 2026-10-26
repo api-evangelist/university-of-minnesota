@@ -1,0 +1,118 @@
+# University of Minnesota (university-of-minnesota)
+
+<!-- API-EVANGELIST-PROVENANCE:BEGIN -->
+> ### About this repository
+>
+> **This is not our API.** This repository is an independent, third-party profile of a company's
+> **publicly available** API surface, maintained by [API Evangelist](https://apievangelist.com).
+> API Evangelist does not operate, host, resell, or support this company's APIs, and is not
+> affiliated with or endorsed by the company unless stated on the profile.
+>
+> **Where the information came from.** Everything here is assembled from material a member of the
+> public can reach with a browser and no credentials — the company's own website, developer portal
+> and documentation, the specifications it publishes for public use (OpenAPI, AsyncAPI, JSON Schema,
+> `apis.json`, `llms.txt` and similar), its public repositories, and its public status, pricing and
+> changelog pages. **Nothing here is obtained by breaching a system, defeating an access control, or
+> using credentials of any kind.**
+>
+> **The rating is an independent assessment.** The Kin Score and Agent Readiness rating are
+> independently calculated scores of a company's *public* API artifacts, produced by API Evangelist
+> against a published rubric. They are not certifications, endorsements, security assessments, or
+> audits, and they score published artifacts — not the quality, safety, or security of the software.
+>
+> **Corrections, re-scores, and removal are free.** No partnership, contract, or purchase is
+> required, and you do not need to justify the request.
+>
+> - **Something wrong?** Open an issue on this repository, or email
+>   [info@apievangelist.com](mailto:info@apievangelist.com).
+> - **Published something new?** Ask for a re-score and we will re-run the rating.
+> - **Want the listing taken down?** Say so and we will honor it. The profile is reduced to your
+>   company name, a factual description, and a link to your own site, and the company is recorded as
+>   **unrated** — never scored zero for having asked.
+>
+> **Response times.** Acknowledgement within **one business day**; removal or restriction within
+> **two business days**; corrections and re-scores within **five business days**.
+>
+> **Not from the company, and here with a question?** You are welcome here — we would rather be the
+> front line and point you the right way than have a good report go nowhere. What this repository
+> can answer is narrow, though, so it is worth knowing who you are actually looking for:
+>
+> - **A question about how the API works, an account, billing, or a bug in the service** — that is
+>   the company's own support, not us. We profile this API; we do not operate it and cannot see
+>   your account.
+> - **A bug in an open-source project we only catalog** — file it on that project's own repository.
+>   This has happened with a real and correct bug report that reached us instead of the people who
+>   could fix it, which helped nobody.
+> - **Anything about this listing itself** — the description, the tags, the rating, a missing or
+>   wrong artifact — is ours. Open an issue here.
+> - **Not sure, or something general about API Evangelist or APIs.io** — open an issue on the
+>   [APIs.io Inbox](https://github.com/api-search/inbox) and we will route it.
+>
+> **This repository contains no software, and we will never ask you to download anything.** There is
+> no build, release, installer, or binary here — only text and machine-readable API descriptions, so
+> there is nothing here that can be "corrupt" or need "repairing". Any issue, comment, or email
+> claiming otherwise and offering a download link is not from us and is hostile. Do not follow the
+> link; it is a lure. Report it to GitHub and, if you like, tell us at
+> [info@apievangelist.com](mailto:info@apievangelist.com) so we can take it down.
+>
+> **On a security or compliance team?** Email
+> [info@apievangelist.com](mailto:info@apievangelist.com) with *security* in the subject line and
+> you will get a person, not a form. We will tell you exactly which public URLs this profile was
+> built from so your team can see the same surface we did, and we will take the listing down on
+> request while you work through it.
+>
+> Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
+<!-- API-EVANGELIST-PROVENANCE:END -->
+
+The University of Minnesota is a public land-grant research university with its flagship campus in the Twin Cities (Minneapolis-Saint Paul), ranked #203 in the QS World University Rankings 2025. This repository catalogs the institution's public developer/API footprint as an APIs.json profile for the API Evangelist network.
+
+- APIs.json: https://raw.githubusercontent.com/api-evangelist/university-of-minnesota/refs/heads/main/apis.yml
+- Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=university-of-minnesota-api-evangelist&utm_content=repo
+
+## Type
+
+- Type: Index
+- Position: Consumer
+- Access: 3rd-Party
+
+## Tags
+
+Education, Higher Education, University, Research, Open Data, Geospatial, United States, Minnesota
+
+## APIs
+
+- **Common Good APIs** — OIT Integrations Team suite over the Common Data Layer (person, HR, employee, student, class, organization, term data); access by request/approval. Docs: https://sites.google.com/umn.edu/integration-apis/common-good-apis
+- **UMedia Digital Collections JSON API** — UMN Libraries' own read-only JSON API over digital collection metadata at umedia.lib.umn.edu (institution-operated). Docs: https://github.com/UMNLibraries/digital_collection_apis
+- **UMedia IIIF image delivery** — served from the Libraries' OCLC CONTENTdm instance at cdm16022.contentdm.oclc.org. A UMN tenancy on OCLC's platform, **not** a University-operated API.
+- **GEMS Informatics Exchange APIs** — Agricultural/geospatial data APIs (Climate, Weather, Soils, Hydro, Elevation, Land Cover, Crop Calendar, Market, Biotic Risk, Pedtools) at exchange-1.gems.msi.umn.edu. Nine of the ten publish a live OpenAPI 3.1 document; the contracts are saved under `openapi/`. Docs: https://gems.umn.edu/gems-exchange-apis
+- **UMN Digital Conservancy / DRUM** — OAI-PMH 2.0 at https://conservancy.umn.edu/server/oai/request plus a publicly readable DSpace 10.0 REST root. The deployment is the University's; the REST contract is DSpace's, so none is saved here.
+- **InCommon identity federation** — the University's own Shibboleth IdP, published as `urn:mace:incommon:umn.edu` with SAML 2.0 SSO at login.umn.edu. The strongest institution-operated machine-readable surface UMN has.
+- **Registry memberships** — DataCite direct member `UMN` (client `UMN.DRUM`, prefix 10.13020), Crossref member 10551, ROR `017zqws13`. Facts about the institution, recorded as memberships; the registries' own contracts are not saved here.
+
+## Plans / Rate Limits / FinOps
+
+- Plans & Pricing: [plans/university-of-minnesota-plans-pricing.yml](plans/university-of-minnesota-plans-pricing.yml)
+- Rate Limits: [rate-limits/university-of-minnesota-rate-limits.yml](rate-limits/university-of-minnesota-rate-limits.yml)
+- FinOps: [finops/university-of-minnesota-finops.yml](finops/university-of-minnesota-finops.yml)
+
+## Timestamps
+
+- Created: 2026-06-03
+- Modified: 2026-06-03
+
+## Common Properties
+
+- Website: https://twin-cities.umn.edu
+- Developer Portal: https://sites.google.com/umn.edu/integration-apis/home
+- GitHub: https://github.com/UMNLibraries
+- Source Code: https://github.com/GEMS-UMN
+- LinkedIn: https://www.linkedin.com/school/university-of-minnesota/
+- Review: [review.yml](review.yml)
+
+## Notes
+
+Re-profiled 2026-09-01 under the API Evangelist university pipeline, which settles who *operates* each surface before saving any contract. All entries reflect publicly documented APIs verified live on 2026-09-01 (originally profiled 2026-06-03). The documented Common Good API base host, integration-boomi.umn.edu, does not resolve on public DNS and is reachable only from inside the University network. The Common Good APIs are gated behind a request/approval workflow and institutional authentication; the documented Boomi base URL was not probed anonymously and no endpoints were fabricated. UMedia and the UDC/DRUM repository (Conservancy) are real public sites that return 403 to anonymous curl due to bot protection. The LinkedIn school page returns HTTP 999 (anti-bot) but exists. There is no single unified public API key portal across all UMN units; APIs are owned by distinct teams (OIT Integrations, Libraries, GEMS Informatics).
+
+## Maintainers
+
+- Kin Lane — kin@apievangelist.com
